@@ -17,16 +17,30 @@
         header {
             background-color: #001e74;
             color: white;
-            padding: 16px 24px;
+            padding: 16px 30px;
             font-size: 20px;
             font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .manage-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #FFC31D;
-            margin-bottom: 6px;
+        .btn-logout {
+            background-color: #facc15;
+            color: #001e74;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-logout:hover {
+            background-color: #e0b814;
         }
 
         .nav-bar {
@@ -43,18 +57,23 @@
             height: 80px;
         }
 
+        .manage-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFC31D;
+            margin-bottom: 6px;
+        }
+
         .nav-menu {
             display: flex;
             gap: 50px;
             font-size: 20px;
-            text-decoration: none;
         }
 
         .nav-menu a {
             text-decoration: none;
             color: #001e74;
             font-weight: bold;
-
         }
 
         .nav-menu a.active {
@@ -62,19 +81,12 @@
             padding-bottom: 21px;
         }
 
-         .nav-menu li a:hover {
-            color: #facc15; /* kuning terang saat hover */
+        .nav-menu li a:hover {
+            color: #facc15;
         }
 
         .container {
             padding: 24px;
-        }
-
-        .tambah {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-bottom: 20px;
         }
 
         .btn-add {
@@ -93,7 +105,7 @@
         .p {
             font-size: 18px;
             font-weight: bold;
-            color: #001e74
+            color: #001e74;
         }
 
         table {
@@ -124,10 +136,6 @@
             justify-content: center;
         }
 
-        .action-btn form {
-            display: inline;
-        }
-
         .btn-download {
             background-color: #007bff;
             display: inline-block;
@@ -141,7 +149,7 @@
             outline: none;
         }
 
-          .btn-download:hover {
+        .btn-download:hover {
             transform: scale(1.05);
         }
 
@@ -161,10 +169,81 @@
             color: #dc3545;
             font-size: 20px;
         }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .modal-content p {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+
+        .cancel-btn,
+        .confirm-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .cancel-btn {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        .cancel-btn:hover {
+            background-color: #bbb;
+        }
+
+        .confirm-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .confirm-btn:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
-    <header>Admin</header>
+
+    <header>
+        <div>Admin Dashboard</div>
+        <button class="btn-logout" onclick="showLogoutModal()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </header>
 
     <div class="nav-bar">
         <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE">
@@ -174,13 +253,53 @@
                 <li><a href="#">Indikator SPBE</a></li>
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Berita</a></li>
-                <li><a href="#" >Download</a></li>
+                <li><a href="{{ route('admin.download') }}">Download</a></li>
                 <li><a href="#">Galeri</a></li>
                 <li><a href="#">Kontak</a></li>
             </nav>
         </div>
     </div>
 
-  
+    @php use Illuminate\Support\Facades\Auth; @endphp
+
+    <div class="container">
+        @if(Auth::check())
+            <h2>Selamat datang, {{ Auth::user()->name }}</h2>
+        @else
+            <h2>Anda belum login.</h2>
+        @endif
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>Apakah Anda yakin ingin logout?</p>
+            <div class="modal-actions">
+                <button class="cancel-btn" onclick="closeLogoutModal()">Batal</button>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="confirm-btn">Ya, Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLogoutModal() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function closeLogoutModal() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('logoutModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
 </body>
 </html>
