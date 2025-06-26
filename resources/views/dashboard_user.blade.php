@@ -279,7 +279,7 @@
         </div>
         <ul class="menu">
             <li><a href="#">Indikator SPBE</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{ route('user.profile.show') }}">Profile </a></li>
             <li><a href="#">Berita</a></li>
             <li><a href="#">Download</a></li>
             <li><a href="#">Galeri</a></li>

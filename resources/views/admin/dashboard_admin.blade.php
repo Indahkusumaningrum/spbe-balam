@@ -251,7 +251,7 @@
             <div class="manage-label">Manage</div>
             <nav class="nav-menu">
                 <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ route('admin.profile.edit') }}">Profile</a></li>
                 <li><a href="#">Berita</a></li>
                 <li><a href="{{ route('admin.download') }}">Download</a></li>
                 <li><a href="#">Galeri</a></li>
