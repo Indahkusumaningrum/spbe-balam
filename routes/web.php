@@ -20,7 +20,6 @@ Route::get('/download', function () { return view('admin/download'); })->name('d
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 Route::get('/admin/download/edit', [DownloadController::class, 'edit'])->name('download.edit');
 
-Route::get('/profile', function () { return view('admin/profile'); })->name('profile');
 Route::get('/admin/profile/create', [ProfileController::class, 'create'])->name('profile.create');
 Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
 
@@ -34,9 +33,10 @@ Route::get('/', function () {
 
 // Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile');
+    Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('edit.profile');
     Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
 });
 
 // User
-Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
+Route::get('/userprofile', [UserProfileController::class, 'show'])->name('profile.show');
