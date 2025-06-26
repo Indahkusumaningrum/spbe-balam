@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\UserProfileController;
 
 
@@ -16,9 +17,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 
-Route::get('/dashboardadmin', function () {
-    return view('admin.dashboard_admin');
-})->middleware('auth');
+Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard.admin');
+
+
 
 
 //USER

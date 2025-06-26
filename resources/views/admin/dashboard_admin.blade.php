@@ -246,7 +246,9 @@
     </header>
 
     <div class="nav-bar">
-        <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE">
+        <a href="{{ route('dashboard.admin') }}">
+            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
+        </a>
         <div class="nav-container">
             <div class="manage-label">Manage</div>
             <nav class="nav-menu">
