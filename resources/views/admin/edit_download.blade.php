@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Tambah File</title>
+    <title>Form Edit File</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         .form-container {
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="form-container">
-        <h2>Form Menambah File Baru</h2>
+        <h2>Form Mengedit File</h2>
         <form action="" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="category" placeholder="Category" class="form-control" required>
