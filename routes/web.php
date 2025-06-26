@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\UserProfileController;
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
     ->middleware('guest')
@@ -29,3 +30,13 @@ Route::get('/berita', function () { return view('admin/berita'); })->name('berit
 Route::get('/', function () {
     return view('dashboard_user');
 });
+
+
+// Admin
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+});
+
+// User
+Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
