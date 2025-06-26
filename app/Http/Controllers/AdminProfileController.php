@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class AdminProfileController extends Controller
 {
+
+    public function show() {
+        $profile = \App\Models\Profile::first();
+        return view('admin.profile', compact('profile'));
+    }
+
     public function edit()
     {
         $profile = Profile::first();
-        return view('admin.profile_edit', compact('profile'));
+        return view('admin.edit_profile', compact('profile'));
     }
 
     public function update(Request $request) {
@@ -38,21 +44,7 @@ class AdminProfileController extends Controller
         $profile->deskripsi = $request->deskripsi;
         $profile->save();
         
-        // if ($profile) {
 
-        //     $profile->update([
-        //         'nama_instansi' => $request->nama_instansi,
-        //         'deskripsi' => $request->deskripsi,
-        //         'gambar' => $profile->gambar,
-        //     ]);
-        // } else {
-        //     Profile::create([
-        //         'nama_instansi' => $request->nama_instansi,
-        //         'deskripsi' => $request->deskripsi,
-        //         'gambar' => $filename,
-        //     ]);
-        // }
-
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui.');
     }
 }

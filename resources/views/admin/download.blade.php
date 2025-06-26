@@ -7,92 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #001e74;
-            color: white;
-            padding: 16px 24px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .manage-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #FFC31D;
-            margin-bottom: 6px;
-        }
-
-        .nav-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: white;
-            padding: 10px 30px;
-            border-bottom: 1px solid #ccc;
-            list-style: none;
-        }
-
-        .nav-bar img {
-            height: 80px;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 50px;
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #001e74;
-            font-weight: bold;
-
-        }
-
-        .nav-menu a.active {
-            border-bottom: 5px solid #FFC31D;
-            padding-bottom: 20px;
-            color: #FFC31D;
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu li a {
-            position: relative;
-            color: #001e74;
-            text-decoration: none;
-            font-weight: bold;
-            padding-bottom: 24px;
-        }
-
-        .nav-menu li a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 5px;
-            width: 0;
-            background-color: #FFC31D;
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu li a:hover::after {
-            width: 100%;
-        }
-
-        .nav-menu li a:hover {
-            color: #facc15;
-        }
-
-        .container {
+        .table-container {
             padding: 24px;
+
         }
 
         .tambah {
@@ -189,7 +106,9 @@
     </style>
 </head>
 <body>
-    <header>Admin</header>
+@extends('layouts.layout_admin')
+@section('title', 'Manage Download')
+@section('content')
 
     <div class="nav-bar">
         <a href="{{ route('dashboard.admin') }}">
@@ -208,7 +127,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="table-container">
         <div class="tambah">
             <a href="{{ route('download.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
             <p class="p">Tambah File</p>
@@ -234,7 +153,7 @@
                         <td></td>
                         <td><button class="btn-download">Download</button></td>
                         <td class="action-btn">
-                            <a href=# class="btn-edit">
+                            <a href="{{ route('download.edit') }}" class="btn-edit">
                                 <i class="fas fa-pen"></i>
                             </a>
                             <form action=# method="POST">
@@ -254,7 +173,7 @@
                         <td></td>
                         <td><button class="btn-download">Download</button></td>
                         <td class="action-btn">
-                            <a href=# class="btn-edit">
+                            <a href="{{ route('download.edit') }}" class="btn-edit">
                                 <i class="fas fa-pen"></i>
                             </a>
                             <form action=# method="POST">
@@ -274,7 +193,7 @@
                         <td></td>
                         <td><button class="btn-download">Download</button></td>
                         <td class="action-btn">
-                            <a href=# class="btn-edit">
+                            <a href="{{ route('download.edit') }}" class="btn-edit">
                                 <i class="fas fa-pen"></i>
                             </a>
                             <form action=# method="POST">
@@ -294,7 +213,7 @@
                         <td></td>
                         <td><button class="btn-download">Download</button></td>
                         <td class="action-btn">
-                            <a href=# class="btn-edit">
+                            <a href="{{ route('download.edit') }}" class="btn-edit">
                                 <i class="fas fa-pen"></i>
                             </a>
                             <form action=# method="POST">
@@ -309,5 +228,6 @@
             </tbody>
         </table>
     </div>
+@endsection
 </body>
 </html>

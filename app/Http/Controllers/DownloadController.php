@@ -16,6 +16,10 @@ class DownloadController extends Controller
         return view('admin.create_download');
     }
 
+    public function edit() {
+        return view('admin.edit_download');
+    }
+
     public function store(Request $request) {
         $request->validate([
             'category' => 'required|string',
