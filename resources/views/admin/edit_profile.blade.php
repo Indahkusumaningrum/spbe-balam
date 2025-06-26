@@ -132,13 +132,27 @@
 
      <div class="form-container">
         <h2>Form Mengedit Profile</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
+
+        @if(session('success'))
+            <div style="color: green; font-weight: bold;">{{ session('success') }}</div>
+        @endif
+
+        <form action="{{ route('admin.profile.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
             <div class="profile-image-wrapper">
-                <img src="{{ asset('image/tentang-saya.jpg') }}" alt="Gambar Tentang Saya" class="profile-image">
-            </div>
+                <div class="profile-image-label">Gambar Profil Saat Ini:</div>
+                    @if($profile && $profile->gambar)
+                        <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" alt="Gambar Profil" class="profile-image">
+                    @else
+                        <p>Tidak ada gambar.</p>
+                    @endif            
+                </div>
+
+                <input type="text" name="nama_instansi" class="form-control" placeholder="Nama Instansi" value="{{ $profile->nama_instansi ?? '' }}" required>
+
             <textarea name="deskripsi" placeholder="Deskripsi" rows="5" class="profile-textarea" row="15" required></textarea>
-            <input type="file" name="file" class="form-control" required>
+            <input type="file" name="gambar" class="form-control">
 
             <div class="form-buttons">
                 <button type="submit" class="btn btn-green">Simpan</button>

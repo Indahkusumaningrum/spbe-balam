@@ -91,18 +91,29 @@
         </div>
     </div>
 
+    @if(session('success'))
+        <div style="color: green; font-weight: bold; text-align:center;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <div class="profile-container">
         <div class="profile-header">
             <h2 class="profile-title">Tentang Kami</h2>
-            <a href="{{ route('profile.edit') }}" class="btn-edit"><i class="fas fa-pen"></i></a>
+            <a href="{{ route('edit.profile') }}" class="btn-edit"><i class="fas fa-pen"></i></a>
         </div>
 
         <div class="profile-image-wrapper">
-            <img src="{{ asset('image/tentang-saya.jpg') }}" alt="Gambar Tentang Saya" class="profile-image">
+            @if($profile && $profile->gambar)
+                <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" alt="Gambar Tentang Kami" class="profile-image">
+            @else
+                <img src="{{ asset('image/tentang-saya.jpg') }}" alt="Default Image" class="profile-image">
+            @endif        
         </div>
 
         <div class="profile-description-wrapper">
-            <textarea placeholder="Deskripsi" class="profile-textarea" rows="15"></textarea>
+             <textarea placeholder="Deskripsi" class="profile-textarea" rows="15" readonly>{{ $profile->deskripsi ?? '' }}</textarea>
         </div>
     </div>
 @endsection
