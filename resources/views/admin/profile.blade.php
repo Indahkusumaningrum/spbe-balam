@@ -42,7 +42,8 @@
         .profile-image {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
+            border: 3px solid #001e74;
         }
 
         .profile-description-wrapper {
@@ -70,6 +71,17 @@
             font-size: 16px;
             justify-content: flex-end;
         }
+
+        .btn-edit {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-edit:hover {
+            background-color: #001e74;
+            color: white;
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 <body>
@@ -101,7 +113,9 @@
     <div class="profile-container">
         <div class="profile-header">
             <h2 class="profile-title">Tentang Kami</h2>
-            <a href="{{ route('edit.profile') }}" class="btn-edit"><i class="fas fa-pen"></i></a>
+            <a href="{{ route('edit.profile') }}" class="btn-edit"><i class="fas fa-pen"></i>
+                Edit Tentang Kami
+            </a>
         </div>
 
         <div class="profile-image-wrapper">

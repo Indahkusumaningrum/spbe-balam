@@ -33,16 +33,18 @@
         }
 
         .profile-image-label {
-            font-weight: bold;
-            color: #001e74;
-            font-size: 18px;
+            font-weight: medium;
+            color: black;
+            font-size: 16px;
             margin-bottom: 10px;
+            text-align: left;
         }
 
         .profile-image {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
+            border: 3px solid #001e74;
         }
 
         h2 {
@@ -81,6 +83,15 @@
             border: 1px solid #ccc;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
             font-size: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #555;
+            text-align: left;
         }
 
         .form-buttons {
@@ -141,17 +152,21 @@
             @csrf
 
             <div class="profile-image-wrapper">
-                <div class="profile-image-label">Gambar Profil Saat Ini:</div>
-                    @if($profile && $profile->gambar)
-                        <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" alt="Gambar Profil" class="profile-image">
-                    @else
-                        <p>Tidak ada gambar.</p>
-                    @endif            
-                </div>
+                <label class="form-label">Gambar Profil Saat Ini:</label>
+                @if($profile && $profile->gambar)
+                    <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" alt="Gambar Profil" class="profile-image">
+                @else
+                    <p>Tidak ada gambar.</p>
+                @endif
+            </div>
 
-                <input type="text" name="nama_instansi" class="form-control" placeholder="Nama Instansi" value="{{ $profile->nama_instansi ?? '' }}" required>
+            <label class="form-label">Nama Instansi:</label>
+            <input type="text" name="nama_instansi" class="form-control" placeholder="Nama Instansi" value="{{ $profile->nama_instansi ?? '' }}" required>
 
-            <textarea name="deskripsi" placeholder="Deskripsi" rows="5" class="profile-textarea" row="15" required></textarea>
+            <label class="form-label">Deskripsi:</label>
+            <textarea name="deskripsi" placeholder="Deskripsi" rows="5" class="profile-textarea" required>{{ $profile->deskripsi ?? '' }}</textarea>
+
+            <div style="margin-top:20px;"><label class="form-label">Pilih gambar baru:</label>
             <input type="file" name="gambar" class="form-control">
 
             <div class="form-buttons">

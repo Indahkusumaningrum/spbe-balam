@@ -1,4 +1,6 @@
-<h2>{{ $profile->nama_instansi }}</h2>
+<h1> Tentang Saya</h1>
+
+<h2> SPBE {{ $profile->nama_instansi }}</h2>
 
 @if($profile->gambar)
     <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" width="300">
