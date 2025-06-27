@@ -3,67 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Download</title>
+    <title>Daftar Berita</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .tambah {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .btn-add {
-            background-color: #facc15;
-            color: white;
-            padding: 7px;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-right: 7px;
-        }
-
-        .p {
-            font-size: 18px;
-            font-weight: bold;
-            color: #001e74
-        }
-
         .berita-container {
             padding: 40px 60px;
         }
-
-        .berita-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .btn-tambah {
-            background-color: #facc15;
-            color: #001e74;
-            font-weight: bold;
-            padding: 10px 18px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .berita-grid {
             display: flex;
             gap: 24px;
             flex-wrap: wrap;
             justify-content: start;
         }
-
         .berita-card {
             width: 300px;
             background: white;
@@ -73,42 +25,38 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
+            text-decoration: none;
         }
-
+        .berita-card:hover {
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
         .berita-img {
             height: 150px;
             background-color: #ccc;
-            border-bottom: 1px solid #eee;
-            border-top-left-radius: 14px;
-            border-top-right-radius: 14px;
         }
-
         .berita-content {
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
         .berita-content h3 {
             font-size: 16px;
             color: #001e74;
             font-weight: 700;
             margin-bottom: 8px;
         }
-
         .berita-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .berita-info .tanggal {
             font-size: 14px;
             color: #facc15;
             font-weight: 600;
         }
-
         .btn-detail {
             background-color: #001e74;
             color: white;
@@ -118,25 +66,13 @@
             text-decoration: none;
             font-weight: 600;
         }
-
-        .pagination {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-        }
     </style>
 </head>
 <body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Berita')
-@section('content')
 <div class="berita-container">
-    <div class="tambah">
-        <a href="{{ route('admin.berita.create') }}" class="btn-add"><i class="fas fa-plus"></i> Tambah Berita</a>
-    </div>
     <div class="berita-grid">
         @foreach($beritas as $berita)
-        <div class="berita-card">
+        <a href="{{ route('berita.show', $berita->id_berita) }}" class="berita-card">
             <div class="berita-img">
                 @if($berita->gambar)
                 <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" style="width:100%; height:150px; object-fit:cover;">
@@ -146,13 +82,12 @@
                 <h3>{{ $berita->judul }}</h3>
                 <div class="berita-info">
                     <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
-                    <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-detail">Edit</a>
+                    <span class="btn-detail">Selengkapnya</span>
                 </div>
             </div>
-        </div>
+        </a>
         @endforeach
     </div>
 </div>
-@endsection
 </body>
 </html>

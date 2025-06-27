@@ -280,7 +280,7 @@
         <ul class="menu">
             <li><a href="#">Indikator SPBE</a></li>
             <li><a href="{{ route('profile.show') }}">Profile</a></li>
-            <li><a href="#">Berita</a></li>
+            <li><a href="{{ route('berita.index') }}">Berita</a></li>
             <li><a href="#">Download</a></li>
             <li><a href="#">Galeri</a></li>
             <li><a href="#">Kontak</a></li>
