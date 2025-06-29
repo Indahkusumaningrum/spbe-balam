@@ -95,7 +95,7 @@
             <nav class="nav-menu">
                 <li><a href="#">Indikator SPBE</a></li>
                 <li><a href="#" class="active">Profile</a></li>
-                <li><a href="{{ route('berita') }}">Berita</a></li>
+                <li><a href="{{ route('admin.berita') }}">Berita</a></li>
                 <li><a href="{{ route('download') }}">Download</a></li>
                 <li><a href="#">Galeri</a></li>
                 <li><a href="#">Kontak</a></li>
