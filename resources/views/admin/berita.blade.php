@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Download</title>
+    <title>Admin - Manage Berita</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -59,24 +59,24 @@
 
         .berita-grid {
             display: flex;
-            gap: 24px;
             flex-wrap: wrap;
-            justify-content: start;
+            justify-content: space-between;
         }
 
         .berita-card {
-            width: 300px;
+            width: calc((100% - 80px) / 3);
             background: white;
             border-radius: 14px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            margin-bottom: 50px;
         }
 
         .berita-img {
-            height: 150px;
+            height: 200px;
             background-color: #ccc;
             border-bottom: 1px solid #eee;
             border-top-left-radius: 14px;
@@ -84,7 +84,7 @@
         }
 
         .berita-content {
-            padding: 20px;
+            padding: 10px 20px 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -104,7 +104,7 @@
         }
 
         .berita-info .tanggal {
-            font-size: 14px;
+            font-size: 15px;
             color: #facc15;
             font-weight: 600;
         }
@@ -130,29 +130,48 @@
 @extends('layouts.layout_admin')
 @section('title', 'Manage Berita')
 @section('content')
-<div class="berita-container">
-    <div class="tambah">
-        <a href="{{ route('admin.berita.create') }}" class="btn-add"><i class="fas fa-plus"></i> Tambah Berita</a>
+
+ <div class="nav-bar">
+        <a href="{{ route('dashboardadmin') }}">
+            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
+        </a>
+        <div class="nav-container">
+            <div class="manage-label">Manage</div>
+            <nav class="nav-menu">
+                <li><a href="#">Indikator SPBE</a></li>
+                <li><a href="{{ route('profile') }}">Profile</a></li>
+                <li><a href="#" class="active">Berita</a></li>
+                <li><a href="{{ route('download') }}">Download</a></li>
+                <li><a href="#">Galeri</a></li>
+                <li><a href="#">Kontak</a></li>
+            </nav>
+        </div>
     </div>
-    <div class="berita-grid">
-        @foreach($beritas as $berita)
-        <div class="berita-card">
-            <div class="berita-img">
-                @if($berita->gambar)
-                <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" style="width:100%; height:150px; object-fit:cover;">
-                @endif
-            </div>
-            <div class="berita-content">
-                <h3>{{ $berita->judul }}</h3>
-                <div class="berita-info">
-                    <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
-                    <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-detail">Edit</a>
+
+    <div class="berita-container">
+        <div class="tambah">
+            <a href="{{ route('admin.berita.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
+            <p class="p">Tambah Berita</p>
+        </div>
+        <div class="berita-grid">
+            @foreach($beritas as $berita)
+            <div class="berita-card">
+                <div class="berita-img">
+                    @if($berita->gambar)
+                    <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" style="width:100%; height:200px; object-fit:cover;">
+                    @endif
+                </div>
+                <div class="berita-content">
+                    <h3>{{ $berita->judul }}</h3>
+                    <div class="berita-info">
+                        <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
+                        <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-detail">Selengkapnya</a>
+                    </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
-</div>
 @endsection
 </body>
 </html>

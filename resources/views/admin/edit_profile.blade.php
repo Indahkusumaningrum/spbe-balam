@@ -44,7 +44,6 @@
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            border: 3px solid #001e74;
         }
 
         h2 {
@@ -120,6 +119,16 @@
             text-decoration: none;
             display: inline-block;
         }
+
+        .btn-green:hover {
+            background-color: darkgreen;
+        }
+
+        .btn-red:hover {
+            background-color: darkred;
+        }
+
+
     </style>
 </head>
 <body>
