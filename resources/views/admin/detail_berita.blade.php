@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Download</title>
+    <title>Admin - Manage Berita</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -20,6 +20,7 @@
             width: 100%;
             height: auto;
             border-radius: 16px;
+            margin-top: 70px;
         }
 
         .berita-actions {
@@ -63,6 +64,43 @@
             line-height: 1.6;
         }
 
+        .btn-edit{
+            background-color: #3b82f6; /* Warna biru untuk edit */
+            border: none;
+            cursor: pointer;
+            padding: 2px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        .btn-delete {
+            background-color: #3b82f6; /* Warna biru untuk edit */
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+        }
+
+        .btn-delete {
+            background-color: #dc2626; /* Warna merah untuk delete */
+        }
+
+        .btn-edit i,
+        .btn-delete i {
+            color: white;
+            font-size: 20px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -86,22 +124,46 @@
 
     <div class="berita-container">
         <div class="berita-img-container">
-            <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="Gambar Berita" class="berita-img">
             <div class="berita-actions">
-                <a href="{{ route('berita.edit', $berita->id) }}"><i class="fas fa-pen"></i></a>
-                <form action="{{ route('berita.destroy', $berita->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?')">
+                <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-edit"><i class="fas fa-pen"></i></a>
+                <form action="{{ route('admin.berita.destroy', $berita->id_berita) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus berita ini?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn-delete"><i class="fas fa-trash"></i></button>
+                    <button class="btn-delete"><i class="fas fa-trash"></i></button>
                 </form>
             </div>
+            <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" alt="Gambar Berita" class="berita-img">
         </div>
 
-        <div class="berita-date">{{ \Carbon\Carbon::parse($berita->created_at)->format('d M Y') }} | {{ \Carbon\Carbon::parse($berita->created_at)->format('H:i') }}</div>
+        <div class="berita-date">
+            {{ \Carbon\Carbon::parse($berita->created_at)->format('d M Y') }} |
+            {{ \Carbon\Carbon::parse($berita->created_at)->format('H:i') }}
+        </div>
+
         <h1 class="berita-title">{{ $berita->judul }}</h1>
-        <div class="berita-body">{!! nl2br(e($berita->isi)) !!}</div>
+        <div class="berita-body">{!! nl2br(e($berita->konten)) !!}</div>
     </div>
 
 @endsection
+
+
+<!-- <script>
+        function showDeleteModal() {
+            document.getElementById('logoutModal').style.display = 'block';
+        }
+
+        function closeLogoutModal() {
+            document.getElementById('logoutModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('logoutModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script> -->
+
+
 </body>
 </html>
