@@ -43,7 +43,6 @@
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            border: 3px solid #001e74;
         }
 
         .profile-description-wrapper {
@@ -123,7 +122,7 @@
                 <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" alt="Gambar Tentang Kami" class="profile-image">
             @else
                 <img src="{{ asset('image/tentang-saya.jpg') }}" alt="Default Image" class="profile-image">
-            @endif        
+            @endif
         </div>
 
         <div class="profile-description-wrapper">

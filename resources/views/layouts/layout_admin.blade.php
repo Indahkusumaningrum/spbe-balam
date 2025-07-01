@@ -18,7 +18,7 @@
             background-color: #001e74;
             color: white;
             padding: 16px 30px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
@@ -65,14 +65,15 @@
         }
 
         .nav-bar img {
-            height: 80px;
+            height: 70px;
         }
 
         .nav-menu {
             display: flex;
             gap: 50px;
-            font-size: 20px;
+            font-size: 18px;
             text-decoration: none;
+            margin-right: 40px;
         }
 
         .nav-menu a {
@@ -84,7 +85,7 @@
 
         .nav-menu a.active {
             border-bottom: 5px solid #FFC31D;
-            padding-bottom: 20px;
+            padding-bottom: 19px;
             color: #FFC31D;
             transition: width 0.3s ease;
         }
@@ -94,7 +95,7 @@
             color: #001e74;
             text-decoration: none;
             font-weight: bold;
-            padding-bottom: 25px;
+            padding-bottom: 24px;
         }
 
         .nav-menu li a::after {

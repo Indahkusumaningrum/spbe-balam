@@ -1,12 +1,146 @@
-// admin/berita_edit.blade.php
-<form action="{{ route('admin.berita.update', $berita->id_berita) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
-    Judul: <input type="text" name="judul" value="{{ $berita->judul }}"><br>
-    Konten: <textarea name="konten">{{ $berita->konten }}</textarea><br>
-    Gambar: <input type="file" name="gambar"><br>
-    @if($berita->gambar)
-        <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" width="150">
-    @endif
-    <button type="submit">Update</button>
-</form>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Berita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .form-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #001e74;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #001e74;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 98%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #facc15;
+            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.2);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-green {
+            background-color: green;
+            color: white;
+        }
+
+        .btn-red {
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-green:hover{
+            background-color: darkgreen;
+        }
+
+        .btn-red:hover{
+            background-color: darkred
+        }
+
+        .gambar {
+            margin-top: 10px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 30%;
+        }
+    </style>
+
+</head>
+<body>
+@extends('layouts.layout_admin')
+@section('title', 'Manage Profile')
+@section('content')
+
+    <div class="nav-bar">
+        <a href="{{ route('dashboardadmin') }}"><img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE"></a> <div class="nav-container">
+        <div class="manage-label">Manage</div>
+            <nav class="nav-menu">
+                <li><a href="#">Indikator SPBE</a></li>
+                <li><a href="{{ route('profile') }}">Profile</a></li>
+                <li><a href="#" class="active">Berita</a></li>
+                <li><a href="{{ route('download') }}">Download</a></li>
+                <li><a href="#">Galeri</a></li>
+                <li><a href="#">Kontak</a></li>
+            </nav>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h2>Mengedit Berita</h2>
+        <form action="{{ route('admin.berita.update', $berita->id_berita) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <label class="form-label">Judul:</label>
+            <input type="text" name="judul" value="{{ $berita->judul }}">
+
+            <label class="form-label">Konten:</label>
+            <textarea name="konten">{{ $berita->konten }}</textarea>
+
+            <label class="form-label">Gambar:</label>
+            <input type="file" name="gambar">
+            @if($berita->gambar)
+                <img class="gambar" src="{{ asset('uploads/beritas/' . $berita->gambar) }}" width="150">
+            @endif
+            <div class="form-buttons">
+                <button type="submit" class="btn btn-green">Simpan</button>
+                <a href="{{ route('download') }}" class="btn btn-red">Batal</a>
+            </div>
+        </form>
+    </div>
+@endsection
+</body>
+</html>

@@ -289,8 +289,7 @@
 
     <div class="spbe-banner">
         <img class="banner-slide active" src="/asset/img/BANNER-WEB-SPBE.png" alt="Slide 1">
-        <img class="banner-slide" src="/asset/img/logo-spbe.png" alt="Slide 2">
-        <img class="banner-slide" src="/asset/img/BANNER2.png" alt="Slide 3">
+        <img class="banner-slide" src="/asset/img/BANNER2.png" alt="Slide 2">
 
         <button class="slide-btn prev" onclick="prevSlide()">&#10094;</button>
         <button class="slide-btn next" onclick="nextSlide()">&#10095;</button>

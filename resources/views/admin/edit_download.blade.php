@@ -58,6 +58,14 @@
             text-decoration: none;
             display: inline-block;
         }
+
+        .btn-green:hover{
+            background-color: darkgreen;
+        }
+
+        .btn-red:hover{
+            background-color: darkred
+        }
     </style>
 </head>
 <body>
