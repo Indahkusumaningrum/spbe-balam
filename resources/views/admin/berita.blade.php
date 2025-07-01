@@ -60,7 +60,8 @@
         .berita-grid {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 40px;
         }
 
         .berita-card {
@@ -72,7 +73,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
 
         .berita-img {
@@ -165,7 +166,7 @@
                     <h3>{{ $berita->judul }}</h3>
                     <div class="berita-info">
                         <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
-                        <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-detail">Selengkapnya</a>
+                        <a href="{{ route('admin.berita.show', $berita->id_berita) }}" class="btn-detail">Selengkapnya</a>
                     </div>
                 </div>
             </div>

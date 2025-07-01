@@ -55,7 +55,7 @@ class AdminBeritaController extends Controller
         $berita = Berita::findOrFail($id);
 
         $request->validate([
-            'judul' => 'requires',
+            'judul' => 'required',
             'konten' => 'required',
             'gambar' => 'nullable|image|max:2048',
         ]);
@@ -82,11 +82,13 @@ class AdminBeritaController extends Controller
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
     }
 
-    public function show()
+    public function show($id)
     {
         $berita = Berita::findOrFail($id);
         $berita->increment('pengunjung');
-        return view('berita_show', compact('berita'));
+        // return view('berita_show', compact('berita'));
+        return view('admin.detail_berita', compact('berita'));
+
     }
 
 }
