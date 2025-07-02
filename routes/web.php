@@ -29,7 +29,7 @@ Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
 
-Route::get('/download', function () { return view('admin/download'); })->name('download');
+Route::get('/admin/download', function () { return view('admin/download'); })->name('download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 Route::get('/admin/download/edit', [DownloadController::class, 'edit'])->name('download.edit');
 
@@ -41,12 +41,14 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 //USER
 Route::get('/', function () {
     return view('dashboard_user');
-});
+})->name('dashboard_user');
+
+Route::get('/tahapan_spbe', function(){return view('tahapan_spbe');})->name('tahapan_spbe');
 
 
 // Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile');
+    Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('profile');
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('edit.profile');
     Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
 });

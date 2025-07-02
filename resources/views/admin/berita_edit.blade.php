@@ -105,20 +105,6 @@
 @section('title', 'Manage Profile')
 @section('content')
 
-    <div class="nav-bar">
-        <a href="{{ route('dashboardadmin') }}"><img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE"></a> <div class="nav-container">
-        <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-                <li><a href="#" class="active">Berita</a></li>
-                <li><a href="{{ route('download') }}">Download</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Kontak</a></li>
-            </nav>
-        </div>
-    </div>
-
     <div class="form-container">
         <h2>Mengedit Berita</h2>
         <form action="{{ route('admin.berita.update', $berita->id_berita) }}" method="POST" enctype="multipart/form-data">
