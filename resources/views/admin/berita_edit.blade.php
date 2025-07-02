@@ -112,7 +112,7 @@
                 <li><a href="#">Indikator SPBE</a></li>
                 <li><a href="{{ route('profile') }}">Profile</a></li>
                 <li><a href="#" class="active">Berita</a></li>
-                <li><a href="{{ route('download') }}">Download</a></li>
+                <li><a href="{{ route('admin.download') }}">Download</a></li>
                 <li><a href="#">Galeri</a></li>
                 <li><a href="#">Kontak</a></li>
             </nav>
@@ -137,7 +137,7 @@
             @endif
             <div class="form-buttons">
                 <button type="submit" class="btn btn-green">Simpan</button>
-                <a href="{{ route('download') }}" class="btn btn-red">Batal</a>
+                <a href="{{ route('admin.berita') }}" class="btn btn-red">Batal</a>
             </div>
         </form>
     </div>

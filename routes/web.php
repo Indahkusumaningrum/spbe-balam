@@ -18,8 +18,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
-Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
+// Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
+// Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 
 Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
     ->middleware('auth')
@@ -29,9 +29,16 @@ Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
 
-Route::get('/download', function () { return view('admin/download'); })->name('download');
+Route::get('/admin/download/', [DownloadController::class, 'index'])->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
-Route::get('/admin/download/edit', [DownloadController::class, 'edit'])->name('download.edit');
+Route::get('/admin/download/edit/{id}', [DownloadController::class, 'edit'])->name('download.edit');
+Route::put('/admin/download/update/{id}', [DownloadController::class, 'update'])->name('download.update');
+Route::post('/admin/download/store', [DownloadController::class, 'store'])->name('admin.download.store');
+Route::get('/admin/download/file/{fileName}', [DownloadController::class, 'downloadFile'])->name('admin.download.file');
+Route::delete('/admin/download/{id}', [DownloadController::class, 'destroy'])->name('admin.download.destroy');
+
+
+
 
 Route::get('/admin/profile/create', [ProfileController::class, 'create'])->name('profile.create');
 Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
