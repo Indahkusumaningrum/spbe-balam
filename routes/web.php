@@ -48,12 +48,14 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 //USER
 Route::get('/', function () {
     return view('dashboard_user');
-});
+})->name('dashboard_user');
+
+Route::get('/tahapan_spbe', function(){return view('tahapan_spbe');})->name('tahapan_spbe');
 
 
 // Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile');
+    Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('profile');
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('edit.profile');
     Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
 });

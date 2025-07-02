@@ -100,6 +100,23 @@
             font-size: 20px;
         }
 
+        .btn-kembali {
+            display: inline-block;
+            margin-top: 24px;
+            margin-left: 60px;
+            background-color: #001e74;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-kembali:hover {
+            background-color: #007bff;
+        }
+
 
     </style>
 </head>
@@ -107,20 +124,6 @@
 @extends('layouts.layout_admin')
 @section('title', 'Manage Berita')
 @section('content')
-
-    <div class="nav-bar">
-        <a href="{{ route('dashboardadmin') }}"><img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE"></a>        <div class="nav-container">
-            <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-                <li><a href="#" class="active">Berita</a></li>
-                <li><a href="{{ route('admin.download') }}">Download</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Kontak</a></li>
-            </nav>
-        </div>
-    </div>
 
     <div class="berita-container">
         <div class="berita-img-container">
@@ -143,6 +146,10 @@
         <h1 class="berita-title">{{ $berita->judul }}</h1>
         <div class="berita-body">{!! nl2br(e($berita->konten)) !!}</div>
     </div>
+
+    <a href="{{ route('admin.berita') }}" class="btn-kembali">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a>
 
 @endsection
 

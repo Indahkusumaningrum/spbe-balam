@@ -167,23 +167,6 @@
 @section('title', 'Manage Download')
 @section('content')
 
-    <div class="nav-bar">
-        <a href="{{ route('dashboardadmin') }}">
-            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
-        </a>
-        <div class="nav-container">
-            <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-                <li><a href="{{ route('admin.berita') }}">Berita</a></li>
-                <li><a href="{{ route('admin.download') }}" class="active">Download</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Kontak</a></li>
-            </nav>
-        </div>
-    </div>
-
     <div class="table-container">
         <div class="tambah">
             <a href="{{ route('download.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
