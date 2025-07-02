@@ -12,7 +12,6 @@
 @section('title', 'Manage Download')
 @section('content')
 
-
 @endsection
 </body>
 </html>

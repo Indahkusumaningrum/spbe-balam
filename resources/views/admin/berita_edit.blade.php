@@ -123,7 +123,7 @@
             @endif
             <div class="form-buttons">
                 <button type="submit" class="btn btn-green">Simpan</button>
-                <a href="{{ route('download') }}" class="btn btn-red">Batal</a>
+                <a href="{{ route('admin.berita') }}" class="btn btn-red">Batal</a>
             </div>
         </form>
     </div>
