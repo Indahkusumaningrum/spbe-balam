@@ -30,6 +30,74 @@
         height: 400px;
     }
 
+    /* .timeline-step, .timeline-selesai {
+    background-color: white;
+    padding: 0;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    perspective: 1000px;
+    height: 180px;
+}
+
+.timeline-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+    border-radius: 16px;
+}
+
+.timeline-step:hover .timeline-inner,
+.timeline-selesai:hover .timeline-inner {
+    transform: rotateY(180deg);
+}
+
+.timeline-front, .timeline-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.timeline-front {
+    color: #333;
+}
+
+.timeline-back {
+    background-color: #facc15;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.timeline-front .timeline-icon,
+.timeline-back .timeline-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.timeline-front .timeline-icon {
+    color: #facc15;
+}
+
+.timeline-back .timeline-icon {
+    color: white;
+}
+
+.timeline-label {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+} */
+
     .timeline-step, .timeline-selesai {
         background-color: white;
         padding: 24px;
@@ -40,8 +108,21 @@
         z-index: 1;
     }
 
-    .timeline-step:hover, .timeline-selesai:hover {
+    .timeline-step:hover {
         transform: translateY(-5px);
+        color: white;
+        background-color: #facc15;
+    }
+
+.timeline-step:hover .timeline-icon i,
+.timeline-selesai:hover .timeline-icon i {
+    color: white;
+}
+
+    .timeline-selesai:hover {
+        transform: translateY(-5px);
+        color: white;
+        background-color: #facc15;
     }
 
     .timeline-icon {
@@ -122,6 +203,7 @@
   </style>
 </head>
 <body>
+@section('navbar', true)
 @extends('layouts.layout_user')
 @section('content')
 <div class="progress-container">
@@ -129,13 +211,23 @@
 
     <div class="timeline-grid">
         <div class="timeline-step">
-            <div class="timeline-icon"><i class="fas fa-user-check"></i></div>
-            <div class="timeline-label">1. Penilaian Mandiri</div>
+            <div class="timeline-inner">
+                <div class="timeline-front">
+                    <div class="timeline-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="timeline-label">1. Penilaian Dokumen</div>
+                </div>
+            </div>
         </div>
+
         <div class="timeline-step">
-            <div class="timeline-icon"><i class="fas fa-file-alt"></i></div>
-            <div class="timeline-label">2. Penilaian Dokumen</div>
+            <div class="timeline-inner">
+                <div class="timeline-front">
+                    <div class="timeline-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="timeline-label">2. Penilaian Dokumen</div>
+                </div>
+            </div>
         </div>
+
         <div class="timeline-step">
             <div class="timeline-icon"><i class="fas fa-microphone-alt"></i></div>
             <div class="timeline-label">3. Penilaian Interviu</div>
