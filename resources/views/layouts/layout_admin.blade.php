@@ -202,7 +202,7 @@
                 <li><a href="#" class="{{ request()->is('/') ? 'active' : '' }}">Indikator SPBE</a></li>
                 <li><a href="{{ route('profile') }}" class="{{ request()->is('admin/profile*') ? 'active' : '' }}">Profile</a></li>
                 <li><a href="{{ route('admin.berita') }}" class="{{ request()->is('admin/berita*') ? 'active' : '' }}">Berita</a></li>
-                <li><a href="{{ route('download') }}" class="{{ request()->is('admin/download*') ? 'active' : '' }}">Download</a></li>
+                <li><a href="{{ route('admin.download') }}" class="{{ request()->is('admin/download*') ? 'active' : '' }}">Download</a></li>
                 <li><a href="#" class="{{ request()->is('/') ? 'active' : '' }}">Galeri</a></li>
                 <li><a href="#" class="{{ request()->is('/') ? 'active' : '' }}">Kontak</a></li>
             </nav>

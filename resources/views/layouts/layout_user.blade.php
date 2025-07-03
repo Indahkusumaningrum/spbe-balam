@@ -14,7 +14,7 @@
         }
 
         .spbe-navbar {
-            background-color: #001e74;
+            background-color: #091e46;
             display: flex;
             align-items: center;
             padding: 10px 30px;
@@ -160,7 +160,7 @@
 @stack('styles')
 </head>
 <body>
-
+@hasSection('navbar')
     <div class="spbe-navbar">
         <a href="{{ route('dashboard_user') }}" class="logo-img">
             <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
@@ -174,6 +174,7 @@
             <li><a href="#" class="{{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
         </ul>
     </div>
+@endif
 
     <div class="container">
         @yield('content')
