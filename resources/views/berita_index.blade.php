@@ -91,6 +91,8 @@
     </style>
 </head>
 <body>
+
+@section('navbar', true)
 @extends('layouts.layout_user')
 @section('content')
 

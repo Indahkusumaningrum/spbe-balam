@@ -14,7 +14,7 @@
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 24px;
             color: #001e74;
             margin-bottom: 30px;
             border-bottom: 4px solid #facc15;
@@ -22,7 +22,7 @@
             padding-bottom: 4px;
         }
 
-        .btn-tambah {
+        .galeri-container .btn-tambah {
             display: inline-block;
             background-color: #facc15;
             color: white;
@@ -34,23 +34,36 @@
             
         }
 
+        .galeri-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+
         .galeri-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            margin: 0 -10px;
         }
 
         .galeri-card {
-            width: calc((100% - 60px) / 4);
+            flex: 1 1 calc(25% - 20px); /* 4 kolom */
+            max-width: calc(25% - 20px);
             border: 1px solid #ccc;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
         }
 
         .galeri-card img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
         }
 
@@ -170,14 +183,38 @@
                 color: white;
             }
 
+            @media (max-width: 1024px) {
+                .galeri-card {
+                    flex: 1 1 calc(33.333% - 20px); /* 3 kolom */
+                    max-width: calc(33.333% - 20px);
+                }
+            }
+
+            @media (max-width: 768px) {
+                .galeri-card {
+                    flex: 1 1 calc(50% - 20px); /* 2 kolom */
+                    max-width: calc(50% - 20px);
+                }
+            }
+
+            @media (max-width: 480px) {
+                .galeri-card {
+                    flex: 1 1 100%; /* 1 kolom */
+                    max-width: 100%;
+                }
+            }
+
+
     </style>
 </head>
 <body>
 @extends('layouts.layout_admin')
 @section('content')
 <div class="galeri-container">
-    <h1>Galeri</h1>
-    <a href="{{ route('admin.galeri.create') }}" style="justify-content: flex-end;" class="btn-tambah"><i class="fas fa-plus"></i> Tambah Foto</a>
+    <div class="galeri-header">
+        <h1>Galeri</h1>
+        <a href="{{ route('admin.galeri.create') }}" class="btn-tambah"><i class="fas fa-plus"></i> Tambah Foto</a>
+    </div>
 
     <div class="galeri-grid">
         @foreach ($galleries as $gallery)

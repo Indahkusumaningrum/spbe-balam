@@ -21,9 +21,12 @@
         }
 
         .profile-title {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 24px;
             color: #001e74;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #facc15;
+            display: inline-block;
+            padding-bottom: 4px;
         }
 
         .profile-image-wrapper {

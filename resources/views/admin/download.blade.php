@@ -12,6 +12,22 @@
 
         }
 
+        .download-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #001e74;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #facc15;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
         .tambah {
             display: flex;
             align-items: center;
@@ -89,11 +105,45 @@
             transform: scale(1.05);
         }
 
+        .action-btn .btn-edit,
+        .action-btn .btn-delete {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: none;
+            background-color: #e0e7ff; /* warna biru muda */
+            color: #001e74;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* Hapus garis bawah */
+
+        }
+
+        .action-btn .btn-edit {
+            margin-left:40px;
+            margin-right:40px;
+        }
+
+        .action-btn .btn-edit:hover {
+            background-color: #c7d2fe;
+        }
+
+        .action-btn .btn-delete {
+            background-color: #fee2e2; /* warna merah muda */
+            color: #b91c1c;
+        }
+
+        .action-btn .btn-delete:hover {
+            background-color: #fecaca;
+        }
+
         .btn-edit, .btn-delete {
             background: none;
             border: none;
             cursor: pointer;
             padding: 8px 7px;
+            font-size: 18px;
         }
 
         .btn-edit i {
@@ -140,7 +190,8 @@
             }
 
             .btn-cancel,
-            .btn-confirm {
+            .btn-confirm,
+            .btn-ok {
                 padding: 10px 20px;
                 border: none;
                 border-radius: 6px;
@@ -155,6 +206,11 @@
             }
 
             .btn-confirm {
+                background-color: red;
+                color: white;
+            }
+
+            .btn-ok {
                 background-color: green;
                 color: white;
             }
@@ -168,9 +224,12 @@
 @section('content')
 
     <div class="table-container">
-        <div class="tambah">
-            <a href="{{ route('download.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
-            <p class="p">Tambah File</p>
+        <div class="download-header">
+            <h1>Download</h1>
+            <div class="tambah">
+                <a href="{{ route('download.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
+                <p class="p">Tambah File</p>
+            </div>
         </div>
         <table>
             <thead>
@@ -227,7 +286,7 @@
         <div class="modal-content">
             <p>{{ session('success') }}</p>
             <div class="modal-buttons">
-                <button onclick="closeSuccessModal()" class="btn-confirm">OK</button>
+                <button onclick="closeSuccessModal()" class="btn-ok">OK</button>
             </div>
         </div>
     </div>
