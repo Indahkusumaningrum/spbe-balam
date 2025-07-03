@@ -158,25 +158,25 @@
 
 
     <form id="galeriForm" action="{{ route('admin.galeri.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+        @csrf
 
 
-    <div>
-        <label for="judul">Judul Foto:</label>
-        <input type="text" name="title" id="judul" value="{{ old('title') }}">
-    </div>
+        <div>
+            <label for="judul">Judul Foto:</label>
+            <input type="text" name="title" id="judul" value="{{ old('title') }}">
+        </div>
 
-    <div>
-        <label for="gambar">Pilih Gambar:</label>
-        <input type="file" name="image" id="gambar" accept="image/*">
-    </div>
+        <div>
+            <label for="gambar">Pilih Gambar:</label>
+            <input type="file" name="image" id="gambar" accept="image/*">
+        </div>
 
-    <!-- Tombol -->
-    <div style="form-button;">
-        <button type="submit" class="btn-confirm" onclick=>Simpan</button>
-        <a href="{{ route('admin.galeri') }}" class="btn-kembali">Batal</a>
-    </div>
-</form>
+        <!-- Tombol -->
+        <div style="form-button;">
+            <button type="submit" class="btn-confirm" onclick=>Simpan</button>
+            <a href="{{ route('admin.galeri') }}" class="btn-kembali">Batal</a>
+        </div>
+    </form>
 
 </div>
 
