@@ -121,6 +121,18 @@
 
     <div class="form-container">
         <h2>Form Menambah File Baru</h2>
+
+        <!-- Pesan Error kalau ada inputan kosong -->
+        @if ($errors->any())
+        <div style="background-color: #fee2e2; color: #b91c1c; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+            <ul style="margin: 0; padding-left: 20px;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <form action="{{ route('admin.download.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="text" name="category" placeholder="Category" class="form-control" required>
@@ -130,7 +142,7 @@
 
             <div class="form-buttons">
                 <button type="button" class="btn btn-green" onclick="showSaveModal()">Simpan</button>
-                <a href="{{ route('admin.download.store') }}" class="btn btn-red">Batal</a>
+                <a href="{{ route('admin.download') }}" class="btn btn-red">Batal</a>
             </div>
         </form>
     </div>

@@ -167,7 +167,7 @@
             <label class="form-label">File Sebelumnya:</label>
             @if ($download->file_path)
                 <div style="margin-bottom: 10px;">
-                    <a href="{{ route('admin.download.file', $download->file_path) }}" target="_blank" class="btn-download">Unduh File</a>
+                    <a href="{{ route('admin.download.file', $download->file_path) }}" target="_blank" class="btn-download">Lihat File</a>
                     <p style="font-style: italic; font-size: 14px;">{{ $download->file_path }}</p>
                 </div>
             @endif
