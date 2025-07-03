@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
-
+use App\Http\Controllers\GalleryController;
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -18,8 +18,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
-Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
+// Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
+// Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 
 Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
     ->middleware('auth')
@@ -29,9 +29,16 @@ Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
 
-Route::get('/download', function () { return view('admin/download'); })->name('download');
+Route::get('/admin/download/', [DownloadController::class, 'index'])->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
-Route::get('/admin/download/edit', [DownloadController::class, 'edit'])->name('download.edit');
+Route::get('/admin/download/edit/{id}', [DownloadController::class, 'edit'])->name('download.edit');
+Route::put('/admin/download/update/{id}', [DownloadController::class, 'update'])->name('download.update');
+Route::post('/admin/download/store', [DownloadController::class, 'store'])->name('admin.download.store');
+Route::get('/admin/download/file/{fileName}', [DownloadController::class, 'downloadFile'])->name('admin.download.file');
+Route::delete('/admin/download/{id}', [DownloadController::class, 'destroy'])->name('admin.download.destroy');
+
+
+
 
 Route::get('/admin/profile/create', [ProfileController::class, 'create'])->name('profile.create');
 Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
@@ -41,12 +48,14 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 //USER
 Route::get('/', function () {
     return view('dashboard_user');
-});
+})->name('dashboard_user');
+
+Route::get('/tahapan_spbe', function(){return view('tahapan_spbe');})->name('tahapan_spbe');
 
 
 // Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [AdminProfileController::class, 'show'])->name('profile');
+    Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('profile');
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('edit.profile');
     Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
 });
@@ -68,3 +77,21 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
+
+
+
+
+#GALERI
+// User
+Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
+
+// Admin
+Route::prefix('admin')->group(function () {
+    Route::get('/galeri', [GalleryController::class, 'adminIndex'])->name('admin.galeri');
+    Route::get('/galeri/create', [GalleryController::class, 'create'])->name('admin.galeri.create');
+    Route::post('/galeri', [GalleryController::class, 'store'])->name('admin.galeri.store');
+    Route::get('/galeri/edit/{id}', [GalleryController::class, 'edit'])->name('admin.galeri.edit');
+    Route::put('/galeri/{id}', [GalleryController::class, 'update'])->name('admin.galeri.update');
+    Route::delete('/galeri/{id}', [GalleryController::class, 'destroy'])->name('admin.galeri.destroy');
+});
+

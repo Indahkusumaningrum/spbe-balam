@@ -92,3 +92,4 @@ class AdminBeritaController extends Controller
     }
 
 }
+

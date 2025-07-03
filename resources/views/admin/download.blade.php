@@ -63,7 +63,9 @@
         .action-btn {
             display: flex;
             gap: 8px;
-            justify-content: center;
+            height: 100%;
+            flex-direction: column; /* atur ke kolom */
+            justify-content: flex-start;
         }
 
         .action-btn form {
@@ -103,29 +105,67 @@
             color: #dc3545;
             font-size: 20px;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+            .modal-content {
+                background: white;
+                padding: 20px;
+                max-width: 400px;
+                margin: 100px auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                text-align: center;
+            }
+
+            .modal-content p {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .modal-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .btn-cancel,
+            .btn-confirm {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            .btn-cancel {
+                background-color: gray;
+                color: white;
+            }
+
+            .btn-confirm {
+                background-color: green;
+                color: white;
+            }
+
+
     </style>
 </head>
 <body>
 @extends('layouts.layout_admin')
 @section('title', 'Manage Download')
 @section('content')
-
-    <div class="nav-bar">
-        <a href="{{ route('dashboardadmin') }}">
-            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
-        </a>
-        <div class="nav-container">
-            <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-                <li><a href="{{ route('admin.berita') }}">Berita</a></li>
-                <li><a href="{{ route('download') }}" class="active">Download</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Kontak</a></li>
-            </nav>
-        </div>
-    </div>
 
     <div class="table-container">
         <div class="tambah">
@@ -143,91 +183,95 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($downloads as $d) --}}
+                @foreach ($downloads as $d)
                     <tr>
-                        {{-- <td>{{ $d->category }}</td>
+                        <td>{{ $d->category }}</td>
                         <td>{{ $d->title }}</td>
-                        <td>{{ $d->content }}</td> --}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="btn-download">Download</button></td>
+                        <td>{{ $d->content }}</td>
+                        <td>
+                            <a href="{{ route('admin.download.file', $d->file_path) }}" class="btn-download">Download</a>
+                        </td>
                         <td class="action-btn">
-                            <a href="{{ route('download.edit') }}" class="btn-edit">
+                            <a href="{{ route('download.edit', ['id' => $d->id]) }}" class="btn-edit" method="GET">
                                 <i class="fas fa-pen"></i>
                             </a>
-                            <form action=# method="POST">
-                                @csrf @method('DELETE')
-                                <button class="btn-delete" onclick="return confirm('Hapus file ini?')">
+                            <form id="delete-form-{{ $d->id }}" action="{{ route('admin.download.destroy', $d->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                    <button type="button" class="btn-delete" onclick="showDeleteModal({{ $d->id }})">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
-                    <tr>
-                        {{-- <td>{{ $d->category }}</td>
-                        <td>{{ $d->title }}</td>
-                        <td>{{ $d->content }}</td> --}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="btn-download">Download</button></td>
-                        <td class="action-btn">
-                            <a href="{{ route('download.edit') }}" class="btn-edit">
-                                <i class="fas fa-pen"></i>
-                            </a>
-                            <form action=# method="POST">
-                                @csrf @method('DELETE')
-                                <button class="btn-delete" onclick="return confirm('Hapus file ini?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        {{-- <td>{{ $d->category }}</td>
-                        <td>{{ $d->title }}</td>
-                        <td>{{ $d->content }}</td> --}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="btn-download">Download</button></td>
-                        <td class="action-btn">
-                            <a href="{{ route('download.edit') }}" class="btn-edit">
-                                <i class="fas fa-pen"></i>
-                            </a>
-                            <form action=# method="POST">
-                                @csrf @method('DELETE')
-                                <button class="btn-delete" onclick="return confirm('Hapus file ini?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        {{-- <td>{{ $d->category }}</td>
-                        <td>{{ $d->title }}</td>
-                        <td>{{ $d->content }}</td> --}}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="btn-download">Download</button></td>
-                        <td class="action-btn">
-                            <a href="{{ route('download.edit') }}" class="btn-edit">
-                                <i class="fas fa-pen"></i>
-                            </a>
-                            <form action=# method="POST">
-                                @csrf @method('DELETE')
-                                <button class="btn-delete" onclick="return confirm('Hapus file ini?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                {{-- @endforeach --}}
+                @endforeach
             </tbody>
+
         </table>
     </div>
 @endsection
+
+<!-- Modal Konfirmasi -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <p>Apakah Anda yakin ingin menghapus file ini?</p>
+        <div class="modal-buttons">
+            <button onclick="closeDeleteModal()" class="btn-cancel">Batal</button>
+            <button onclick="submitDeleteForm()" class="btn-confirm">Ya, Hapus</button>
+        </div>
+    </div>
+</div>
+
+@if(session('success'))
+    <div id="successModal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <p>{{ session('success') }}</p>
+            <div class="modal-buttons">
+                <button onclick="closeSuccessModal()" class="btn-confirm">OK</button>
+            </div>
+        </div>
+    </div>
+@endif
+
+<script>
+    let formToDelete = null;
+
+    function showDeleteModal(formId) {
+        formToDelete = document.getElementById(`delete-form-${formId}`);
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function submitDeleteForm() {
+        if (formToDelete) {
+            formToDelete.submit();
+        }
+    }
+
+    function closeSuccessModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    // Menutup modal jika klik di luar
+    window.onclick = function(event) {
+        const deleteModal = document.getElementById('deleteModal');
+        const successModal = document.getElementById('successModal');
+
+        if (event.target == deleteModal) {
+            closeDeleteModal();
+        }
+
+        if (event.target == successModal) {
+            closeSuccessModal();
+        }
+    }
+</script>
+
+
+
 </body>
 </html>
