@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
-
+use App\Http\Controllers\GalleryController;
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -77,3 +77,21 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
+
+
+
+
+#GALERI
+// User
+Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
+
+// Admin
+Route::prefix('admin')->group(function () {
+    Route::get('/galeri', [GalleryController::class, 'adminIndex'])->name('admin.galeri');
+    Route::get('/galeri/create', [GalleryController::class, 'create'])->name('admin.galeri.create');
+    Route::post('/galeri', [GalleryController::class, 'store'])->name('admin.galeri.store');
+    Route::get('/galeri/edit/{id}', [GalleryController::class, 'edit'])->name('admin.galeri.edit');
+    Route::put('/galeri/{id}', [GalleryController::class, 'update'])->name('admin.galeri.update');
+    Route::delete('/galeri/{id}', [GalleryController::class, 'destroy'])->name('admin.galeri.destroy');
+});
+
