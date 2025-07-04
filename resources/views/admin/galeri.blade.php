@@ -14,10 +14,10 @@
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 22px;
             color: #001e74;
             margin-bottom: 30px;
-            border-bottom: 4px solid #facc15;
+            border-bottom: 3px solid #facc15;
             display: inline-block;
             padding-bottom: 4px;
         }
@@ -41,6 +41,31 @@
             margin-bottom: 30px;
         }
 
+        .tambah {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .btn-add {
+            background-color: #facc15;
+            color: white;
+            padding: 6px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 7px;
+        }
+
+        .p {
+            font-size: 17px;
+            font-weight: bold;
+            color: #001e74
+        }
 
         .galeri-grid {
             display: flex;
@@ -213,7 +238,10 @@
 <div class="galeri-container">
     <div class="galeri-header">
         <h1>Galeri</h1>
-        <a href="{{ route('admin.galeri.create') }}" class="btn-tambah"><i class="fas fa-plus"></i> Tambah Foto</a>
+        <div class="tambah">
+            <a href="{{ route('admin.galeri.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 17px;"></i> </a>
+            <p class="p">Tambah Foto</p>
+        </div>
     </div>
 
     <div class="galeri-grid">

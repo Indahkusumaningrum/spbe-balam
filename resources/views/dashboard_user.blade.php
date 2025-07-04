@@ -25,7 +25,7 @@
         }
 
         .navbar img {
-            height: 80px;
+            height: 75px;
         }
 
         .navbar .menu {
@@ -34,8 +34,8 @@
             gap: 40px;
             margin: 0;
             padding: 0;
-            font-size: 20px;
-            margin-left: 50%;
+            font-size: 19px;
+            margin-left: 40%;
             flex-shrink: 0;
         }
 
@@ -83,7 +83,24 @@
             overflow: hidden;
         }
 
+        .banner-wrapper {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            width: 100%; /* 2x jumlah slide */
+            height: 100%;
+        }
+
         .banner-slide {
+            flex: 0 0 100%;
+            height: 100vh;
+            width: 1200px;
+            object-fit: cover; 
+            object-position: top center;
+            position: relative;
+
+        }
+
+        /* .banner-slide {
             position: absolute;
             top: 0;
             left: 0;
@@ -93,18 +110,18 @@
             transition: opacity 1s ease-in-out;
             object-fit: cover;
             z-index: 0;
-        }
+        } */
 
-        .spbe-banner .banner-slide.active {
+        /* .spbe-banner .banner-slide.active {
             opacity: 1;
             z-index: 1;
-        }
+        } */
 
         .banner-text1 {
             position: absolute;
             top: 35%;
             right: 15%;
-            /* transform: translate(-50%, -50%); */
+            transition: transform 0.8s ease-in-out;
             text-align: left;
             color: white;
             z-index: 2;
@@ -125,7 +142,7 @@
             position: absolute;
             top: 35%;
             left: 8%;
-            /* transform: translate(-50%, -50%); */
+            transition: transform 0.8s ease-in-out;
             text-align: left;
             color: white;
             z-index: 2;
@@ -166,7 +183,7 @@
             border: none;
             color: white;
             font-size: 24px;
-            padding: 12px 16px;
+            padding: 12px 20px;
             cursor: pointer;
             z-index: 2;
             border-radius: 50%;
@@ -203,7 +220,7 @@
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
@@ -212,11 +229,11 @@
         }
 
         .info-card {
-            width: 230px;
+            width: 200px;
             background-color: white;
             border: 1.5px solid #facc15;
             border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
             padding: 24px;
             text-align: center;
             transition: transform 0.3s;
@@ -250,8 +267,8 @@
         }
 
         .info-card .info-icon {
-            height: 100px;
-            width: 100px;
+            height: 90px;
+            width: 90px;
         }
 
         .spbe-aspek-section {
@@ -259,16 +276,16 @@
             justify-content: space-between;
             align-items: flex-start;
             padding: 50px 30px;
-            background-color: #f9f9f9;
+            background-color: #fff;
             flex-wrap: wrap;
             gap: 40px;
             margin-left: 30px;
         }
 
         .spbe-aspek-section h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            color: #001e74;
+            font-size: 26px;
+            margin-bottom: 22px;
+            color: #1e293b;
         }
 
         .aspek-left {
@@ -288,29 +305,93 @@
         }
 
         .aspek-item i {
-            font-size: 40px;
+            font-size: 36px;
             color: #facc15;
             min-width: 40px;
         }
 
         .aspek-item strong {
-            font-size: 20px;
+            font-size: 18px;
             color: #1e293b;
         }
 
         .aspek-item p {
             margin: 5px 0 0;
-            font-size: 18px;
+            font-size: 16px;
             color: #334155;
         }
 
         .aspek-right img {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             height: auto;
             display: block;
             margin-top: 100px;
         }
+
+        .spbe-evaluasi-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .evaluasi-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(71, 85, 105, 0.4); 
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .evaluasi-content h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .evaluasi-content p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .btn-evaluasi {
+            display: inline-block;
+            background-color: #facc15;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-evaluasi span {
+            margin-top: -5px;
+            margin-left: 8px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            font-size: 20px;
+        }
+
+        .btn-evaluasi:hover {
+            background-color: #ffae00;
+        }
+
+        .btn-evaluasi:hover span {
+            transform: translateX(6px);
+        }
+
 
     </style>
 </head>
@@ -333,19 +414,23 @@
 
 @section('content')
     <div class="spbe-banner">
-        <img class="banner-slide active" src="/asset/img/1.png" alt="Slide 1">
+         <div class="banner-wrapper">
+            <img class="banner-slide" src="/asset/img/1.png" alt="Slide 1">
+            <img class="banner-slide" src="/asset/img/2.png" alt="Slide 2">
+        </div>
+        {{-- <img class="banner-slide active" src="/asset/img/1.png" alt="Slide 1"> --}}
         <!-- Teks penjelasan untuk Banner 1 -->
         <div class="banner-text1" id="bannerText1">
             <h1>Selamat Datang</h1>
             <p>di Sistem Pemerintahan Berbasis Elektronik Kota Bandar Lampung</p>
         </div>
 
-        <img class="banner-slide" src="/asset/img/2.png" alt="Slide 2">
+        {{-- <img class="banner-slide" src="/asset/img/2.png" alt="Slide 2"> --}}
         <!-- Teks penjelasan untuk Banner 2 -->
         <div class="banner-text" id="bannerText2">
             <h1>Regulasi</h1>
             <p>Pahami regulasi dalam penerapan Sistem Pemerintahan Berbasis Elektronik.</p>
-            <a href="{{ route('tahapan_spbe') }}" class="btn-banner">Pelajari Selengkapnya</a>
+            <a href="{{ route('regulasi_index') }}" class="btn-banner">Pelajari Selengkapnya</a>
         </div>
 
         <button class="slide-btn prev" onclick="prevSlide()">&#10094;</button>
@@ -357,7 +442,7 @@
             <img src="{{ asset('asset/icon/regulasi.png') }}" alt="Regulasi" class="info-icon">
             <h3>Regulasi</h3>
             <p>SPBE akan menjadi platform untuk seluruh regulasi yang ada. Platform ini bermakna pada integrasi. Integrasi ini pada proses bisnis, mulai dari level mikro hingga makro.</p>
-            <a href="#" class="btn-selengkapnya">Selengkapnya</a>
+            <a href="{{ route('regulasi_index') }}" class="btn-selengkapnya">Selengkapnya</a>
         </div>
         <div class="info-card">
             <img src="{{ asset('asset/icon/tahapan.png') }}" alt="Tahapan SPBE" class="info-icon">
@@ -427,45 +512,56 @@
         </div>
     </div>
 
+    <!-- Section Evaluasi SPBE -->
+    <section class="spbe-evaluasi-section">
+        <div class="evaluasi-container">
+            <div class="evaluasi-content">
+                <h2>Pemantauan dan Evaluasi SPBE</h2>
+                <p>Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi</p>
+                <a href="https://tauval.spbe.go.id/" target="_blank" class="btn-evaluasi">
+                    Selengkapnya <span>&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
 
 @endsection
 
 @push('scripts')
 <script>
-  const slides = document.querySelectorAll('.banner-slide');
+    const wrapper = document.querySelector('.banner-wrapper');
     const texts = [
         document.getElementById('bannerText1'),
         document.getElementById('bannerText2')
     ];
-  let current = 0;
+    let current = 0;
+    const totalSlides = document.querySelectorAll('.banner-slide').length;
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active');
-      if (i === index) slide.classList.add('active');
-    });
+    function showSlide(index) {
+        // Geser wrapper
+        wrapper.style.transform = `translateX(-${index * 100}%)`;
 
+        // Tampilkan teks
+        texts.forEach((text, i) => {
+            text.style.display = (i === index) ? 'block' : 'none';
+        });
+    }
 
-     texts.forEach((text, i) => {
-        text.style.display = (i === index) ? 'block' : 'none';
-    });
-  }
+    function nextSlide() {
+        current = (current + 1) % totalSlides;
+        showSlide(current);
+    }
 
-  function nextSlide() {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  }
+    function prevSlide() {
+        current = (current + 1 + totalSlides) % totalSlides;
+        showSlide(current);
+    }
 
-  function prevSlide() {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-  }
-
-// Tampilkan slide pertama
   showSlide(current);
-
-  // Aktifkan autoplay jika diinginkan
-  setInterval(nextSlide, 10000);
+   setInterval(() => { nextSlide(); }, 5000);
+//   setInterval(nextSlide, 6000);
 </script>
 @endpush
 </body>

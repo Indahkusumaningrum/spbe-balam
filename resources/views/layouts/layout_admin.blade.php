@@ -25,10 +25,6 @@
             align-items: center;
         }
 
-        .logout-container {
-            padding: 24px;
-        }
-
         .btn-logout {
             background-color: #facc15;
             color: #001e74;
@@ -84,8 +80,8 @@
         }
 
         .nav-menu a.active {
-            border-bottom: 5px solid #FFC31D;
-            padding-bottom: 19px;
+            border-bottom: 4px solid #FFC31D;
+            padding-bottom: 18px;
             color: #FFC31D;
             transition: width 0.3s ease;
         }
@@ -95,7 +91,7 @@
             color: #001e74;
             text-decoration: none;
             font-weight: bold;
-            padding-bottom: 24px;
+            padding-bottom: 23px;
         }
 
         .nav-menu li a::after {
@@ -103,7 +99,7 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 5px;
+            height: 4px;
             width: 0;
             background-color: #FFC31D;
             transition: width 0.3s ease;
@@ -210,7 +206,6 @@
     </div>
 
 
-    @yield('content')
 
     @php use Illuminate\Support\Facades\Auth; @endphp
 
@@ -225,6 +220,8 @@
             </div>
         @endif
     </div>
+
+    @yield('content')
 
     <!-- Logout Confirmation Modal -->
     <div id="logoutModal" class="modal">
