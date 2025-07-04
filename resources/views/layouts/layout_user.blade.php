@@ -23,7 +23,7 @@
         }
 
         .spbe-navbar img {
-            height: 70px;
+            height: 65px;
         }
 
         .spbe-navbar .menu {
@@ -32,7 +32,7 @@
             gap: 40px;
             margin: 0;
             padding: 0;
-            font-size: 18px;
+            font-size: 17px;
             margin-right: 40px;
         }
 
@@ -50,7 +50,7 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            height: 3px;
+            height: 2px;
             width: 0%;
             background-color: #facc15;
             transition: width 0.3s ease;
@@ -169,8 +169,8 @@
             <li><a href="#" class="{{ request()->routeIs('home') ? 'active' : '' }}">Indikator SPBE</a></li>
             <li><a href="{{ route('profile.show') }}" class="{{ request()->routeIs('profile.show') ? 'active' : '' }}">Profile</a></li>
             <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*') ? 'active' : '' }}">Berita</a></li>
-            <li><a href="#" class="{{ request()->is('download') ? 'active' : '' }}">Download</a></li>
-            <li><a href="#" class="{{ request()->is('galeri') ? 'active' : '' }}">Galeri</a></li>
+            <li><a href="{{ route('download')}}" class="{{ request()->is('download') ? 'active' : '' }}">Download</a></li>
+            <li><a href="{{ route('galeri.index') }}" class="{{ request()->is('galeri') ? 'active' : '' }}">Galeri</a></li>
             <li><a href="#" class="{{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
         </ul>
     </div>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Download</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Regulasi Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .table-container {
@@ -170,93 +170,89 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 
-            .modal-content {
-                background: white;
-                padding: 20px;
-                max-width: 400px;
-                margin: 100px auto;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-                text-align: center;
-            }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: 100px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
 
-            .modal-content p {
-                font-size: 18px;
-                margin-bottom: 20px;
-            }
+        .modal-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
 
-            .modal-buttons {
-                display: flex;
-                justify-content: center;
-                gap: 10px;
-            }
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
-            .btn-cancel,
-            .btn-confirm,
-            .btn-ok {
-                padding: 10px 20px;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-weight: bold;
-                font-size: 14px;
-            }
+        .btn-cancel,
+        .btn-confirm,
+        .btn-ok {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
 
-            .btn-cancel {
-                background-color: gray;
-                color: white;
-            }
+        .btn-cancel {
+            background-color: gray;
+            color: white;
+        }
 
-            .btn-confirm {
-                background-color: red;
-                color: white;
-            }
+        .btn-confirm {
+            background-color: red;
+            color: white;
+        }
 
-            .btn-ok {
-                background-color: green;
-                color: white;
-            }
-
-
+        .btn-ok {
+            background-color: green;
+            color: white;
+        }
+ 
     </style>
 </head>
 <body>
 @extends('layouts.layout_admin')
-@section('title', 'Manage Download')
 @section('content')
 
-    <div class="table-container">
+   <div class="table-container">
         <div class="download-header">
-            <h1>Download</h1>
+            <h1>Regulasi SPBE</h1>
             <div class="tambah">
-                <a href="{{ route('download.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 17px;"></i></a>
+                <a href="{{ route('admin.regulasi.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 17px;"></i></a>
                 <p class="p">Tambah File</p>
             </div>
         </div>
         <table>
             <thead>
                 <tr>
-                    <th style="width: 15%;">Category</th>
-                    <th style="width: 23%;">Title</th>
-                    <th style="width: 40%;">Content</th>
-                    <th style="width: 12%;">File</th>
-                    <th style="width: 10%;">Action</th>
+                    <th style="width: 25%;">Kategori</th>
+                    <th style="width: 40%;">Judul</th>
+                    <th style="width: 20%;">File</th>
+                    <th style="width: 15%;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($downloads as $d)
+                @foreach ($regulations as $d)
                     <tr>
-                        <td>{{ $d->category }}</td>
-                        <td>{{ $d->title }}</td>
-                        <td>{{ $d->content }}</td>
+                        <td>{{ $d->kategori }}</td>
+                        <td>{{ $d->judul }}</td>
                         <td>
-                            <a href="{{ route('admin.download.file', $d->file_path) }}" class="btn-download">Download</a>
+                            <a href="{{ route('admin.regulasi.file', $d->file_path) }}" class="btn-download">Download</a>
                         </td>
                         <td class="action-btn">
-                            <a href="{{ route('download.edit', ['id' => $d->id]) }}" class="btn-edit" method="GET">
+                            <a href="{{ route('admin.regulasi.edit', ['id' => $d->id]) }}" class="btn-edit" method="GET">
                                 <i class="fas fa-pen"></i>
                             </a>
-                            <form id="delete-form-{{ $d->id }}" action="{{ route('admin.download.destroy', $d->id) }}" method="POST">
+                            <form id="delete-form-{{ $d->id }}" action="{{ route('admin.regulasi.destroy', $d->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                     <button type="button" class="btn-delete" onclick="showDeleteModal({{ $d->id }})">
@@ -270,7 +266,9 @@
 
         </table>
     </div>
+
 @endsection
+
 
 <!-- Modal Konfirmasi -->
 <div id="deleteModal" class="modal">
@@ -333,6 +331,7 @@
 </script>
 
 
-
 </body>
 </html>
+
+
