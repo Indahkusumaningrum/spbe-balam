@@ -11,6 +11,8 @@ use App\Http\Controllers\UserBeritaController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserDownloadController;
 use App\Http\Controllers\RegulasiController;
+use App\Http\Controllers\EvaluasiController;
+
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -107,3 +109,17 @@ Route::delete('/admin/regulasi/{id}', [RegulasiController::class, 'destroy'])->n
 Route::get('/admin/regulasi/download/{fileName}', [RegulasiController::class, 'downloadFile'])->name('admin.regulasi.file');
 // User
 Route::get('/regulasi/index', [RegulasiController::class, 'indexUser'])->name('regulasi_index');
+
+
+// Admin
+Route::get('/admin/evaluasi', [EvaluasiController::class, 'adminIndex'])->name('admin.evaluasi');
+Route::get('/admin/evaluasi/create', [EvaluasiController::class, 'create'])->name('admin.evaluasi.create');
+Route::post('/admin/evaluasi', [EvaluasiController::class, 'store'])->name('admin.evaluasi.store');
+Route::get('/admin/evaluasi/{id}', [EvaluasiController::class, 'show'])->name('admin.evaluasi.show');
+Route::get('/admin/evaluasi/{id}/edit', [EvaluasiController::class, 'edit'])->name('admin.evaluasi.edit');
+Route::put('/admin/evaluasi/{id}', [EvaluasiController::class, 'update'])->name('admin.evaluasi.update');
+Route::delete('/admin/evaluasi/{id}', [EvaluasiController::class, 'destroy'])->name('admin.evaluasi.destroy');
+Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'downloadFile'])->name('admin.evaluasi.file');
+
+// User
+Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');

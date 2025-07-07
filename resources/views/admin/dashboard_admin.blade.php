@@ -108,7 +108,7 @@
             <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
             <h3>Evaluasi</h3>
             <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
-            <a href="#" class="btn-selengkapnya">Selengkapnya</a>
+            <a href="{{ route('admin.evaluasi') }}" class="btn-selengkapnya">Selengkapnya</a>
         </div>
     </div>
 @endsection
