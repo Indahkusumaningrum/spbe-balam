@@ -94,7 +94,7 @@
             flex: 0 0 100%;
             height: 100vh;
             width: 1200px;
-            object-fit: cover; 
+            object-fit: cover;
             object-position: top center;
             position: relative;
 
@@ -341,7 +341,7 @@
         .evaluasi-container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(71, 85, 105, 0.4); 
+            background: rgba(71, 85, 105, 0.4);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px 30px;
@@ -460,7 +460,7 @@
             <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
             <h3>Evaluasi</h3>
             <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
-            <a href="#" class="btn-selengkapnya">Selengkapnya</a>
+            <a href=" {{ route('evaluasi.list') }}" class="btn-selengkapnya">Selengkapnya</a>
         </div>
     </div>
 
