@@ -10,53 +10,75 @@
         .berita-container {
             padding: 40px 60px;
         }
+
+        h1 {
+            font-size: 32px;
+            color: #001e74;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #facc15;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
         .berita-grid {
             display: flex;
             gap: 24px;
             flex-wrap: wrap;
             justify-content: start;
         }
+
         .berita-card {
-            width: 300px;
+            width: calc((100% - 80px) / 3);
             background: white;
             border-radius: 14px;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
             text-decoration: none;
+            margin-bottom: 20px;
         }
+
         .berita-card:hover {
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
+
         .berita-img {
-            height: 150px;
+            height: 200px;
             background-color: #ccc;
+            border-bottom: 1px solid #eee;
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
         }
+
         .berita-content {
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         .berita-content h3 {
             font-size: 16px;
             color: #001e74;
             font-weight: 700;
             margin-bottom: 8px;
         }
+
         .berita-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .berita-info .tanggal {
             font-size: 14px;
             color: #facc15;
             font-weight: 600;
         }
+
         .btn-detail {
             background-color: #001e74;
             color: white;
@@ -69,25 +91,32 @@
     </style>
 </head>
 <body>
-<div class="berita-container">
-    <div class="berita-grid">
-        @foreach($beritas as $berita)
-        <a href="{{ route('berita.show', $berita->id_berita) }}" class="berita-card">
-            <div class="berita-img">
-                @if($berita->gambar)
-                <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" style="width:100%; height:150px; object-fit:cover;">
-                @endif
-            </div>
-            <div class="berita-content">
-                <h3>{{ $berita->judul }}</h3>
-                <div class="berita-info">
-                    <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
-                    <span class="btn-detail">Selengkapnya</span>
+
+@section('navbar', true)
+@extends('layouts.layout_user')
+@section('content')
+
+    <div class="berita-container">
+        <h1>Berita </h1>
+        <div class="berita-grid">
+            @foreach($beritas as $berita)
+            <a href="{{ route('berita.show', $berita->id_berita) }}" class="berita-card">
+                <div class="berita-img">
+                    @if($berita->gambar)
+                    <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" style="width:100%; height:200px; object-fit:cover;">
+                    @endif
                 </div>
-            </div>
-        </a>
-        @endforeach
+                <div class="berita-content">
+                    <h3>{{ $berita->judul }}</h3>
+                    <div class="berita-info">
+                        <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
+                        <span class="btn-detail">Selengkapnya</span>
+                    </div>
+                </div>
+            </a>
+            @endforeach
+        </div>
     </div>
-</div>
+@endsection
 </body>
 </html>

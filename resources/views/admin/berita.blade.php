@@ -37,6 +37,15 @@
             padding: 40px 60px;
         }
 
+        h1 {
+            font-size: 24px;
+            color: #001e74;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #facc15;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
         .berita-header {
             display: flex;
             justify-content: space-between;
@@ -132,27 +141,13 @@
 @section('title', 'Manage Berita')
 @section('content')
 
- <div class="nav-bar">
-        <a href="{{ route('dashboardadmin') }}">
-            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
-        </a>
-        <div class="nav-container">
-            <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-                <li><a href="#" class="active">Berita</a></li>
-                <li><a href="{{ route('download') }}">Download</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Kontak</a></li>
-            </nav>
-        </div>
-    </div>
-
     <div class="berita-container">
-        <div class="tambah">
-            <a href="{{ route('admin.berita.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
-            <p class="p">Tambah Berita</p>
+        <div class="berita-header">
+            <h1>Berita</h1>
+            <div class="tambah">
+                <a href="{{ route('admin.berita.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 18px;"></i></a>
+                <p class="p">Tambah Berita</p>
+            </div>
         </div>
         <div class="berita-grid">
             @foreach($beritas as $berita)

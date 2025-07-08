@@ -21,9 +21,12 @@
         }
 
         .profile-title {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 24px;
             color: #001e74;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #facc15;
+            display: inline-block;
+            padding-bottom: 4px;
         }
 
         .profile-image-wrapper {
@@ -87,20 +90,6 @@
 @extends('layouts.layout_admin')
 @section('title', 'Manage Profile')
 @section('content')
-
-    <div class="nav-bar">
-        <a href="{{ route('dashboardadmin') }}"><img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE"></a> <div class="nav-container">
-        <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#">Indikator SPBE</a></li>
-                <li><a href="#" class="active">Profile</a></li>
-                <li><a href="{{ route('admin.berita') }}">Berita</a></li>
-                <li><a href="{{ route('download') }}">Download</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Kontak</a></li>
-            </nav>
-        </div>
-    </div>
 
     @if(session('success'))
         <div style="color: green; font-weight: bold; text-align:center;">
