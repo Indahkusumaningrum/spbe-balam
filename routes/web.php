@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
@@ -42,6 +43,8 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 Route::get('/', function () {
     return view('dashboard_user');
 });
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.user');
+
 
 
 // Admin
@@ -68,3 +71,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
+
+//KONTAK
+Route::get('/kontak', function () {
+    return view('kontak_show_user');
+})->name('kontak.user');
