@@ -10,6 +10,10 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\UserDownloadController;
+use App\Http\Controllers\RegulasiController;
+use App\Http\Controllers\EvaluasiController;
+
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -57,7 +61,6 @@ Route::get('/tahapan_spbe', function () {
     return view('tahapan_spbe');
 })->name('tahapan_spbe');
 
-
 // Admin
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('profile');
@@ -91,7 +94,6 @@ Route::get('/kontak', function () {
 
 
 
-
 #GALERI
 // User
 Route::get('/galeri', [GalleryController::class, 'index'])->name('galeri.index');
@@ -106,3 +108,29 @@ Route::prefix('admin')->group(function () {
     Route::delete('/galeri/{id}', [GalleryController::class, 'destroy'])->name('admin.galeri.destroy');
 });
 
+
+// Admin
+Route::get('/admin/regulasi', [RegulasiController::class, 'index'])->name('admin.regulasi');
+Route::get('/admin/regulasi/create', [RegulasiController::class, 'create'])->name('admin.regulasi.create');
+Route::post('/admin/regulasi', [RegulasiController::class, 'store'])->name('admin.regulasi.store');
+Route::get('/admin/regulasi/{id}/edit', [RegulasiController::class, 'edit'])->name('admin.regulasi.edit');
+Route::put('/admin/regulasi/{id}', [RegulasiController::class, 'update'])->name('admin.regulasi.update');
+Route::delete('/admin/regulasi/{id}', [RegulasiController::class, 'destroy'])->name('admin.regulasi.destroy');
+Route::get('/admin/regulasi/download/{fileName}', [RegulasiController::class, 'downloadFile'])->name('admin.regulasi.file');
+// User
+Route::get('/regulasi/index', [RegulasiController::class, 'indexUser'])->name('regulasi_index');
+
+
+// Admin
+Route::get('/admin/evaluasi', [EvaluasiController::class, 'adminIndex'])->name('admin.evaluasi');
+Route::get('/admin/evaluasi/create', [EvaluasiController::class, 'create'])->name('admin.evaluasi.create');
+Route::post('/admin/evaluasi', [EvaluasiController::class, 'store'])->name('admin.evaluasi.store');
+Route::get('/admin/evaluasi/{id}', [EvaluasiController::class, 'show'])->name('admin.evaluasi.show');
+Route::get('/admin/evaluasi/{id}/edit', [EvaluasiController::class, 'edit'])->name('admin.evaluasi.edit');
+Route::put('/admin/evaluasi/{id}', [EvaluasiController::class, 'update'])->name('admin.evaluasi.update');
+Route::delete('/admin/evaluasi/{id}', [EvaluasiController::class, 'destroy'])->name('admin.evaluasi.destroy');
+Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'downloadFile'])->name('admin.evaluasi.file');
+
+// User
+Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');
+Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');

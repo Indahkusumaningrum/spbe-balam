@@ -17,7 +17,7 @@
 
         .tentang-container {
             width: 1200px;
-            margin: 60px auto;
+            margin: 10px auto;
             padding: 40px;
             background: #fff;
             border-radius: 16px;
