@@ -49,7 +49,7 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 // USER
 Route::get('/', function () {
     return view('dashboard_user');
-});
+})->name('dashboard_user');
 
 Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.user');
 
