@@ -10,7 +10,7 @@ class EvaluasiController extends Controller
     public function index()
     {
         $evaluations = Evaluasi::all();
-        return view('evaluasi_list', compact('evaluations'));
+        return view('dashboard_user', compact('evaluations'));
     }
 
     public function adminIndex()
@@ -60,36 +60,36 @@ class EvaluasiController extends Controller
     public function update(Request $request, $id)
     {
         $evaluation = Evaluasi::findOrFail($id);
-    
+
         $request->validate([
             'title' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             'document' => 'nullable|mimes:pdf,doc,docx|max:10240'
         ]);
-    
+
         if($request->hasFile('image')) {
             $imageName = time() .'_'. $request->image->getClientOriginalName();
             $request->image->move(public_path('uploads/evaluasi'), $imageName);
             $evaluation->image = $imageName;
         }
-    
+
         if($request->hasFile('document')) {
             $documentName = $request->document->getClientOriginalName();
             $request->document->move(public_path('uploads/documents'), $documentName);
             $evaluation->document = $documentName;
         }
-    
+
         $evaluation->title = $request->title;
         $evaluation->save();
-    
+
         return redirect()->route('admin.evaluasi.show', $evaluation->id)->with('success', 'Data evaluasi berhasil diperbarui');
     }
-    
+
 
     public function show($id)
     {
         $evaluation = Evaluasi::findOrFail($id);
-        
+
         return view('admin.detail_evaluasi', compact('evaluation'));
     }
 
@@ -97,7 +97,7 @@ class EvaluasiController extends Controller
     {
         $evaluation = Evaluasi::findOrFail($id);
         $evaluation->delete();
-        
+
         return redirect()->route('admin.evaluasi')->with('success', 'Evaluasi berhasil dihapus!');
     }
 
