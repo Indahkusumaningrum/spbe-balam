@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    @php use Illuminate\Support\Str; @endphp
     <title>SPBE - Pemerintah Kota Bandar Lampung</title>
 
     <style>
@@ -229,7 +230,7 @@
         }
 
         .info-card {
-            width: 200px;
+            width: 250px;
             background-color: white;
             border: 1.5px solid #facc15;
             border-radius: 16px;
@@ -283,7 +284,7 @@
         }
 
         .spbe-aspek-section h2 {
-            font-size: 26px;
+            font-size: 28px;
             margin-bottom: 22px;
             color: #1e293b;
         }
@@ -329,7 +330,7 @@
             margin-top: 100px;
         }
 
-        .spbe-evaluasi-section {
+        .spbe-tauval-section {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 60px 20px;
@@ -338,7 +339,7 @@
             z-index: 1;
         }
 
-        .evaluasi-container {
+        .tauval-container {
             max-width: 900px;
             margin: 0 auto;
             background: rgba(71, 85, 105, 0.4);
@@ -350,19 +351,19 @@
             transition: transform 0.3s ease;
         }
 
-        .evaluasi-content h2 {
+        .tauval-content h2 {
             font-size: 30px;
             margin-bottom: 10px;
             font-weight: 700;
         }
 
-        .evaluasi-content p {
+        .tauval-content p {
             font-size: 16px;
             margin-bottom: 25px;
             color: #fff;
         }
 
-        .btn-evaluasi {
+        .btn-tauval {
             display: inline-block;
             background-color: #facc15;
             color: white;
@@ -376,7 +377,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn-evaluasi span {
+        .btn-tauval span {
             margin-top: -5px;
             margin-left: 8px;
             display: inline-block;
@@ -384,12 +385,212 @@
             font-size: 20px;
         }
 
-        .btn-evaluasi:hover {
+        .btn-tauval:hover {
             background-color: #ffae00;
         }
 
-        .btn-evaluasi:hover span {
+        .btn-tauval:hover span {
             transform: translateX(6px);
+        }
+
+        .judul-evaluasi{
+            font-size: 20px;
+            color: #1e293b;
+            padding-left: 60px;
+            display: inline-block;
+        }
+
+        .evaluasi-carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .evaluasi-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .evaluasi-card {
+            min-width: 50%;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .evaluasi-image {
+            height: 230px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .tahun {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .btn-evaluasi-card {
+            background-color: #facc15;
+            color: white;
+            padding: 8px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-evaluasi-card:hover {
+            transform: scale(1.04);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+            padding: 0 40px; /* beri ruang kiri kanan untuk tombol */
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-prev, .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: #444; /* atau warna sesuai desain */
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-prev:hover, .carousel-next:hover {
+            opacity: 1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 30px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow-y: auto;
+            padding: 60px 0;
+        }
+
+        .custom-modal-content {
+            background-color: #fff;
+            margin: auto;
+            border-radius: 10px;
+            max-width: 100%;
+            width: 800px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .custom-modal-header {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .custom-modal-body {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .custom-modal-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+
+        .btn-close {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .btn-close:hover {
+            background-color: #3749b7;
+        }
+
+        .custom-close {
+            font-size: 38px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
 
@@ -456,18 +657,11 @@
             <p>Maka inti dari kegiatan SPBE adalah membangun layanan publik yang berkualitas, dengan didukung kesiapan pada aplikasi, infrastruktur dan keamanan SPBE.</p>
             <a href="#" class="btn-selengkapnya">Selengkapnya</a>
         </div>
-        <div class="info-card">
-            <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
-            <h3>Evaluasi</h3>
-            <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
-            <a href=" {{ route('evaluasi.list') }}" class="btn-selengkapnya">Selengkapnya</a>
-        </div>
     </div>
 
     <div class="spbe-aspek-section">
         <div class="aspek-left">
             <h2>Sistem Pemerintahan Berbasis Elektronik</h2>
-
             <div class="aspek-kategori">
                 <div class="aspek-item">
                     <i class="far fa-handshake"></i>
@@ -476,7 +670,6 @@
                         <p>Aspek 1 - Kebijakan Internal Tata Kelola SPBE</p>
                     </div>
                 </div>
-
                 <div class="aspek-item">
                     <i class="fas fa-network-wired"></i>
                     <div>
@@ -486,7 +679,6 @@
                         Aspek 4 - Penyelenggara SPBE</p>
                     </div>
                 </div>
-
                 <div class="aspek-item">
                     <i class="fas fa-clipboard-check"></i>
                     <div>
@@ -495,7 +687,6 @@
                         Aspek 6 - Audit TIK</p>
                     </div>
                 </div>
-
                 <div class="aspek-item">
                     <i class="fas fa-headset"></i>
                     <div>
@@ -512,13 +703,67 @@
         </div>
     </div>
 
-    <!-- Section Evaluasi SPBE -->
-    <section class="spbe-evaluasi-section">
-        <div class="evaluasi-container">
-            <div class="evaluasi-content">
+    {{-- Section Evaluasi --}}
+    <div class="judul-evaluasi">
+        <h2>Hasil Evaluasi</h2>
+        <p style="border-bottom: 3px solid #facc15; margin-top: -20px;"></p>
+    </div>
+    <div class="evaluasi-carousel-container">
+        <div class="carousel-wrapper">
+            <button class="carousel-prev" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="evaluasi-carousel-track" id="carouselTrack">
+            @foreach($evaluations as $evaluation)
+                <div class="evaluasi-card">
+                    <div class="evaluasi-image" style="background-image: url('{{ asset('uploads/evaluasi/' . $evaluation->image) }}')">
+                        <div class="overlay">
+                            <div class="tahun">
+                                {{ Str::of($evaluation->title)->match('/Tahun \d{4}/') }}
+                            </div>
+                            <a href="javascript:void(0);" class="btn-evaluasi-card"
+                                onclick="openModal('{{ asset('uploads/evaluasi/' . $evaluation->image) }}', '{{ $evaluation->title }}')">
+                                SELENGKAPNYA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <button class="carousel-next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+
+    <!-- Modal Bootstrap-like -->
+    <div class="custom-modal" id="popupModal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h2 id="modalTitle">Hasil Evaluasi</h2>
+                <span class="custom-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="custom-modal-body">
+                <img id="modalImage" src="" alt="Evaluasi SPBE" class="custom-modal-image">
+            </div>
+            <div class="custom-modal-footer">
+                <button onclick="closeModal()" class="btn-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Image Preview -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+
+    <!-- Section Tauval SPBE -->
+    <section class="spbe-tauval-section">
+        <div class="tauval-container">
+            <div class="tauval-content">
                 <h2>Pemantauan dan Evaluasi SPBE</h2>
                 <p>Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi</p>
-                <a href="https://tauval.spbe.go.id/" target="_blank" class="btn-evaluasi">
+                <a href="https://tauval.spbe.go.id/" target="_blank" class="btn-tauval">
                     Selengkapnya <span>&rarr;</span>
                 </a>
             </div>
@@ -559,9 +804,55 @@
         showSlide(current);
     }
 
-  showSlide(current);
-   setInterval(() => { nextSlide(); }, 5000);
-//   setInterval(nextSlide, 6000);
+    showSlide(current);
+    setInterval(() => { nextSlide(); }, 5000);
+
+
+    let currentIndex = 0;
+
+    function moveSlide(direction) {
+        const track = document.getElementById("carouselTrack");
+        const cards = document.querySelectorAll(".evaluasi-card");
+        const cardWidth = cards[0].offsetWidth;
+        const totalCards = cards.length;
+        const visibleCards = 2;
+        const maxIndex = totalCards - visibleCards;
+
+        currentIndex += direction;
+
+        // Kalau ke kanan dan sudah di akhir, kembali ke 0
+        if (currentIndex > maxIndex) {
+            currentIndex = 0;
+        }
+
+        // Kalau ke kiri, tetap dibatasi minimum 0
+        if (currentIndex < 0) currentIndex = 0;
+
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+    }
+
+    // Geser otomatis setiap 5 detik per 1 card ke kanan
+    setInterval(() => {
+        moveSlide(1);
+    }, 5000);
+
+    function openModal(imageSrc, title = "Hasil Evaluasi") {
+        document.getElementById("modalImage").src = imageSrc;
+        document.getElementById("modalTitle").innerText = title;
+        document.getElementById("popupModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("popupModal").style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("popupModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+
 </script>
 @endpush
 </body>

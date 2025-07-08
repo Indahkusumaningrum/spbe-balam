@@ -123,3 +123,4 @@ Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'd
 
 // User
 Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');
+Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
