@@ -483,8 +483,9 @@
     </style>
 </head>
 <body>
+    
     <div class="spbe-navbar">
-        <a >
+        <a href="{{ route('dashboard_user') }}" class="logo-img">
             <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
         </a>
 

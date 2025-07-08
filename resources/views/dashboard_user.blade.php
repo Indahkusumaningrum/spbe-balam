@@ -327,7 +327,7 @@
             <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*') ? 'active' : '' }}">Berita</a></li>
             <li><a href="#" class="{{ request()->is('download') ? 'active' : '' }}">Download</a></li>
             <li><a href="#" class="{{ request()->is('galeri') ? 'active' : '' }}">Galeri</a></li>
-            <li><a href="#" class="{{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
+            <li><a href="{{ route('kontak.user') }}" class="{{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
         </ul>
     </div>
 

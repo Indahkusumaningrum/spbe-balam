@@ -46,17 +46,16 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 
 // Route::get('/berita', function () { return view('admin/berita'); })->name('berita');
 
-//USER
+// USER
 Route::get('/', function () {
     return view('dashboard_user');
-});
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.user');
-
-
 })->name('dashboard_user');
 
-Route::get('/tahapan_spbe', function(){return view('tahapan_spbe');})->name('tahapan_spbe');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.user');
 
+Route::get('/tahapan_spbe', function () {
+    return view('tahapan_spbe');
+})->name('tahapan_spbe');
 
 
 // Admin
