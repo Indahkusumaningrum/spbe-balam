@@ -6,13 +6,13 @@
 <form action="{{ route('admin.aspect.store') }}" method="POST">
     @csrf
     <label>Nama Aspek:</label>
-    <input type="text" name="name" required>
+    <input type="text" name="nama" required>
 
     <label>Pilih Domain:</label>
     <select name="domain_id" required>
         <option value="">-- Pilih Domain --</option>
         @foreach($domains as $domain)
-            <option value="{{ $domain->id }}">{{ $domain->name }}</option>
+            <option value="{{ $domain->id }}">{{ $domain->nama }}</option>
         @endforeach
     </select>
 
@@ -24,7 +24,7 @@
 <h3>Daftar Aspek</h3>
 <ul>
     @foreach($aspects as $aspect)
-        <li>{{ $aspect->name }} (Domain: {{ $aspect->domain->name }})</li>
+        <li>{{ $aspect->nama }} (Domain: {{ $aspect->domain->nama }})</li>
     @endforeach
 </ul>
 @endsection

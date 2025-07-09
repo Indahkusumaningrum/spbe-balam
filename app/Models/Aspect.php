@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aspect extends Model
 {
     use HasFactory;
-    protected $fillable = ['domain_id', 'name'];
+    protected $fillable = ['domain_id', 'nama'];
 
     public function domain()
     {
