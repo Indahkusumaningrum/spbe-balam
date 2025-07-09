@@ -120,7 +120,7 @@
             justify-content: center;
             border-radius: 8px;
             border: none;
-            background-color: #e0e7ff; 
+            background-color: #e0e7ff;
             color: #001e74;
             transition: background-color 0.3s ease;
             text-decoration: none;
