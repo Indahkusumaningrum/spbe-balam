@@ -66,6 +66,7 @@
 </head>
 <body>
 @extends('layouts.layout_user')
+@section('navbar', true)
 @section('content')
 
     <div class="berita-container">

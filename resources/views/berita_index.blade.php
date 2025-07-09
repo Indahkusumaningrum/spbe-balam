@@ -12,10 +12,10 @@
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 22px;
             color: #001e74;
             margin-bottom: 30px;
-            border-bottom: 4px solid #facc15;
+            border-bottom: 3px solid #facc15;
             display: inline-block;
             padding-bottom: 4px;
         }
@@ -87,6 +87,10 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
+        }
+
+        .btn-detail:hover{
+            transform: scale(1.02);
         }
     </style>
 </head>

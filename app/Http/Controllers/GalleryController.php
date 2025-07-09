@@ -9,8 +9,8 @@ class GalleryController extends Controller
 {
     public function index() 
     {
-        $galleris = Gallery::all();
-        return view('galeri.index', compact('galeries'));
+        $galleries = Gallery::all();
+        return view('galeri_index', compact('galleries'));
     }
 
     public function adminIndex()
