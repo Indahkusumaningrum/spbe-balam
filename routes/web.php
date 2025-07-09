@@ -13,7 +13,9 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserDownloadController;
 use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\EvaluasiController;
-
+use App\Http\Controllers\IndikatorController;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\AspectController;
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -134,3 +136,38 @@ Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'd
 // User
 Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');
 Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
+
+
+// Untuk publik
+Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
+
+// Untuk admin
+Route::prefix('admin')->group(function () {
+    Route::get('indikator', [IndikatorController::class, 'index'])->name('admin.indikator.index');
+    Route::get('indikator/create', [IndikatorController::class, 'create'])->name('admin.indikator.create');
+    Route::post('indikator', [IndikatorController::class, 'store'])->name('admin.indikator.store');
+    Route::get('indikator/{id}/edit', [IndikatorController::class, 'edit'])->name('admin.indikator.edit');
+    Route::put('indikator/{id}', [IndikatorController::class, 'update'])->name('admin.indikator.update');
+    Route::delete('indikator/{id}', [IndikatorController::class, 'destroy'])->name('admin.indikator.destroy');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('indikator', IndikatorController::class);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/domain', [DomainController::class, 'index'])->name('admin.domain_index');
+    Route::get('/domain/create', [DomainController::class, 'create'])->name('admin.domain.create');
+    Route::post('/domain', [DomainController::class, 'store'])->name('admin.domain.store');
+    Route::get('/domain/{domain}/edit', [DomainController::class, 'edit'])->name('admin.domain.edit');
+    Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('admin.domain.update');
+    Route::delete('/domain/{domain}', [DomainController::class, 'destroy'])->name('admin.domain.destroy');
+});
+
+// Aspek
+Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
+Route::post('/admin/aspek', [AspectController::class, 'store'])->name('admin.aspect.store');
+
+// Route::get('/admin/domain', [DomainController::class, 'index'])->name('admin.domain.index');
+// Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
+

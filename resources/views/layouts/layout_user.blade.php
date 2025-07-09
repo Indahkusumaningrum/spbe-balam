@@ -166,7 +166,7 @@
             <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
         </a>
         <ul class="menu">
-            <li><a href="#" class="{{ request()->routeIs('home') ? 'active' : '' }}">Indikator SPBE</a></li>
+            <li><a href="{{ route('indikator.public') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Indikator SPBE</a></li>
             <li><a href="{{ route('profile.show') }}" class="{{ request()->routeIs('profile.show') ? 'active' : '' }}">Profile</a></li>
             <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*') ? 'active' : '' }}">Berita</a></li>
             <li><a href="{{ route('download')}}" class="{{ request()->is('download') ? 'active' : '' }}">Download</a></li>
