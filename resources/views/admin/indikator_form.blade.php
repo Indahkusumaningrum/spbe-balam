@@ -98,7 +98,7 @@
 <div class="form-container">
     <h2>{{ isset($indikator) ? 'Edit' : 'Tambah' }} Indikator</h2>
 
-    <form action="{{ isset($indikator) ? route('admin.indikator.update', $indikator->id) : route('admin.indikator.store') }}" method="POST">
+    <form action="{{ isset($indikator) ? route('admin.indikator.update', $indikator->id) : route('admin.indikator.store', $tahun) }}" method="POST">
         @csrf
         @if(isset($indikator))
             @method('PUT')
@@ -113,6 +113,10 @@
         </select>
 
         <label>Aspek:</label>
+
+        <input type="hidden" name="tahun_id" value="{{ $tahun->id }}">
+
+
         <select name="aspect_id" id="aspectSelect" class="form-control" style="width: 100%;" required>
             <option value="">-- Pilih Aspek --</option>
             @foreach($aspects as $aspect)
@@ -121,10 +125,10 @@
         </select>
 
         <label>Nama Indikator:</label>
-        <input type="text" name="name" value="{{ $indikator->name ?? old('name') }}" required>
+        <input type="text" name="nama" value="{{ $indikator->nama ?? old('nama') }}" required>
 
         <label>Penjelasan:</label>
-        <textarea name="description" rows="10" required>{{ $indikator->description ?? old('description') }}</textarea>
+        <textarea name="penjelasan" rows="10" required>{{ $indikator->penjelasan ?? old('penjelasan') }}</textarea>
 
         <button type="submit" class="btn btn-primary">{{ isset($indikator) ? 'Update' : 'Simpan' }}</button>
         <a href="{{ route('admin.indikator.index') }}" class="btn btn-secondary">Batal</a>

@@ -83,7 +83,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
 
+    
 });
+Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 
 Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
@@ -122,6 +124,22 @@ Route::get('/admin/regulasi/download/{fileName}', [RegulasiController::class, 'd
 // User
 Route::get('/regulasi/index', [RegulasiController::class, 'indexUser'])->name('regulasi_index');
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Routes untuk Berita
+    Route::get('berita', [AdminBeritaController::class, 'index'])->name('berita');
+    Route::get('berita/create', [AdminBeritaController::class, 'create'])->name('berita.create');
+    Route::post('berita', [AdminBeritaController::class, 'store'])->name('berita.store');
+    // Perhatikan Route Model Binding untuk edit, update, destroy
+    // Jika Anda tidak menggunakan Route Model Binding (seperti di kode Anda yang lama),
+    // maka parameter harus ($id) bukan (Berita $berita)
+    Route::get('berita/{id}/edit', [AdminBeritaController::class, 'edit'])->name('berita.edit');
+    Route::put('berita/{id}', [AdminBeritaController::class, 'update'])->name('berita.update');
+    Route::delete('berita/{id}', [AdminBeritaController::class, 'destroy'])->name('berita.destroy');
+
+    // Route khusus untuk upload gambar CKEditor
+    // Perhatikan nama route di sini: admin.berita.upload_image
+    // Route::post('berita/upload-image', [BeritaController::class, 'uploadImage'])->name('berita.upload_image');
+});
 
 // Admin
 Route::get('/admin/evaluasi', [EvaluasiController::class, 'adminIndex'])->name('admin.evaluasi');
@@ -142,18 +160,30 @@ Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
 Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
 
 // Untuk admin
-Route::prefix('admin')->group(function () {
-    Route::get('indikator', [IndikatorController::class, 'index'])->name('admin.indikator.index');
-    Route::get('indikator/create', [IndikatorController::class, 'create'])->name('admin.indikator.create');
-    Route::post('indikator', [IndikatorController::class, 'store'])->name('admin.indikator.store');
-    Route::get('indikator/{id}/edit', [IndikatorController::class, 'edit'])->name('admin.indikator.edit');
-    Route::put('indikator/{id}', [IndikatorController::class, 'update'])->name('admin.indikator.update');
-    Route::delete('indikator/{id}', [IndikatorController::class, 'destroy'])->name('admin.indikator.destroy');
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Daftar tahun
+    Route::get('/indikator', [IndikatorController::class, 'index'])->name('indikator.index');
+
+    // Indikator per tahun
+    Route::get('/indikator/tahun/{tahun}', [IndikatorController::class, 'indikatorByTahun'])->name('indikator.tahun');
+
+    // Create indikator dengan parameter tahun
+    Route::get('/indikator/create/{tahun_id}', [IndikatorController::class, 'create'])->name('indikator.create');
+
+    // Store indikator dengan parameter tahun
+    Route::post('/indikator/store/{tahun}', [IndikatorController::class, 'store'])->name('indikator.store');
+
+    // Edit, update, delete indikator
+    Route::get('/indikator/{id}/edit', [IndikatorController::class, 'edit'])->name('indikator.edit');
+    Route::put('/indikator/{id}', [IndikatorController::class, 'update'])->name('indikator.update');
+    Route::delete('/indikator/{id}', [IndikatorController::class, 'destroy'])->name('indikator.destroy');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('indikator', IndikatorController::class);
-});
+
+
+
+Route::get('/admin/indikator/tahun/{tahun}', [IndikatorController::class, 'indikatorByTahun'])->name('admin.indikator.tahun');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/domain', [DomainController::class, 'index'])->name('admin.domain_index');
@@ -167,6 +197,7 @@ Route::prefix('admin')->group(function () {
 // Aspek
 Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
 Route::post('/admin/aspek', [AspectController::class, 'store'])->name('admin.aspect.store');
+
 
 // Route::get('/admin/domain', [DomainController::class, 'index'])->name('admin.domain.index');
 // Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
