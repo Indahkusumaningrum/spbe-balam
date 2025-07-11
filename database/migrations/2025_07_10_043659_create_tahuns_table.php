@@ -1,5 +1,3 @@
-
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beritas', function (Blueprint $table) {
-            $table->id('id_berita');
-            $table->string('judul');
-            $table->string('gambar')->nullable();
-            $table->text('konten');
-            $table->string('penulis');
-            $table->integer('pengunjung')->default(0);
+        Schema::create('tahuns', function (Blueprint $table) {
+            $table->id();
+            $table->year('tahun')->unique(); // bisa juga integer, tapi year lebih semantik
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('beritas');
+        Schema::dropIfExists('tahuns');
     }
 };
