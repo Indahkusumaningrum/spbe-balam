@@ -62,7 +62,16 @@
             font-size: 18px;
             color: #333;
             line-height: 1.6;
+            /* Tambahkan ini jika gambar terlalu besar */
+            max-width: 100%; /* Memastikan gambar tidak melebihi lebar kontainer */
+            height: auto;
         }
+
+        .berita-body img {
+            max-width: 100%; /* Memastikan gambar tidak melebihi lebar kontainer */
+            height: auto; /* Mempertahankan rasio aspek */
+        }
+
 
         .btn-edit{
             background-color: #3b82f6; /* Warna biru untuk edit */
@@ -127,14 +136,7 @@
 
     <div class="berita-container">
         <div class="berita-img-container">
-            <div class="berita-actions">
-                <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-edit"><i class="fas fa-pen"></i></a>
-                <form action="{{ route('admin.berita.destroy', $berita->id_berita) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus berita ini?')">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                </form>
-            </div>
+            {{-- Pastikan ini mengacu pada gambar utama berita, bukan gambar dari konten TinyMCE --}}
             <img src="{{ asset('uploads/beritas/' . $berita->gambar) }}" alt="Gambar Berita" class="berita-img">
         </div>
 
@@ -144,7 +146,8 @@
         </div>
 
         <h1 class="berita-title">{{ $berita->judul }}</h1>
-        <div class="berita-body">{!! nl2br(e($berita->konten)) !!}</div>
+        {{-- UBAH BARIS INI --}}
+        <div class="berita-body">{!! nl2br($berita->konten) !!}</div>
     </div>
 
     <a href="{{ route('admin.berita') }}" class="btn-kembali">
@@ -152,25 +155,6 @@
     </a>
 
 @endsection
-
-
-<!-- <script>
-        function showDeleteModal() {
-            document.getElementById('logoutModal').style.display = 'block';
-        }
-
-        function closeLogoutModal() {
-            document.getElementById('logoutModal').style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('logoutModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script> -->
-
 
 </body>
 </html>

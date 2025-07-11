@@ -1,0 +1,107 @@
+/* ... (CSS yang sudah ada untuk form-container, form-label, input, button, dll.) ... */
+
+/* Custom Editor Styles */
+.custom-editor-wrapper {
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    overflow: hidden; /* For rounded corners */
+}
+
+.custom-editor-toolbar {
+    background-color: #f8f9fa;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 5px; /* Space between buttons/selects */
+}
+
+.custom-editor-toolbar .tool-btn {
+    background-color: #e2e6ea;
+    border: 1px solid #dae0e5;
+    color: #343a40;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px; /* For consistent button size */
+}
+
+.custom-editor-toolbar .tool-btn:hover {
+    background-color: #d1d7dc;
+    border-color: #c4cdd4;
+}
+
+.custom-editor-toolbar .tool-btn:active,
+.custom-editor-toolbar .tool-btn.active { /* Add active class for toggled states if you implement it */
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.custom-editor-toolbar .tool-select {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #495057;
+    cursor: pointer;
+}
+
+.custom-editor-content {
+    min-height: 300px;
+    padding: 15px;
+    background-color: #fff;
+    outline: none; /* Remove default focus outline */
+    font-size: 16px;
+    line-height: 1.6;
+    color: #343a40;
+    overflow-y: auto; /* Enable scrolling if content exceeds height */
+}
+
+.custom-editor-content:focus {
+    border-color: #007bff; /* Add focus style if not using wrapper border focus */
+}
+
+/* Optional: Style for links, images inside contenteditable */
+.custom-editor-content a {
+    color: #007bff;
+    text-decoration: underline;
+}
+.custom-editor-content img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Prevent extra space below image */
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* Alert messages (optional, if you use them) */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.text-danger {
+    color: #dc3545;
+    font-size: 0.875em;
+    margin-top: 5px;
+}

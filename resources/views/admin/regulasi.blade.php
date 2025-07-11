@@ -33,6 +33,7 @@
             align-items: center;
             justify-content: flex-end;
             margin-bottom: 20px;
+            margin-right:35px;
         }
 
         .btn-add {

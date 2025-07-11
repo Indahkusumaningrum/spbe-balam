@@ -1,144 +1,307 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Indikator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        .container {
-            padding: 40px 40px;
-            border-radius: 12px;
-            max-width: 95%;
-        }
-
-        h1 {
-            font-size: 26px;
-            color: #001e74;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #facc15;
-            display: inline-block;
-            padding-bottom: 6px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .btn {
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            text-decoration: none;
-            color: white;
-        }
-
-        .btn-success { background-color: #16a34a; }
-        .btn-primary { background-color: #2563eb; }
-        .btn-info    { background-color: #0ea5e9; }
-        .btn-warning { background-color: #f59e0b; }
-        .btn-danger  { background-color: #dc2626; }
-
-        .btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        table thead {
-            background-color: #001e74;
-            color: #fff;
-        }
-
-        table th, table td {
-            padding: 12px 14px;
-            border: 1px solid #e2e8f0;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        table tbody tr:hover {
-            background-color: #f1f5f9;
-        }
-
-        .alert-success {
-            background-color: #d1fae5;
-            color: #065f46;
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .btn-sm {
-            padding: 6px 12px;
-            font-size: 13px;
-            margin-right: 4px;
-        }
-    </style>
-</head>
-<body>
 @extends('layouts.layout_admin')
 @section('title', 'Kelola Indikator')
 
-@section('content')
-<div class="container">
-    <h1>Daftar Indikator SPBE</h1>
+@section('styles')
+<style>
+    /* General Body Styling (Consistent with your layout_admin) */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5; /* Light grey background for the whole page */
+        color: #333;
+    }
 
-    <div class="button-group">
-        <a href="{{ route('admin.indikator.create') }}" class="btn btn-success"><i class="fas fa-plus" style="margin-right: 6px;"></i> Tambah Indikator</a>
-        <a href="{{ route('admin.domain_index') }}" class="btn btn-primary">Kelola Domain</a>
-        <a href="{{ route('admin.aspect.index') }}" class="btn btn-info">Kelola Aspek</a>
-    </div>
+    /* Main Container Styling */
+    .main-container {
+        width: 90%;
+        max-width: 1200px; /* Lebar maksimal untuk tabel */
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Page Title Styling */
+    .main-container h1 {
+        color: #001e74;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .main-container h1::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 100px; /* Lebar underline */
+        height: 4px;
+        background-color: #facc15;
+        border-radius: 2px;
+    }
+
+    /* Alert Messages Styling */
+    .alert {
+        padding: 18px 25px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        line-height: 1.5;
+        border: 1px solid; /* Add border for better separation */
+    }
+
+    .alert-success {
+        background-color: #d1fae5;
+        color: #065f46;
+        border-color: #34d399;
+    }
+
+    .alert i {
+        font-size: 20px;
+    }
+
+    /* Filter Form Styling */
+    .filter-form {
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: #f8f9fa; /* Light background for filter */
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .filter-form label {
+        font-weight: 600;
+        color: #333;
+        font-size: 16px;
+    }
+
+    .filter-form select {
+        padding: 10px 15px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .filter-form select:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        outline: none;
+    }
+
+    /* Table Styling */
+    .data-table {
+        width: 100%;
+        border-collapse: separate; /* Untuk border-radius di tbody */
+        border-spacing: 0 10px; /* Spasi antar baris */
+        margin-top: 20px;
+    }
+
+    .data-table thead tr {
+        background-color: #001e74; /* Header biru gelap */
+        color: #ffffff;
+        text-align: left;
+        border-radius: 8px; /* Sudut membulat pada header */
+    }
+
+    .data-table th {
+        padding: 15px 20px;
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .data-table tbody tr {
+        background-color: #ffffff;
+        border-radius: 8px; /* Sudut membulat pada baris */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Shadow lembut pada baris */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .data-table tbody tr:hover {
+        transform: translateY(-3px); /* Efek 'angkat' saat hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .data-table td {
+        padding: 15px 20px;
+        border-bottom: none; /* Hapus border default tabel */
+        vertical-align: middle;
+        font-size: 15px;
+    }
+
+    /* Specific border-radius for first and last cells of header */
+    .data-table thead tr th:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+    .data-table thead tr th:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    /* Center text for empty state */
+    .data-table .text-center {
+        text-align: center;
+        padding: 30px !important; /* Penting untuk baris kosong */
+        color: #6b7280;
+        font-style: italic;
+    }
+
+    /* Action Button Styling */
+    .btn-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        color: #fff; /* Default color for action buttons */
+    }
+
+    .btn-info {
+        background-color: #3b82f6; /* Blue for 'Lihat Selengkapnya' */
+    }
+
+    .btn-info i{
+        margin-right:10px;
+    }
+
+    .btn-info:hover {
+        background-color: #2563eb;
+        transform: translateY(-1px);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .main-container {
+            width: 95%;
+            padding: 25px;
+            margin: 30px auto;
+        }
+
+        .main-container h1 {
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .filter-form {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr {
+            display: block; /* Membuat tabel stack di mobile */
+        }
+
+        .data-table thead tr {
+            position: absolute;
+            top: -9999px; /* Sembunyikan header asli */
+            left: -9999px;
+        }
+
+        .data-table tbody tr {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+        }
+
+        .data-table td {
+            border: none;
+            position: relative;
+            padding-left: 50%; /* Ruang untuk label */
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .data-table td::before {
+            content: attr(data-label); /* Tampilkan label dari data-label */
+            position: absolute;
+            left: 10px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: left;
+            font-weight: 600;
+            color: #4b5563;
+        }
+    }
+</style>
+@endsection
+
+@section('content')
+<div class="main-container">
+    <h1>Daftar Evaluasi SPBE Berdasarkan Tahun</h1>
 
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
     @endif
 
-    <table class="table table-bordered">
+    <form method="GET" action="{{ route('admin.indikator.index') }}" class="filter-form">
+        <label for="tahun">Filter Tahun:</label>
+        <select name="tahun" id="tahun" onchange="this.form.submit()">
+            <option value="">-- Semua Tahun --</option>
+            @foreach($tahunList as $t)
+                <option value="{{ $t->tahun }}" {{ request('tahun') == $t->tahun ? 'selected' : '' }}>
+                    {{ $t->tahun }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+
+    <table class="data-table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Domain</th>
-                <th>Aspek</th>
-                <th>Indikator</th>
-                <th>Penjelasan</th>
+                <th>Tahun</th>
+                <th>Nama Form</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($indikators as $i => $indikator)
+            @php $filtered = $tahunTerpilih ? $tahunList->where('tahun', $tahunTerpilih) : $tahunList; @endphp
+
+            @forelse($filtered as $i => $tahun)
             <tr>
-                <td>{{ $i+1 }}</td>
-                <td>{{ $indikator->aspect->domain->name }}</td>
-                <td>{{ $indikator->aspect->name }}</td>
-                <td>{{ $indikator->name }}</td>
-                <td>{{ $indikator->description }}</td>
-                <td>
-                    <a href="{{ route('admin.indikator.edit', $indikator->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('admin.indikator.destroy', $indikator->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                    </form>
+                <td data-label="No">{{ $loop->iteration }}</td>
+                <td data-label="Tahun">{{ $tahun->tahun }}</td>
+                <td data-label="Nama Form">Evaluasi SPBE Tahun {{ $tahun->tahun }}</td>
+                <td data-label="Aksi">
+                    <a href="{{ route('admin.indikator.tahun', $tahun->id) }}" class="btn-action btn-info">
+                        <i class="fas fa-eye"></i> Lihat Selengkapnya
+                    </a>
                 </td>
             </tr>
-            @endforeach
+            @empty
+            <tr>
+                <td colspan="4" class="text-center">Tidak ada data tahun.</td>
+            </tr>
+            @endforelse
         </tbody>
     </table>
 </div>
 @endsection
-
-</body>
-</html>
