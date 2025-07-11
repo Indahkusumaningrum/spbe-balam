@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('asset/img/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>SPBE - Pemerintah Kota Bandar Lampung</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <title>SPBE - Pemerintah Kota Bandar Lampung</title>
+    @yield('style')
     <style>
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
         }
 
         .spbe-navbar {
-            background-color: #091e46;
+            background: white;
             display: flex;
             align-items: center;
             padding: 10px 30px;
-            color: white;
             justify-content: space-between;
+            box-shadow: 0 3px 10px rgba(0, 30, 116, 0.1);
         }
 
         .spbe-navbar img {
@@ -34,12 +38,13 @@
             padding: 0;
             font-size: 17px;
             margin-right: 40px;
+            font-weight: bold;
         }
 
         .spbe-navbar .menu li a {
-            color: white;
+            color: #001e74;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: bold;
             position: relative;
             padding-bottom: 7px;
             transition: color 0.3s ease;
@@ -73,141 +78,226 @@
             width: 100%;
         }
 
+        @media (max-width: 991.98px) {
+            .spbe-navbar .menu {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+                padding: 15px 0;
+                margin-right: 0;
+            }
+
+            .spbe-navbar .menu li {
+                width: 100%; /* supaya tidak full row kecuali item-nya */
+            }
+
+            .spbe-navbar .menu li a {
+                display: inline-block;
+                width: auto;
+                padding-bottom: 5px;
+            }
+
+            .spbe-navbar .menu li a::after {
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+        }
+
+        /* Footer */
         .spbe-footer {
-            background-color: #071735;
+            background: linear-gradient(135deg, #071735 0%, #0a1f3b 100%);
             color: white;
-            padding: 40px 20px;
-            font-family: 'Poppins', sans-serif;
-            margin-top: 50px;
+            padding: 60px 40px 30px;
+            margin-top: 80px;
+            position: relative;
+            width: 100%;
+        }
+
+        .spbe-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #facc15, #ffd700);
         }
 
         .footer-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-        }
-
         .footer-logo {
-            height: 100px;
-            margin-bottom: 10px;
+            height: 95px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
         }
 
-        .icon-circle {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 2px solid white;
-            color: white;
-            background-color: transparent;
-            margin-right: 0;
-            font-size: 14px;
-        }
-
-        .footer-column p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 10px;
+        .footer-logo:hover {
+            transform: scale(1.05);
         }
 
         .footer-column h4 {
-            margin-bottom: 12px;
-            color: #fff;
-            font-size: 16px;
+            margin-bottom: 20px;
+            color: #facc15;
+            font-size: 18px;
+            font-weight: 600;
             border-left: 4px solid #facc15;
-            padding-left: 10px;
+            padding-left: 15px;
+        }
+
+        .footer-column p {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .icon-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #facc15, #ffd700);
+            color: #001e74;
+            margin-right: 15px;
+            font-size: 16px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover .icon-circle {
+            transform: scale(1.1);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .footer-social a {
-            margin-right: 10px;
-            color: white;
-            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border: 2px solid #facc15;
+            border-radius: 50%;
+            color: #facc15;
+            font-size: 18px;
             text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
         }
 
-        .footer-column i {
-            color: white;
-        }
-
-        .icon-circle i {
-            font-size: 17px;
+        .footer-social a:hover {
+            background: #facc15;
+            color: #001e74;
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-bottom p {
-            color: white;
-            font-size: 16px;
-            margin-top: 12px;
-            font-weight: 500;
+            color: #cbd5e1;
+            font-size: 14px;
+            margin: 0;
         }
     </style>
+    @yield('style')
 @stack('styles')
 </head>
 <body>
 @hasSection('navbar')
-    <div class="spbe-navbar">
-        <a href="{{ route('dashboard_user') }}" class="logo-img">
-            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
-        </a>
-        <ul class="menu">
-            <li><a href="{{ route('indikator.index') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Indikator SPBE</a></li>
-            <li><a href="{{ route('profile.show') }}" class="{{ request()->routeIs('profile.show') ? 'active' : '' }}">Profile</a></li>
-            <li><a href="{{ route('berita.index') }}" class="{{ request()->routeIs('berita.*') ? 'active' : '' }}">Berita</a></li>
-            <li><a href="{{ route('download')}}" class="{{ request()->is('download') ? 'active' : '' }}">Download</a></li>
-            <li><a href="{{ route('galeri.index') }}" class="{{ request()->is('galeri') ? 'active' : '' }}">Galeri</a></li>
-            <li><a href="#" class="{{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
-        </ul>
-    </div>
+    <nav class="navbar navbar-expand-lg spbe-navbar">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="{{ route('dashboard_user') }}">
+                <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" height="60">
+            </a>
+
+            <!-- Hamburger button -->
+            <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#spbeNavbar" aria-controls="spbeNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars" style="color:#001e74"></i>
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse justify-content-end" id="spbeNavbar">
+                <ul class="navbar-nav menu">
+                    <li class="nav-item"><a href="#" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Indikator SPBE</a></li>
+                    <li class="nav-item"><a href="{{ route('profile.show') }}" class="nav-link {{ request()->routeIs('profile.show') ? 'active' : '' }}">Profile</a></li>
+                    <li class="nav-item"><a href="{{ route('berita.index') }}" class="nav-link {{ request()->routeIs('berita.*') ? 'active' : '' }}">Berita</a></li>
+                    <li class="nav-item"><a href="{{ route('download') }}" class="nav-link {{ request()->is('download') ? 'active' : '' }}">Download</a></li>
+                    <li class="nav-item"><a href="{{ route('galeri.index') }}" class="nav-link {{ request()->is('galeri') ? 'active' : '' }}">Galeri</a></li>
+                    <li class="nav-item"><a href="{{ route('kontak.user') }}" class="nav-link {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
 @endif
 
     <div class="container">
         @yield('content')
     </div>
 
-    <footer class="spbe-footer">
-        <div class="footer-container">
+    <footer class="spbe-footer" style="width: 100%;">
+        <div class="container">
+            <div class="row">
 
-            <!-- Logo dan Deskripsi -->
-            <div class="footer-column">
-            <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" class="footer-logo">
-            <p>Merupakan media atau wadah informasi sekaligus pengelolaan data indikator SPBE di lingkungan Pemerintah Kota Lampung</p>
-            <div class="footer-social">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            </div>
+                <!-- Logo dan Deskripsi -->
+                <div class="col-md-6 footer-column">
+                    <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" class="footer-logo">
+                    <p>Merupakan media atau wadah informasi sekaligus pengelolaan data indikator SPBE di lingkungan Pemerintah Kota Lampung</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Kontak -->
+                <div class="col-md-6 footer-column">
+                    <h4>Contact</h4>
+                    <p><span class="icon-circle"><i class="fa-solid fa-phone"></i></span> (0721) 252041 </p>
+                    <p><span class="icon-circle"><i class="fa-solid fa-envelope"></i></span> spbe@bandarlampung.go.id</p>
+                    <p><span class="icon-circle"><i class="fa-solid fa-location-dot"></i></span> Jalan Dokter Susilo No.2, Sumur Batu, Teluk Betung Utara, Kota Bandar Lampung, Lampung 35212</p>
+                </div>
+
             </div>
 
-            <!-- Kontak -->
-            <div class="footer-column">
-                <h4>Contact</h4>
-                <p><span class="icon-circle"><i class="fa-solid fa-phone"></i></span> (0721) 252041 </p>
-                <p><span class="icon-circle"><i class="fa-solid fa-envelope"></i></span> spbe@bandarlampung.go.id</p>
-                <p><span class="icon-circle"><i class="fa-solid fa-location-dot"></i></span> Jalan Dokter Susilo No.2, Sumur Batu, Teluk Betung Utara, Kota Bandar Lampung, Lampung 35212</p>
+            <div class="footer-bottom">
+                <p>© 2025. TIM KP Unila Diskominfo Kota Bandar Lampung. All Rights Reserved</p>
             </div>
-        </div>
-         <div class="footer-bottom">
-            <p>© 2025. TIM KP Unila Diskominfo Kota Bandar Lampung. All Rights Reserved</p>
         </div>
     </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @stack('scripts')
+
 </body>
 </html>

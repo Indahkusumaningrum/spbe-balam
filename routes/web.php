@@ -44,6 +44,8 @@ Route::post('/admin/download/store', [DownloadController::class, 'store'])->name
 Route::get('/admin/download/file/{fileName}', [DownloadController::class, 'downloadFile'])->name('admin.download.file');
 Route::delete('/admin/download/{id}', [DownloadController::class, 'destroy'])->name('admin.download.destroy');
 
+//User
+Route::get('/download', [UserDownloadController::class, 'index'])->name('download');
 
 
 
@@ -57,7 +59,11 @@ Route::get('/', function () {
     return view('dashboard_user');
 })->name('dashboard_user');
 
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.user');
+// Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
+
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+Route::get('/das', [UserDashboardController::class, 'index'])->name('dashboard.user');
+Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
 
 Route::get('/tahapan_spbe', function () {
     return view('tahapan_spbe');
