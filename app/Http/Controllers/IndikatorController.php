@@ -107,12 +107,39 @@ class IndikatorController extends Controller
         return redirect()->route('admin.indikator.tahun', $indikator->tahun_id)->with('success', 'Indikator berhasil dihapus.');
     }
 
-    public function indikatorByTahun($tahun_id)
+    public function indikatorByTahun(Request $request, Tahun $tahun)
     {
-        $tahun = Tahun::findOrFail($tahun_id);
-        $indikators = Indikator::with('aspect.domain')->where('tahun_id', $tahun_id)->get();
+        // Ambil semua domain untuk dropdown filter
+        $domains = Domain::all();
+        // Ambil semua aspek untuk filtering JavaScript
+        $allAspects = Aspect::all();
 
-        return view('admin.indikator_per_tahun', compact('tahun', 'indikators'));
+        // Query dasar untuk indikator berdasarkan tahun
+        $indikators = Indikator::whereHas('aspect', function($query) use ($tahun) {
+            $query->where('tahun_id', $tahun->id);
+        });
+
+        // Terapkan filter berdasarkan request
+        if ($request->filled('filter_domain')) {
+            // Perbaikan di sini: tambahkan $request ke 'use'
+            $indikators->whereHas('aspect.domain', function($query) use ($request) {
+                $query->where('id', $request->filter_domain);
+            });
+        }
+
+        if ($request->filled('filter_aspect')) {
+            // Perbaikan di sini: tambahkan $request ke 'use'
+            $indikators->where('aspect_id', $request->filter_aspect);
+        }
+
+        if ($request->filled('search_indikator')) {
+            // Perbaikan di sini: tambahkan $request ke 'use'
+            $indikators->where('nama', 'like', '%' . $request->search_indikator . '%');
+        }
+
+        $indikators = $indikators->get(); // Eksekusi query
+
+        // Pastikan Anda melewatkan semua variabel yang dibutuhkan ke view
+        return view('admin.indikator_per_tahun', compact('tahun', 'indikators', 'domains', 'allAspects'));
     }
-
 }
