@@ -61,6 +61,23 @@
         button[type="submit"]:hover {
             background-color: #3b82f6;
         }
+        .btn-kembali {
+            background-color: #ccc;
+            color: #000;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-kembali:hover {
+            background-color: #bbb;
+        }
+
 
     </style>
 </head>
@@ -91,6 +108,7 @@
             </div>  
 
             <button type="submit">Simpan</button>
+            <a href="{{ route('admin.evaluasi') }}" class="btn-kembali">Batal</a>
         </form>
     </div>
 

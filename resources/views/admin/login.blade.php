@@ -86,6 +86,10 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .login-right button:hover{
+        background-color: #1822a8;
+        color: white;
+    }
     .footer-text {
       margin-top: 20px;
       color: white;
