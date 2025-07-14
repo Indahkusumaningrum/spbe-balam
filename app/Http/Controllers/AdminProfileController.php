@@ -47,4 +47,35 @@ class AdminProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui.');
     }
+
+    public function uploadImageTinyMCE(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            // Pastikan nama file bersih dari karakter aneh dan spasi berlebih
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $filename = str_replace([' ', '/', '\\'], '_', $filename); // Ganti spasi/slash dengan underscore
+
+            $path = public_path('uploads/tinymce');
+
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $image->move($path, $filename);
+
+            // Gunakan url() helper untuk mendapatkan URL absolut yang bersih
+            // dan trim untuk memastikan tidak ada spasi di akhir
+            $imageUrl = trim(url('uploads/tinymce/' . $filename));
+
+            return response()->json(['location' => $imageUrl]);
+        }
+
+        return response()->json(['error' => 'File not found'], 400);
+    }
 }

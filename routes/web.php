@@ -55,13 +55,11 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 // Route::get('/berita', function () { return view('admin/berita'); })->name('berita');
 
 // USER
-Route::get('/', function () {
-    return view('dashboard_user');
-})->name('dashboard_user');
+Route::get('/', [UserDashboardController::class, 'index'])->name('dashboarduser');
 
 // Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
-
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [UserDashboardController::class, 'index'])->name('dashboard_user');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard_user');
 Route::get('/das', [UserDashboardController::class, 'index'])->name('dashboard.user');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
 
@@ -69,13 +67,18 @@ Route::get('/tahapan_spbe', function () {
     return view('tahapan_spbe');
 })->name('tahapan_spbe');
 
-// Admin
+/// Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('profile');
-    Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('edit.profile');
-    Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
-});
+    // ... rute admin lainnya ...
 
+    // Rute untuk Profile
+    Route::get('/admin/profile', [\App\Http\Controllers\AdminProfileController::class, 'show'])->name('profile'); // Pastikan ini mengarah ke AdminProfileController
+    Route::get('/admin/profile/edit', [\App\Http\Controllers\AdminProfileController::class, 'edit'])->name('edit.profile');
+    Route::post('/admin/profile', [\App\Http\Controllers\AdminProfileController::class, 'update'])->name('admin.profile.update');
+
+    // Pastikan route upload TinyMCE ada dan mengarah ke controller yang benar
+    Route::post('/upload-image-tinymce', [\App\Http\Controllers\AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
+});
 // User
 Route::get('/userprofile', [UserProfileController::class, 'show'])->name('profile.show');
 
@@ -159,7 +162,6 @@ Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'd
 
 // User
 Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');
-Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
 
 
 // Untuk publik

@@ -125,6 +125,56 @@
         background-color: #dc2626;
     }
 
+    /* Filter Form Styling */
+    .filter-form-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Spasi antar elemen filter */
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        align-items: flex-end; /* Align items to the bottom */
+    }
+
+    .filter-item {
+        flex: 1; /* Allow items to grow */
+        min-width: 180px; /* Minimum width for filter items */
+    }
+
+    .filter-item label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-size: 15px;
+    }
+
+    .filter-item select,
+    .filter-item input[type="text"] {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 15px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .filter-item select:focus,
+    .filter-item input[type="text"]:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        outline: none;
+    }
+
+    .filter-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
     /* Table Styling (Reusing .data-table from indikator_index) */
     .data-table {
         width: 100%;
@@ -352,6 +402,44 @@
         </a>
     </div>
 
+    {{-- Filter Form --}}
+    <form method="GET" action="{{ route('admin.indikator.tahun', $tahun->id) }}" class="filter-form-group">
+        <div class="filter-item">
+            <label for="filter_domain">Filter Domain:</label>
+            <select name="filter_domain" id="filter_domain" class="form-control">
+                <option value="">-- Semua Domain --</option>
+                @foreach($domains as $domain)
+                    <option value="{{ $domain->id }}" {{ request('filter_domain') == $domain->id ? 'selected' : '' }}>
+                        {{ $domain->nama }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label for="filter_aspect">Filter Aspek:</label>
+            <select name="filter_aspect" id="filter_aspect" class="form-control">
+                <option value="">-- Semua Aspek --</option>
+                {{-- Options will be populated by JavaScript --}}
+            </select>
+        </div>
+
+        <div class="filter-item">
+            <label for="search_indikator">Cari Indikator:</label>
+            <input type="text" name="search_indikator" id="search_indikator" class="form-control" placeholder="Nama Indikator..." value="{{ request('search_indikator') }}">
+        </div>
+
+        <div class="filter-buttons">
+            <button type="submit" class="btn-action btn-primary">
+                <i class="fas fa-filter"></i> Terapkan Filter
+            </button>
+            <a href="{{ route('admin.indikator.tahun', $tahun->id) }}" class="btn-action btn-secondary">
+                <i class="fas fa-sync-alt"></i> Reset Filter
+            </a>
+        </div>
+    </form>
+
+
     <table class="data-table">
         <thead>
             <tr>
@@ -407,23 +495,82 @@
 
 @section('scripts')
 <script>
-    // Fungsi untuk menampilkan modal konfirmasi hapus
-    function showDeleteModal(deleteUrl) {
-        document.getElementById('deleteForm').action = deleteUrl;
-        document.getElementById('deleteConfirmationModal').style.display = 'flex'; // Menggunakan flex untuk centering
-    }
+    // Data aspek lengkap untuk filtering JavaScript
+    const allAspectsData = @json($allAspects); // Pastikan ini dilewatkan dari controller
 
-    // Fungsi untuk menutup modal konfirmasi hapus
-    function closeDeleteModal() {
-        document.getElementById('deleteConfirmationModal').style.display = 'none';
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterDomainSelect = document.getElementById('filter_domain');
+        const filterAspectSelect = document.getElementById('filter_aspect');
+        const searchIndikatorInput = document.getElementById('search_indikator');
+        const filterForm = document.querySelector('.filter-form-group');
 
-    // Tutup modal jika user mengklik di luar area modal content
-    window.onclick = function(event) {
-        const modal = document.getElementById('deleteConfirmationModal');
-        if (event.target == modal) {
-            modal.style.display = "none";
+        function populateFilterAspects(selectedDomainId, currentAspectId = null) {
+            filterAspectSelect.innerHTML = '<option value="">-- Semua Aspek --</option>';
+            const filteredAspects = allAspectsData.filter(aspect => aspect.domain_id == selectedDomainId);
+
+            filteredAspects.forEach(aspect => {
+                const option = document.createElement('option');
+                option.value = aspect.id;
+                option.textContent = aspect.nama;
+                if (aspect.id == currentAspectId) {
+                    option.selected = true;
+                }
+                filterAspectSelect.appendChild(option);
+            });
         }
-    }
+
+        // Event listener untuk perubahan domain filter
+        filterDomainSelect.addEventListener('change', function() {
+            const selectedDomainId = this.value;
+            populateFilterAspects(selectedDomainId);
+            // Jika domain berubah, reset aspek yang dipilih sebelumnya (opsional, tergantung UX)
+            // filterAspectSelect.value = "";
+            filterForm.submit(); // Submit form saat domain berubah
+        });
+
+        // Event listener untuk perubahan aspek filter
+        filterAspectSelect.addEventListener('change', function() {
+            filterForm.submit(); // Submit form saat aspek berubah
+        });
+
+        // Event listener untuk input pencarian (misal: saat Enter ditekan atau saat blur)
+        searchIndikatorInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Mencegah submit default
+                filterForm.submit();
+            }
+        });
+        searchIndikatorInput.addEventListener('blur', function() {
+            // Submit saat input kehilangan fokus, bisa diaktifkan/dinonaktifkan
+            // filterForm.submit();
+        });
+
+
+        // Inisialisasi filter aspek saat halaman dimuat
+        const initialFilterDomainId = filterDomainSelect.value;
+        const initialFilterAspectId = "{{ request('filter_aspect') }}";
+        if (initialFilterDomainId) {
+            populateFilterAspects(initialFilterDomainId, initialFilterAspectId);
+        }
+
+        // Fungsi untuk menampilkan modal konfirmasi hapus
+        function showDeleteModal(deleteUrl) {
+            document.getElementById('deleteForm').action = deleteUrl;
+            document.getElementById('deleteConfirmationModal').style.display = 'flex';
+        }
+
+        // Fungsi untuk menutup modal konfirmasi hapus
+        function closeDeleteModal() {
+            document.getElementById('deleteConfirmationModal').style.display = 'none';
+        }
+
+        // Tutup modal jika user mengklik di luar area modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById('deleteConfirmationModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    });
 </script>
 @endsection
