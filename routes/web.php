@@ -54,14 +54,8 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 
 // Route::get('/berita', function () { return view('admin/berita'); })->name('berita');
 
-// USER
-Route::get('/', function () {
-    return view('dashboard_user');
-})->name('dashboard_user');
-
-// Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
-
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [UserDashboardController::class, 'index'])->name('dashboard_user');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard_user');
 Route::get('/das', [UserDashboardController::class, 'index'])->name('dashboard.user');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
 
@@ -159,7 +153,7 @@ Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'd
 
 // User
 Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');
-Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
+// Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
 
 
 // Untuk publik
