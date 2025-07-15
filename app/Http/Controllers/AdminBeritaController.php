@@ -10,10 +10,14 @@ class AdminBeritaController extends Controller
 {
     public function index()
     {
-        // Mengubah query untuk mengurutkan berdasarkan 'updated_at' secara descending (terbaru)
-        $beritas = Berita::orderBy('updated_at', 'desc')->get();
-        // Pastikan nama view yang benar, misal 'admin.berita.index' atau 'admin.berita'
-        return view('admin.berita', compact('beritas'));
+        $initialLimit = 9;
+        $beritas = Berita::orderBy('updated_at', 'desc')
+        // ->orderBy('id_berita', 'desc')
+        ->take($initialLimit)
+        ->get();
+
+        $totalBeritaCount = Berita::count();
+        return view('admin.berita', compact('beritas', 'totalBeritaCount', 'initialLimit'));
     }
 
     public function create()
@@ -124,4 +128,65 @@ class AdminBeritaController extends Controller
 
         return response()->json(['error' => 'File not found'], 400);
     }
+
+// ...
+    public function loadMoreBerita(Request $request)
+    {
+        $offset = $request->input('offset', 0);
+        $limit = 6;
+
+        $query = Berita::orderBy('updated_at', 'desc');
+                        // ->orderBy('id_berita', 'desc');
+
+        $beritas = $query->skip($offset)
+                        ->take($limit)
+                        ->get();
+
+        // Hitung total berita lagi di sini jika ada kemungkinan perubahan data.
+        // Atau, lebih baik, hitung total_count sekali di awal dan gunakan itu
+        // jika Anda yakin tidak ada perubahan data di antara request.
+        $totalActualBeritaCount = Berita::count(); // <-- Hitung ulang untuk hasMore yang akurat
+
+        $html = '';
+        foreach ($beritas as $berita) {
+            $html .= '
+            <div class="berita-card">
+                <div class="berita-img">
+                    ';
+            if ($berita->gambar) {
+                $html .= '<img src="' . asset('uploads/beritas/' . $berita->gambar) . '" alt="Gambar Berita">';
+            }
+            $html .= '
+                </div>
+                <div class="berita-content">
+                    <h3>' . htmlspecialchars($berita->judul) . '</h3>
+                    <div class="berita-info">
+                        <span class="tanggal">' . $berita->updated_at->diffForHumans() . '</span>
+                        <div class="btn-action-group">
+                            <a href="' . route('admin.berita.show', $berita->id_berita) . '" class="btn-detail" title="Lihat">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="' . route('admin.berita.edit', $berita->id_berita) . '" class="btn-detail btn-edit" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="' . route('admin.berita.destroy', $berita->id_berita) . '" method="POST" onsubmit="return confirm(\'Yakin ingin menghapus berita ini?\')" style="display:inline;">
+                                <input type="hidden" name="_token" value="' . csrf_token() . '">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn-detail btn-delete" title="Hapus">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            ';
+        }
+
+        return response()->json([
+            'html' => $html,
+            'hasMore' => ($totalActualBeritaCount > ($offset + $limit)) // Gunakan hitungan terbaru
+        ]);
+    }
+
 }

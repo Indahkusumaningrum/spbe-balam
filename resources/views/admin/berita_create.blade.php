@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tiny.cloud/1/d76o0fl5eus3mqblrpoqew4ucr8b7y6nahboxpuujphg15lj/tinymce/5.10.7/tinymce.min.js?v=123" referrerpolicy="origin"></script>
     <style>
-       .berita-container {
+        .berita-container {
             width: 80%;
-            margin: 50px auto;
+            margin: 0 auto;
             background-color: #ffffff;
             padding: 40px;
             border-radius: 12px;
@@ -32,37 +32,36 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transisi untuk hover/active */
-            text-decoration: none; /* Hapus underline untuk link */
-            display: inline-flex; /* Agar ikon dan teks sejajar */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px; /* Spasi antara ikon dan teks */
+            gap: 8px;
         }
 
         .btn:hover {
-            transform: translateY(-2px); /* Efek 'angkat' saat hover */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow saat hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .btn-red {
-            background-color: #ef4444; /* Merah cerah */
+            background-color: red;
             color: #fff;
         }
 
         .btn-red:hover {
-            background-color: #dc2626; /* Merah lebih gelap */
+            background-color: darkred;
         }
 
         .btn-green {
-            background-color: #22c55e; /* Hijau cerah */
+            background-color: green;
             color: #fff;
         }
 
         .btn-green:hover {
-            background-color: #16a34a; /* Hijau lebih gelap */
+            background-color: darkgreen;
         }
-
 
         label {
             font-weight: 600;
@@ -87,21 +86,17 @@
             resize: vertical;
         }
 
-        button[type="submit"] {
-            background-color: #001e74;
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        /* --- Tambahkan atau ubah CSS ini --- */
+        .form-buttons {
+            display: flex; /* Mengaktifkan Flexbox */
+            gap: 15px; /* Memberi jarak antar tombol */
+            margin-top: 20px; /* Memberi sedikit jarak dari elemen di atasnya */
         }
 
-        button[type="submit"]:hover {
-            background-color: #3b82f6;
+        .form-buttons .btn {
+            flex-grow: 1; /* Membuat tombol mengisi ruang yang tersedia secara merata */
+            text-align: center; /* Memastikan teks di tengah tombol */
         }
-
     </style>
 </head>
 <body>
@@ -121,7 +116,6 @@
 
             <div style="margin-bottom: 15px;">
                 <label for="konten">Konten:</label><br>
-                <!-- {{-- Textarea ini akan diubah menjadi TinyMCE --}} -->
                 <textarea name="konten" id="konten" rows="10" style="width: 100%;"></textarea>
             </div>
 
@@ -196,7 +190,7 @@
                     return;
                 }
 
-                json = JSON.parse(xhr.responseText); // Simplified, assume error handling is robust
+                json = JSON.parse(xhr.responseText);
 
                 if (!json || typeof json.location != 'string') {
                     failure('Invalid JSON: location property missing or not a string.');
@@ -217,15 +211,9 @@
             xhr.send(formData);
         },
 
-        // --- TAMBAHKAN ATAU MODIFIKASI OPSI INI ---
-        relative_urls: false, // Penting: Jangan gunakan URL relatif
-        remove_script_host: false, // Penting: Pertahankan host (http://127.0.0.1:8000)
-        document_base_url: "http://127.0.0.1:8000/", // Opsional, tetapi membantu
-        // --- AKHIR PENAMBAHAN ---
-
-        // Catatan: Jika Anda kembali ke TinyMCE v6, pastikan URL CDN tetap di v6.
-        // Script CDN Anda di berita_create.blade.php
-        // <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/6/tinymce.min.js?v=..."
+        relative_urls: false,
+        remove_script_host: false,
+        document_base_url: "http://127.0.0.1:8000/",
     });
 </script>
 @endsection
