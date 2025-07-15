@@ -226,10 +226,28 @@
         .logout-container{
             background-color: white;
             margin-left: 30px;
-            padding: 0;
+            padding: 30px 30px 0;
+        }
+        .welcome-message-wrapper {
+            padding: 30px 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        .welcome-heading {
+            font-size: 32px;
+            font-weight: 600;
+            color: #001e74;
+            margin: 0;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
         }
 
-        /* Responsive */
+        .welcome-admin-name {
+            color: #facc15;
+            font-weight: 700; 
+        }
         @media (max-width: 991px) {
 
             .nav-bar {
@@ -315,6 +333,17 @@
                 }
             }
         }
+        @media (max-width: 768px) {
+            .welcome-heading {
+                font-size: 26px; /* Reduce font size on medium-sized screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-heading {
+                font-size: 22px; /* Further reduce font size on small mobile screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -354,17 +383,17 @@
 
     <div class="logout-container">
         @if(Route::currentRouteName() === 'dashboardadmin')
-            <div class="logout-container">
+            <div class="welcome-massage">
                 @if(Auth::check())
-                    <h2>Selamat datang, {{ Auth::user()->name }}</h2>
+                    <h2 class="welcome-heading">Selamat datang, <span class="welcome-admin-name">{{ Auth::user()->name }}</span></h2>
                 @else
-                    <h2>Anda belum login.</h2>
+                    <h2 class="welcome-heading">Anda belum login.</h2>
                 @endif
             </div>
         @endif
     </div>
 
-    @yield('content') 
+    @yield('content')
 
     <div id="logoutModal" class="modal">
         <div class="modal-content">
