@@ -7,14 +7,15 @@ use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\UserDownloadController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\UserDownloadController;
 use App\Http\Controllers\RegulasiController;
 use App\Http\Controllers\EvaluasiController;
-
+use App\Http\Controllers\IndikatorController;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\AspectController;
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -25,7 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
-// Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
+Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
 
 Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
     ->middleware('auth')
@@ -34,8 +35,6 @@ Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
 Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
-
-Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
 
 Route::get('/admin/download/', [DownloadController::class, 'index'])->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
@@ -67,9 +66,6 @@ Route::get('/tahapan_spbe', function () {
     return view('tahapan_spbe');
 })->name('tahapan_spbe');
 
-Route::get('/download', [UserDownloadController::class, 'index'])->name('user.download');
-
-
 /// Admin
 Route::middleware(['auth'])->group(function () {
     // ... rute admin lainnya ...
@@ -95,7 +91,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
 
-
+    
 });
 Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 
@@ -213,4 +209,3 @@ Route::post('/admin/aspek', [AspectController::class, 'store'])->name('admin.asp
 
 // Route::get('/admin/domain', [DomainController::class, 'index'])->name('admin.domain.index');
 // Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
-
