@@ -10,7 +10,9 @@ class AdminBeritaController extends Controller
 {
     public function index()
     {
-        $beritas = Berita::latest()->get();
+        // Mengubah query untuk mengurutkan berdasarkan 'updated_at' secara descending (terbaru)
+        $beritas = Berita::orderBy('updated_at', 'desc')->get();
+        // Pastikan nama view yang benar, misal 'admin.berita.index' atau 'admin.berita'
         return view('admin.berita', compact('beritas'));
     }
 
@@ -19,17 +21,16 @@ class AdminBeritaController extends Controller
         return view('admin.berita_create');
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
-            'konten' => 'required',
-            'gambar' => 'nullable|image|max:2048',
+            'judul' => 'required|string|max:255',
+            'konten' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-
         $filename = null;
-        if ($request->hasFile('gambar')) 
+        if ($request->hasFile('gambar'))
         {
             $filename = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('uploads/beritas'), $filename);
@@ -39,45 +40,52 @@ class AdminBeritaController extends Controller
             'judul' => $request->judul,
             'konten' => $request->konten,
             'gambar' => $filename,
-            'penulis' => Auth::user()->name,
+            'penulis' => Auth::check() ? Auth::user()->name : 'Admin',
         ]);
+
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil ditambahkan');
     }
 
     public function edit($id)
     {
         $berita = Berita::findOrFail($id);
-        return view('admin.berita_edit', compact('berita'));  
+        return view('admin.berita_edit', compact('berita'));
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         $berita = Berita::findOrFail($id);
 
         $request->validate([
-            'judul' => 'required',
-            'konten' => 'required',
-            'gambar' => 'nullable|image|max:2048',
+            'judul' => 'required|string|max:255',
+            'konten' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $filename = $berita->gambar;
         if ($request->hasFile('gambar')) {
+            if ($berita->gambar && file_exists(public_path('uploads/beritas/' . $berita->gambar))) {
+                unlink(public_path('uploads/beritas/' . $berita->gambar));
+            }
             $filename = time() . '.' . $request->gambar->extension();
             $request->gambar->move(public_path('uploads/beritas'), $filename);
-            $berita->gambar = $filename;
         }
 
         $berita->update([
             'judul' => $request->judul,
             'konten' => $request->konten,
-            'gambar' => $berita->gambar,
+            'gambar' => $filename,
         ]);
-        
+
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui');
     }
 
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
+        if ($berita->gambar && file_exists(public_path('uploads/beritas/' . $berita->gambar))) {
+            unlink(public_path('uploads/beritas/' . $berita->gambar));
+        }
         $berita->delete();
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
     }
@@ -86,10 +94,34 @@ class AdminBeritaController extends Controller
     {
         $berita = Berita::findOrFail($id);
         $berita->increment('pengunjung');
-        // return view('berita_show', compact('berita'));
         return view('admin.detail_berita', compact('berita'));
-
     }
 
-}
+    public function uploadImageTinyMCE(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $filename = str_replace([' ', '/', '\\'], '_', $filename);
+
+            $path = public_path('uploads/tinymce');
+
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $image->move($path, $filename);
+
+            $imageUrl = trim(url('uploads/tinymce/' . $filename));
+
+            return response()->json(['location' => $imageUrl]);
+        }
+
+        return response()->json(['error' => 'File not found'], 400);
+    }
+}

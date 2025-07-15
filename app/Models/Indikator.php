@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Indikator extends Model
 {
     use HasFactory;
-    protected $fillable = ['domain_id', 'aspect_id', 'name', 'description'];
+    protected $fillable = ['aspect_id', 'nama', 'penjelasan', 'tahun_id'];
 
     public function domain()
     {
@@ -18,4 +18,10 @@ class Indikator extends Model
     public function aspect() {
         return $this->belongsTo(Aspect::class);
     }
+
+    public function tahun()
+    {
+        return $this->belongsTo(Tahun::class);
+    }
+
 }

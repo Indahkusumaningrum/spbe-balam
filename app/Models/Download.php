@@ -9,5 +9,5 @@ class Download extends Model
 {
     protected $table = 'downloads';
     
-    protected $fillable = ['category', 'title', 'content', 'file_path'];
+    protected $fillable = ['category', 'year', 'title', 'content', 'file_path'];
 }
