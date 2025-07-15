@@ -281,6 +281,98 @@
         to { opacity: 1; transform: translateY(0); }
     }
 
+    /* --- Filter Section Styling --- */
+    .filter-section {
+        background-color: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        margin-bottom: 30px;
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+        gap: 20px; /* Spacing between filter elements */
+        align-items: center; /* Align items to the center vertically */
+    }
+
+    .filter-group {
+        flex: 1; /* Allow groups to grow */
+        min-width: 180px; /* Minimum width before wrapping */
+    }
+
+    .filter-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+    .filter-section .form-control { /* Targeting select elements within the filter */
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #d1d5db; /* Light grey border */
+        border-radius: 8px;
+        background-color: #f9fafb; /* Slightly off-white background */
+        font-size: 15px;
+        color: #333;
+        appearance: none; /* Remove default select arrow */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236B7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.6-6.4H18.6a17.6%2017.6%200%200%200-13.6%206.4%2017.6%2017.6%200%200%200%200%2025.3l128%20128a17.6%2017.6%200%200%200%2025.3%200l128-128a17.6%2017.6%200%200%200%200-25.3z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+        background-repeat: no-repeat;
+        background-position: right 12px top 50%;
+        background-size: 12px auto;
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .filter-section .form-control:focus {
+        border-color: #3b82f6; /* Blue border on focus */
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); /* Light blue shadow on focus */
+        outline: none;
+    }
+
+    .filter-section input.form-control {
+        background-color: #f9fafb;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 10px 15px;
+        font-size: 15px;
+        color: #333;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        width: 100%;
+    }
+
+    .filter-section input.form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        outline: none;
+    }
+
+
+    .btn-filter-submit { /* New style for the filter button */
+        background-color: #001e74; /* Dark blue, matching header */
+        color: white;
+        padding: 10px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-filter-submit:hover {
+        background-color: #00155a; /* Darker blue on hover */
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
         .main-container {
@@ -349,60 +441,130 @@
             justify-content: flex-end;
             margin-top: 10px;
         }
+
+        /* Responsive filter section - now allows wrapping horizontally */
+        .filter-section {
+            /* Removed flex-direction: column; to allow horizontal wrapping */
+            /* Removed align-items: stretch; */
+            gap: 15px; /* Adjust gap for horizontal wrapping */
+        }
+        .filter-group {
+            min-width: unset; /* Remove min-width constraint */
+            /* Removed width: 100%; to allow flex to manage width */
+        }
+        .btn-filter-submit {
+            width: 100%; /* Make button full width for better mobile usability */
+        }
     }
 </style>
 @endsection
 
 @section('content')
 
-    <div class="main-container">
-        <div class="header-section">
-            <h1>Regulasi SPBE</h1>
-            <div class="add-button-group">
-                <a href="{{ route('admin.regulasi.create') }}" class="btn-add-file">
-                    <i class="fas fa-plus"></i> Tambah File
-                </a>
-            </div>
+<div class="filter-section">
+    <form method="GET" action="{{ route('admin.regulasi') }}" class="flex flex-wrap gap-4 w-full items-end">
+        
+        <div class="filter-group">
+            <label for="category-filter">Kategori</label>
+            <select name="category" id="category-filter" class="form-control">
+                <option value="">-- Semua Kategori --</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>
+                        {{ $category }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th style="width: 15%;">Kategori</th>
-                    <th style="width: 40%;">Judul</th>
-                    <th style="width: 23%;">Tentang</th>
-                    <th style="width: 12%;">File</th>
-                    <th style="width: 10%;">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($regulations as $d)
-                    <tr>
-                        <td data-label="Kategori">{{ $d->category }}</td>
-                        <td data-label="Konten">{{ $d->content }}</td>
-                        <td data-label="Judul">{{ $d->title }}</td>
-                        <td data-label="File">
-                            <a href="{{ route('admin.regulasi.file', $d->file_path) }}" target="_blank" class="btn-view-doc">
-                                <i class="fas fa-file-alt"></i> Lihat Dokumen
-                            </a>
-                        </td>
-                        <td data-label="Aksi" class="action-cell">
-                            <a href="{{ route('admin.regulasi.edit', ['id' => $d->id]) }}" class="btn-action-icon edit">
-                                <i class="fas fa-pen"></i>
-                            </a>
-                            <button type="button" class="btn-action-icon delete" onclick="showDeleteModal({{ $d->id }})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center">Tidak ada data regulasi.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="filter-group">
+            <label for="year-filter">Tahun</label>
+            <select name="year" id="year-filter" class="form-control">
+                <option value="">-- Semua Tahun --</option>
+                @foreach ($years as $year)
+                    <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                        {{ $year }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="search-filter">Cari</label>
+            <input 
+                type="text" 
+                name="search" 
+                id="search-filter" 
+                class="form-control" 
+                placeholder="Cari judul atau konten..."
+                value="{{ request('search') }}">
+        </div>
+
+        <div>
+            <br>
+            <button type="submit" class="btn-filter-submit">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="main-container">
+    <div class="header-section">
+        <h1>Regulasi SPBE</h1>
+        <div class="add-button-group">
+            <a href="{{ route('admin.regulasi.create') }}" class="btn-add-file">
+                <i class="fas fa-plus"></i> Tambah File
+            </a>
+        </div>
     </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 3%;">Tahun</th>
+                <th style="width: 15%;">Kategori</th>
+                <th style="width: 37%;">Judul</th>
+                <th style="width: 23%;">Tentang</th>
+                <th style="width: 12%;">File</th>
+                <th style="width: 10%;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($regulations as $d)
+                <tr>
+                    <td data-label="Tahun">{{ $d->year }}</td>
+                    <td data-label="Kategori">{{ $d->category }}</td>
+                    <td data-label="Konten">{{ $d->content }}</td>
+                    <td data-label="Judul">{{ $d->title }}</td>
+                    <td data-label="File">
+                        <a href="{{ route('admin.regulasi.file', $d->file_path) }}" target="_blank" class="btn-view-doc">
+                            <i class="fas fa-file-alt"></i> Lihat Dokumen
+                        </a>
+                    </td>
+                    <td data-label="Aksi" class="action-cell">
+                        <a href="{{ route('admin.regulasi.edit', ['id' => $d->id]) }}" class="btn-action-icon edit">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        {{-- Add a form for delete action to ensure proper HTTP method --}}
+                        <form id="delete-form-{{ $d->id }}" action="{{ route('admin.regulasi.destroy', ['id' => $d->id]) }}" method="POST" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                        <button type="button" class="btn-action-icon delete" onclick="showDeleteModal({{ $d->id }})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">Tidak ada data regulasi.</td> {{-- Updated colspan to 5 --}}
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 
 <!-- Custom Delete Confirmation Modal -->
 <div id="deleteModal" class="modal">
