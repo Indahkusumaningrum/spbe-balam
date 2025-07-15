@@ -131,6 +131,7 @@ Route::get('/admin/regulasi/{id}/edit', [RegulasiController::class, 'edit'])->na
 Route::put('/admin/regulasi/{id}', [RegulasiController::class, 'update'])->name('admin.regulasi.update');
 Route::delete('/admin/regulasi/{id}', [RegulasiController::class, 'destroy'])->name('admin.regulasi.destroy');
 Route::get('/admin/regulasi/download/{fileName}', [RegulasiController::class, 'downloadFile'])->name('admin.regulasi.file');
+
 // User
 Route::get('/regulasi/index', [RegulasiController::class, 'indexUser'])->name('regulasi_index');
 
