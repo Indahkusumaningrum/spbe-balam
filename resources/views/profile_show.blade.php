@@ -72,7 +72,7 @@
             <img src="{{ asset('uploads/profiles/' . $profile->gambar) }}" alt="Gambar Profil">
         @endif
 
-        <p>{!! nl2br(e($profile->deskripsi)) !!}</p>
+        <p>{!! ($profile->deskripsi) !!}</p>
     </div>
 
 @endsection

@@ -135,9 +135,20 @@
 
         <form action="{{ route('admin.download.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="text" name="category" placeholder="Category" class="form-control" required>
-            <input type="text" name="title" placeholder="Title" class="form-control" required>
-            <textarea name="content" placeholder="Content" rows="5" class="form-control" required></textarea>
+
+            <label for="category">Kategori</label>
+            <input type="text" name="category" placeholder="Ex: Peraturan Walikota" class="form-control" required>
+            
+            <label for="year">Tahun</label>
+            <input type="number" name="year" id="year" class="form-control" value="{{ old('year') }}" required min="1900" max="{{ date('Y') }}">
+
+            <label for="content">Judul</label>
+            <textarea name="content" placeholder="Ex: Peraturan Walikota PAN-RB RI Nomor 19 Tahun 2018" rows="5" class="form-control" required></textarea>
+            
+            <label for="title">Tentang</label>
+            <input type="text" name="title" placeholder="Ex: Penyusunan Peta Proses Bisnis Instansi Pemerintah" class="form-control" required>
+            
+            <label for="file">File</label>
             <input type="file" name="file" accept=".pdf,.docx,.xlsx,.zip,.rar,.png,.jpg" class="form-control" required>
 
             <div class="form-buttons">

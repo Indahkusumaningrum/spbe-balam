@@ -7,10 +7,26 @@ use App\Models\Download;
 
 class DownloadController extends Controller
 {
-    public function index() {
-        $downloads = Download::all();
-        return view('admin.download', compact('downloads'));
+    public function index(Request $request)
+{
+    $query = Download::query();
+
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
     }
+
+    if ($request->filled('year')) {
+        $query->where('year', $request->year);
+    }
+
+    // Ambil semua unique kategori dan tahun untuk isi dropdown filter
+    $categories = Download::select('category')->distinct()->pluck('category');
+    $years = Download::select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
+
+    $downloads = $query->get();
+
+    return view('admin.download', compact('downloads', 'categories', 'years'));
+}
 
     public function create() {
         return view('admin.create_download');
@@ -23,6 +39,7 @@ class DownloadController extends Controller
     public function store(Request $request) {
         $request->validate([
             'category' => 'required|string',
+            'year' => 'required|integer|min:1900|max:' . date('Y'),
             'title' => 'required|string',
             'content' => 'required',
             'file' => 'required|file|mimes:pdf,docx,xlsx,zip,rar,png,jpg|max:10240',
@@ -34,6 +51,7 @@ class DownloadController extends Controller
 
         Download::create([
             'category' => $request->category,
+            'year' => $request->year,
             'title' => $request->title,
             'content' => $request->content,
             'file_path' => $fileName,
@@ -54,12 +72,14 @@ class DownloadController extends Controller
         
         $request->validate([
             'category' => 'required',
+            'year' => 'required|integer|min:1900|max:' . date('Y'),
             'title' => 'required',
             'content' => 'required',
             'file' => 'nullable|file|mimes:pdf,docx,xlsx,zip,rar,png,jpg|max:10240',
         ]);
 
         $download->category = $request->category;
+        $download->year = $request->year;
         $download->title = $request->title;
         $download->content = $request->content;
 

@@ -168,7 +168,7 @@
                 <div class="berita-content">
                     <h3>{{ $berita->judul }}</h3>
                     <div class="berita-info">
-                        <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
+                        <span class="tanggal">{{ $berita->updated_at->diffForHumans() }}</span>
                         <div style="display: flex; gap: 8px;">
                             <a href="{{ route('admin.berita.show', $berita->id_berita) }}" class="btn-detail" title="Lihat">
                                 <i class="fas fa-eye"></i>

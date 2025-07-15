@@ -313,7 +313,7 @@
 
 @section('scripts')
 {{-- CDN TinyMCE --}}
-<script src="https://cdn.tiny.cloud/1/d76o0fl5eus3mqblrpoqew4ucr8b7y6nahboxpuujphg15lj/tinymce/6/tinymce.min.js?v=edit" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/d76o0fl5eus3mqblrpoqew4ucr8b7y6nahboxpuujphg15lj/tinymce/5/tinymce.min.js?v=edit" referrerpolicy="origin"></script>
 
 <script>
     tinymce.init({

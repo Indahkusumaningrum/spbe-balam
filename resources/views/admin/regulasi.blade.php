@@ -161,7 +161,7 @@
         border-radius: 8px;
         text-decoration: none;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 12px;
         border: none;
         outline: none;
         transition: background-color 0.3s ease, transform 0.2s ease;
@@ -368,17 +368,19 @@
         <table class="data-table">
             <thead>
                 <tr>
-                    <th style="width: 15%;">Kategori</th> {{-- Sesuaikan lebar --}}
-                    <th style="width: 45%;">Judul</th> {{-- Sesuaikan lebar --}}
-                    <th style="width: 20%;">File</th>
-                    <th style="width: 20%;">Aksi</th> {{-- Sesuaikan lebar --}}
+                    <th style="width: 15%;">Kategori</th>
+                    <th style="width: 40%;">Judul</th>
+                    <th style="width: 23%;">Tentang</th>
+                    <th style="width: 12%;">File</th>
+                    <th style="width: 10%;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($regulations as $d)
                     <tr>
-                        <td data-label="Kategori">{{ $d->kategori }}</td>
-                        <td data-label="Judul">{{ $d->judul }}</td>
+                        <td data-label="Kategori">{{ $d->category }}</td>
+                        <td data-label="Konten">{{ $d->content }}</td>
+                        <td data-label="Judul">{{ $d->title }}</td>
                         <td data-label="File">
                             <a href="{{ route('admin.regulasi.file', $d->file_path) }}" target="_blank" class="btn-view-doc">
                                 <i class="fas fa-file-alt"></i> Lihat Dokumen

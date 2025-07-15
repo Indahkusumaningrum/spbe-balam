@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers; // Sesuaikan namespace Anda jika berada di subfolder Admin
+namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Validator; // Tidak lagi diperlukan jika hanya pakai $request->validate()
 
 class AdminBeritaController extends Controller
 {
     public function index()
     {
-        $beritas = Berita::latest()->get();
+        // Mengubah query untuk mengurutkan berdasarkan 'updated_at' secara descending (terbaru)
+        $beritas = Berita::orderBy('updated_at', 'desc')->get();
         // Pastikan nama view yang benar, misal 'admin.berita.index' atau 'admin.berita'
         return view('admin.berita', compact('beritas'));
     }
 
     public function create()
     {
-        // Pastikan nama view yang benar, misal 'admin.berita.create' atau 'admin.berita_create'
         return view('admin.berita_create');
     }
 
@@ -26,7 +25,7 @@ class AdminBeritaController extends Controller
     {
         $request->validate([
             'judul' => 'required|string|max:255',
-            'konten' => 'required|string', // Konten akan berupa plain text atau HTML yang diinput manual
+            'konten' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -41,7 +40,7 @@ class AdminBeritaController extends Controller
             'judul' => $request->judul,
             'konten' => $request->konten,
             'gambar' => $filename,
-            'penulis' => Auth::check() ? Auth::user()->name : 'Admin', // Pastikan user login atau berikan default
+            'penulis' => Auth::check() ? Auth::user()->name : 'Admin',
         ]);
 
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil ditambahkan');
@@ -50,7 +49,6 @@ class AdminBeritaController extends Controller
     public function edit($id)
     {
         $berita = Berita::findOrFail($id);
-        // Pastikan nama view yang benar, misal 'admin.berita.edit' atau 'admin.berita_edit'
         return view('admin.berita_edit', compact('berita'));
     }
 
@@ -60,13 +58,12 @@ class AdminBeritaController extends Controller
 
         $request->validate([
             'judul' => 'required|string|max:255',
-            'konten' => 'required|string', // Konten akan berupa plain text atau HTML yang diinput manual
+            'konten' => 'required|string',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $filename = $berita->gambar; // Tetap gunakan gambar yang sudah ada secara default
+        $filename = $berita->gambar;
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada dan berbeda dengan yang baru
             if ($berita->gambar && file_exists(public_path('uploads/beritas/' . $berita->gambar))) {
                 unlink(public_path('uploads/beritas/' . $berita->gambar));
             }
@@ -77,7 +74,7 @@ class AdminBeritaController extends Controller
         $berita->update([
             'judul' => $request->judul,
             'konten' => $request->konten,
-            'gambar' => $filename, // Gunakan $filename yang sudah diperbarui
+            'gambar' => $filename,
         ]);
 
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui');
@@ -86,7 +83,6 @@ class AdminBeritaController extends Controller
     public function destroy($id)
     {
         $berita = Berita::findOrFail($id);
-        // Hapus gambar terkait jika ada
         if ($berita->gambar && file_exists(public_path('uploads/beritas/' . $berita->gambar))) {
             unlink(public_path('uploads/beritas/' . $berita->gambar));
         }
@@ -98,7 +94,6 @@ class AdminBeritaController extends Controller
     {
         $berita = Berita::findOrFail($id);
         $berita->increment('pengunjung');
-        // Pastikan nama view yang benar
         return view('admin.detail_berita', compact('berita'));
     }
 
@@ -110,10 +105,9 @@ class AdminBeritaController extends Controller
 
         if ($request->hasFile('file')) {
             $image = $request->file('file');
-            // Pastikan nama file bersih dari karakter aneh dan spasi berlebih
             $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
             $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $filename = str_replace([' ', '/', '\\'], '_', $filename); // Ganti spasi/slash dengan underscore
+            $filename = str_replace([' ', '/', '\\'], '_', $filename);
 
             $path = public_path('uploads/tinymce');
 
@@ -123,8 +117,6 @@ class AdminBeritaController extends Controller
 
             $image->move($path, $filename);
 
-            // Gunakan url() helper untuk mendapatkan URL absolut yang bersih
-            // dan trim untuk memastikan tidak ada spasi di akhir
             $imageUrl = trim(url('uploads/tinymce/' . $filename));
 
             return response()->json(['location' => $imageUrl]);
@@ -132,7 +124,4 @@ class AdminBeritaController extends Controller
 
         return response()->json(['error' => 'File not found'], 400);
     }
-
-    // Method uploadImage telah dihapus karena tidak ada lagi CKEditor
-    // public function uploadImage(Request $request) { ... }
 }
