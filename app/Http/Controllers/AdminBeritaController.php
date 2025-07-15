@@ -12,7 +12,6 @@ class AdminBeritaController extends Controller
     {
         $initialLimit = 9;
         $beritas = Berita::orderBy('updated_at', 'desc')
-        // ->orderBy('id_berita', 'desc')
         ->take($initialLimit)
         ->get();
 
@@ -129,23 +128,16 @@ class AdminBeritaController extends Controller
         return response()->json(['error' => 'File not found'], 400);
     }
 
-// ...
-    public function loadMoreBerita(Request $request)
-    {
+    public function loadMoreBerita(Request $request){
         $offset = $request->input('offset', 0);
         $limit = 6;
 
         $query = Berita::orderBy('updated_at', 'desc');
-                        // ->orderBy('id_berita', 'desc');
-
         $beritas = $query->skip($offset)
                         ->take($limit)
                         ->get();
 
-        // Hitung total berita lagi di sini jika ada kemungkinan perubahan data.
-        // Atau, lebih baik, hitung total_count sekali di awal dan gunakan itu
-        // jika Anda yakin tidak ada perubahan data di antara request.
-        $totalActualBeritaCount = Berita::count(); // <-- Hitung ulang untuk hasMore yang akurat
+        $totalActualBeritaCount = Berita::count();
 
         $html = '';
         foreach ($beritas as $berita) {
@@ -185,7 +177,7 @@ class AdminBeritaController extends Controller
 
         return response()->json([
             'html' => $html,
-            'hasMore' => ($totalActualBeritaCount > ($offset + $limit)) // Gunakan hitungan terbaru
+            'hasMore' => ($totalActualBeritaCount > ($offset + $limit)) 
         ]);
     }
 

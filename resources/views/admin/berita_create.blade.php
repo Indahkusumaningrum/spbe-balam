@@ -8,95 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.tiny.cloud/1/d76o0fl5eus3mqblrpoqew4ucr8b7y6nahboxpuujphg15lj/tinymce/5.10.7/tinymce.min.js?v=123" referrerpolicy="origin"></script>
     <style>
-        .berita-container {
-            width: 80%;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .berita-container h1 {
-            color: #001e74;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
+        .berita-container { width: 80%; margin: 0 auto; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        .berita-container h1 { color: #001e74; font-size: 28px; font-weight: 700; margin-bottom: 30px; text-align: center; }
         .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
+            padding: 12px 25px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-red {
-            background-color: red;
-            color: #fff;
-        }
-
-        .btn-red:hover {
-            background-color: darkred;
-        }
-
-        .btn-green {
-            background-color: green;
-            color: #fff;
-        }
-
-        .btn-green:hover {
-            background-color: darkgreen;
-        }
-
-        label {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input[type="text"],
-        textarea,
-        input[type="file"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        /* --- Tambahkan atau ubah CSS ini --- */
-        .form-buttons {
-            display: flex; /* Mengaktifkan Flexbox */
-            gap: 15px; /* Memberi jarak antar tombol */
-            margin-top: 20px; /* Memberi sedikit jarak dari elemen di atasnya */
-        }
-
-        .form-buttons .btn {
-            flex-grow: 1; /* Membuat tombol mengisi ruang yang tersedia secara merata */
-            text-align: center; /* Memastikan teks di tengah tombol */
-        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        .btn-red { background-color: red; color: #fff; }
+        .btn-red:hover { background-color: darkred; }
+        .btn-green { background-color: green; color: #fff; }
+        .btn-green:hover { background-color: darkgreen; }
+        label { font-weight: 600; display: block; margin-bottom: 8px; color: #333; }
+        input[type="text"], textarea, input[type="file"] { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; margin-bottom: 20px; box-sizing: border-box; }
+        textarea { resize: vertical; }
+        .form-buttons { display: flex; gap: 15px; margin-top: 20px; }
+        .form-buttons .btn { flex-grow: 1; text-align: center; }
     </style>
 </head>
 <body>
