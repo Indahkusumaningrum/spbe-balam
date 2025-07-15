@@ -7,13 +7,10 @@ use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserDownloadController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\UserDownloadController;
-use App\Http\Controllers\RegulasiController;
-use App\Http\Controllers\EvaluasiController;
-
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -60,6 +57,9 @@ Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashb
 Route::get('/tahapan_spbe', function () {
     return view('tahapan_spbe');
 })->name('tahapan_spbe');
+
+Route::get('/download', [UserDownloadController::class, 'index'])->name('user.download');
+
 
 // Admin
 Route::middleware(['auth'])->group(function () {
