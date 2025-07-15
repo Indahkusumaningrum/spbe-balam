@@ -114,7 +114,7 @@
                 <div class="berita-content">
                     <h3>{{ $berita->judul }}</h3>
                     <div class="berita-info">
-                        <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
+                        <span class="tanggal">{{ $berita->updated_at->diffForHumans() }}</span>
                         <span class="btn-detail">Selengkapnya</span>
                     </div>
                 </div>

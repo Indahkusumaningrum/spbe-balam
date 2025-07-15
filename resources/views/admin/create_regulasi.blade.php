@@ -134,8 +134,17 @@
 
         <form action="{{ route('admin.regulasi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="text" name="kategori" placeholder="Kategori" class="form-control" required>
-            <textarea name="judul" placeholder="Judul" rows="5" class="form-control" required></textarea>
+
+            <label for="category">Kategori</label>
+            <input type="text" name="category" placeholder="Ex: Peraturan Walikota" class="form-control" required>
+            
+            <label for="content">Judul</label>
+            <textarea name="content" placeholder="Ex: Peraturan Walikota PAN-RB RI Nomor 19 Tahun 2018" rows="5" class="form-control" required></textarea>
+            
+            <label for="title">Tentang</label>
+            <input type="text" name="title" placeholder="Ex: Penyusunan Peta Proses Bisnis Instansi Pemerintah" class="form-control" required>
+            
+            <label for="title">File</label>
             <input type="file" name="file" accept=".pdf,.docx,.xlsx,.zip,.rar,.png,.jpg" class="form-control" required>
 
             <div class="form-buttons">

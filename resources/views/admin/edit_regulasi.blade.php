@@ -156,11 +156,17 @@
             @method('PUT')
 
             <label class="form-label">Kategori:</label>
-            <input type="text" name="kategori" value= "{{ $regulasi->kategori }}">
+            <input type="text" name="category" value= "{{ $regulasi->category }}">
             
+            <label class="form-label">Tahun:</label>
+            <input type="number" name="year" id="year" class="form-control" value="{{ old('year', $regulasi->year) }}" required min="1900" max="{{ date('Y') }}">
+
             <label class="form-label">Judul:</label>
-            <textarea name="judul"> {{ $regulasi->judul }}></textarea>
+            <textarea name="content"> {{ $regulasi->content }}</textarea>
             
+            <label class="form-label">Tentang:</label>
+            <input type="text" name="title" value= "{{ $regulasi->title }}">
+
             <label class="form-label">File Sebelumnya:</label>
             @if ($regulasi->file_path)
                 <div style="margin-bottom: 10px;">

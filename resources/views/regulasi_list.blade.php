@@ -66,13 +66,13 @@
 <div class="regulasi-container">
     <h1>Regulasi SPBE</h1>
 
-    @foreach ($regulations as $kategori => $items)
+    @foreach ($regulations as $category => $items)
         <div class="regulasi-kategori">
-            <h3>{{ strtoupper($kategori) }}</h3>
+            <h3>{{ strtoupper($category) }}</h3>
             <ul>
                 @foreach ($items as $item)
                     <li>
-                        {{ $item->judul }}
+                        {{ $item->content }}
                         <a href="{{ route('admin.regulasi.file', $item->file_path) }}" class="download-link">[DOWNLOAD]</a>
                     </li>
                 @endforeach
