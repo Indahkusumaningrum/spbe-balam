@@ -6,12 +6,13 @@
     <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    @yield('styles')
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #fff
         }
 
         header {
@@ -43,13 +44,6 @@
             background-color: #e0b814;
         }
 
-        .manage-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #FFC31D;
-            margin-bottom: 6px;
-        }
-
         .nav-bar {
             display: flex;
             align-items: center;
@@ -57,18 +51,59 @@
             background-color: white;
             padding: 10px 30px;
             border-bottom: 1px solid #ccc;
-            list-style: none;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .nav-menu-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 50px;
         }
 
         .nav-bar img {
             height: 70px;
         }
 
+        .nav-toggle-container {
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #001e74;
+            background: none;
+            border: none;
+            margin-left: auto;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1;
+            width: 100%;
+        }
+
+        .manage-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFC31D;
+            margin-bottom: 6px;
+            padding-left: 10px;
+        }
+
         .nav-menu {
             display: flex;
             gap: 50px;
             font-size: 18px;
-            text-decoration: none;
+            list-style: none;
+            margin: 0;
+            padding: 0;
             margin-right: 40px;
         }
 
@@ -76,7 +111,6 @@
             text-decoration: none;
             color: #001e74;
             font-weight: bold;
-
         }
 
         .nav-menu a.active {
@@ -177,7 +211,111 @@
         .confirm-btn:hover {
             background-color: #c82333;
         }
-</style>
+
+        .nav-menu-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: static;
+        }
+
+        .nav-close {
+            display: none;
+        }
+
+        .logout-container{
+            background-color: white;
+            margin-left: 30px;
+            padding: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+
+            .nav-bar {
+                justify-content: space-between;
+                position: relative;
+            }
+            .nav-toggle {
+                display: block;
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+            .nav-menu-wrapper {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 80%;
+                max-width: 300px;
+                height: 100%;
+                background-color: #ffffff;
+                box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+                z-index: 999;
+                animation: slideIn 0.3s ease forwards;
+            }
+
+            .nav-menu-wrapper.active {
+                display: flex;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 25px;
+                margin-right: 0;
+                padding-left: 0;
+                margin: 0;
+            }
+
+            .nav-menu a.active {
+                border-bottom: 4px solid #FFC31D;
+                padding-bottom: 7px;
+                color: #FFC31D;
+                transition: width 0.3s ease;
+            }
+
+            .nav-menu li a {
+                position: relative;
+                color: #001e74;
+                text-decoration: none;
+                font-weight: bold;
+                padding-bottom: 8px;
+            }
+
+            .manage-label {
+                margin-bottom: 30px;
+                font-size: 18px;
+                font-weight: 600;
+                color: #facc15;
+            }
+
+            .nav-close {
+                display: block;
+                align-self: flex-end;
+                font-size: 24px;
+                cursor: pointer;
+                color: #001e74;
+                margin-bottom: 20px;
+                border: none;
+                background: none;
+                font-weight: bold;
+            }
+
+            @keyframes slideIn {
+                from {
+                    right: -100%;
+                    opacity: 0;
+                }
+                to {
+                    right: 0;
+                    opacity: 1;
+                }
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -192,20 +330,25 @@
         <a href="{{ route('dashboardadmin') }}">
             <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" style="cursor:pointer;">
         </a>
+
         <div class="nav-container">
-            <div class="manage-label">Manage</div>
-            <nav class="nav-menu">
-                <li><a href="#" class="{{ request()->is('/') ? 'active' : '' }}">Indikator SPBE</a></li>
-                <li><a href="{{ route('profile') }}" class="{{ request()->is('admin/profile*') ? 'active' : '' }}">Profile</a></li>
-                <li><a href="{{ route('admin.berita') }}" class="{{ request()->is('admin/berita*') ? 'active' : '' }}">Berita</a></li>
-                <li><a href="{{ route('admin.download') }}" class="{{ request()->is('admin/download*') ? 'active' : '' }}">Download</a></li>
-                <li><a href="{{ route('admin.galeri') }}" class="{{ request()->is('admin/galeri') ? 'active' : '' }}">Galeri</a></li>
-                <li><a href="#" class="{{ request()->is('/') ? 'active' : '' }}">Kontak</a></li>
-            </nav>
+            <div class="nav-menu-wrapper" id="navMenu">
+                <button class="nav-close" onclick="toggleNav()">✕</button>
+                <div class="manage-label">Manage</div>
+                <nav class="nav-menu">
+                    <li><a href="{{ route('admin.indikator.index') }}" class="{{ request()->is('admin/indikator*') ? 'active' : '' }}">Indikator SPBE</a></li>
+                    <li><a href="{{ route('profile') }}" class="{{ request()->is('admin/profile*') ? 'active' : '' }}">Profile</a></li>
+                    <li><a href="{{ route('admin.berita') }}" class="{{ request()->is('admin/berita*') ? 'active' : '' }}">Berita</a></li>
+                    <li><a href="{{ route('admin.download') }}" class="{{ request()->is('admin/download*') ? 'active' : '' }}">Download</a></li>
+                    <li><a href="{{ route('admin.galeri') }}" class="{{ request()->is('admin/galeri') ? 'active' : '' }}">Galeri</a></li>
+                    <li><a href="#" class="{{ request()->is('/') ? 'active' : '' }}">Kontak</a></li>
+                </nav>
+            </div>
         </div>
+
+        <button class="nav-toggle" onclick="toggleNav()">☰</button>
+
     </div>
-
-
 
     @php use Illuminate\Support\Facades\Auth; @endphp
 
@@ -221,9 +364,8 @@
         @endif
     </div>
 
-    @yield('content')
+    @yield('content') 
 
-    <!-- Logout Confirmation Modal -->
     <div id="logoutModal" class="modal">
         <div class="modal-content">
             <p>Apakah Anda yakin ingin logout?</p>
@@ -237,7 +379,13 @@
         </div>
     </div>
 
-      <script>
+    @yield('styles')
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
         function showLogoutModal() {
             document.getElementById('logoutModal').style.display = 'block';
         }
@@ -246,6 +394,12 @@
             document.getElementById('logoutModal').style.display = 'none';
         }
 
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) {
+                document.getElementById('navMenu').classList.remove('active');
+            }
+        });
+
         window.onclick = function(event) {
             const modal = document.getElementById('logoutModal');
             if (event.target == modal) {
@@ -253,5 +407,8 @@
             }
         }
     </script>
+
+@yield('scripts')
+
 </body>
 </html>

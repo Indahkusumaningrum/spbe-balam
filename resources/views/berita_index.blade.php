@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Berita</title>
+    <link rel="icon" href="{{ asset('asset/img/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -113,7 +114,7 @@
                 <div class="berita-content">
                     <h3>{{ $berita->judul }}</h3>
                     <div class="berita-info">
-                        <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
+                        <span class="tanggal">{{ $berita->updated_at->diffForHumans() }}</span>
                         <span class="btn-detail">Selengkapnya</span>
                     </div>
                 </div>

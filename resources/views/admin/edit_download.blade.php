@@ -158,6 +158,9 @@
             <label class="form-label">Kategori:</label>
             <input type="text" name="category" value= "{{ $download->category }}">
             
+            <label class="form-label">Tahun:</label>
+            <input type="number" name="year" id="year" class="form-control" value="{{ old('year', $download->year) }}" required min="1900" max="{{ date('Y') }}">
+
             <label class="form-label">Judul:</label>
             <input type="text" name="title" value= "{{ $download->title }}">
             

@@ -66,6 +66,14 @@
             gap: 8px;
         }
 
+        .btn-detail i {
+            pointer-events: none;
+        }
+
+        .btn-detail:hover {
+            opacity: 0.85;
+        }
+
         .berita-grid {
             display: flex;
             flex-wrap: wrap;
@@ -160,9 +168,23 @@
                 <div class="berita-content">
                     <h3>{{ $berita->judul }}</h3>
                     <div class="berita-info">
-                        <span class="tanggal">{{ $berita->created_at->format('d-m-Y') }}</span>
-                        <a href="{{ route('admin.berita.show', $berita->id_berita) }}" class="btn-detail">Selengkapnya</a>
-                    </div>
+                        <span class="tanggal">{{ $berita->updated_at->diffForHumans() }}</span>
+                        <div style="display: flex; gap: 8px;">
+                            <a href="{{ route('admin.berita.show', $berita->id_berita) }}" class="btn-detail" title="Lihat">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ route('admin.berita.edit', $berita->id_berita) }}" class="btn-detail" style="background-color: #f59e0b;" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{{ route('admin.berita.destroy', $berita->id_berita) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus berita ini?')" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-detail" style="background-color: #dc2626;" title="Hapus">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                                            </div>
                 </div>
             </div>
             @endforeach

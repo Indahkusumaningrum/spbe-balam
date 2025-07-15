@@ -90,25 +90,25 @@
             <img src="{{ asset('asset/icon/regulasi.png') }}" alt="Regulasi" class="info-icon">
             <h3>Regulasi</h3>
             <p>SPBE akan menjadi platform untuk seluruh regulasi yang ada. Platform ini bermakna pada integrasi. Integrasi ini pada proses bisnis, mulai dari level mikro hingga makro.</p>
-            <a href="{{ route('admin.regulasi') }}" class="btn-selengkapnya">Selengkapnya</a>
+            <a href="{{ route('admin.regulasi') }}" class="btn-selengkapnya">Manage</a>
         </div>
         <div class="info-card">
             <img src="{{ asset('asset/icon/tahapan.png') }}" alt="Tahapan SPBE" class="info-icon">
             <h3>Tahapan SPBE</h3>
             <p>Terbagi dalam Peta Rencana SPBE yaitu: Tahapan Rencana Strategis, Tahapan Pembangunan Fondasi SPBE, Tahapan Pengembangan SPBE, dan Inisiatif Strategis</p>
-            <a href="{{ route('tahapan_spbe') }}" class="btn-selengkapnya">Selengkapnya</a>
+            <a href="{{ route('admin.tahapan_spbe') }}" class="btn-selengkapnya">Manage</a>
         </div>
         <div class="info-card">
             <img src="{{ asset('asset/icon/kegiatan.png') }}" alt="Kegiatan" class="info-icon">
             <h3>Kegiatan</h3>
             <p>Maka inti dari kegiatan SPBE adalah membangun layanan publik yang berkualitas, dengan didukung kesiapan pada aplikasi, infrastruktur dan keamanan SPBE.</p>
-            <a href="#" class="btn-selengkapnya">Selengkapnya</a>
+            <a href="#" class="btn-selengkapnya">Manage</a>
         </div>
         <div class="info-card">
             <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
             <h3>Evaluasi</h3>
             <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
-            <a href="{{ route('admin.evaluasi') }}" class="btn-selengkapnya">Selengkapnya</a>
+            <a href="{{ route('admin.evaluasi') }}" class="btn-selengkapnya">Manage</a>
         </div>
     </div>
 @endsection

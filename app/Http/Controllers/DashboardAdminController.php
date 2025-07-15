@@ -10,4 +10,8 @@ class DashboardAdminController extends Controller
     {
         return view('admin.dashboard_admin');
     }
+
+    public function tahapan(){
+        return view ('admin.tahapan_spbe_admin');
+    }
 }

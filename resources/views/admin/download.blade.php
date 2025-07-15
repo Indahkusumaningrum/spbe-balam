@@ -104,7 +104,7 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 11px;
             border: none;
             outline: none;
         }
@@ -120,7 +120,7 @@
             justify-content: center;
             border-radius: 8px;
             border: none;
-            background-color: #e0e7ff; 
+            background-color: #e0e7ff;
             color: #001e74;
             transition: background-color 0.3s ease;
             text-decoration: none;
@@ -225,6 +225,37 @@
 @section('title', 'Manage Download')
 @section('content')
 
+<form method="GET" action="{{ route('admin.download') }}" style="margin-bottom: 20px; display: flex; gap: 15px;">
+
+    <div>
+        <select name="category" class="form-control">
+            <option value="">-- Semua Kategori --</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category }}" {{ request('category') == $category ? 'selected' : '' }}>
+                    {{ $category }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div>
+        <select name="year" class="form-control">
+            <option value="">-- Semua Tahun --</option>
+            @foreach ($years as $year)
+                <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                    {{ $year }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" class="btn-add" style="padding: 6px 15px;">Filter</button>
+    </div>
+
+</form>
+
+
     <div class="table-container">
         <div class="download-header">
             <h1>Download</h1>
@@ -236,21 +267,23 @@
         <table>
             <thead>
                 <tr>
-                    <th style="width: 15%;">Category</th>
-                    <th style="width: 23%;">Title</th>
-                    <th style="width: 40%;">Content</th>
+                    <th style="width: 3%;">Tahun</th>
+                    <th style="width: 15%;">Kategori</th>
+                    <th style="width: 40%;">Judul</th>
+                    <th style="width: 20%;">Tentang</th>
                     <th style="width: 12%;">File</th>
-                    <th style="width: 10%;">Action</th>
+                    <th style="width: 10%;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($downloads as $d)
                     <tr>
+                        <td>{{ $d->year }}</td>
                         <td>{{ $d->category }}</td>
-                        <td>{{ $d->title }}</td>
                         <td>{{ $d->content }}</td>
+                        <td>{{ $d->title }}</td>
                         <td>
-                            <a href="{{ route('admin.download.file', $d->file_path) }}" class="btn-download">Download</a>
+                            <a href="{{ route('admin.download.file', $d->file_path) }}" class="btn-download">Lihat Dokumen</a>
                         </td>
                         <td class="action-btn">
                             <a href="{{ route('download.edit', ['id' => $d->id]) }}" class="btn-edit" method="GET">

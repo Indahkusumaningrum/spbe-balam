@@ -11,6 +11,10 @@ use App\Http\Controllers\UserDownloadController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\UserBeritaController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\UserDownloadController;
+use App\Http\Controllers\RegulasiController;
+use App\Http\Controllers\EvaluasiController;
+
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -31,6 +35,8 @@ Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
 
+Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
+
 Route::get('/admin/download/', [DownloadController::class, 'index'])->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 Route::get('/admin/download/edit/{id}', [DownloadController::class, 'edit'])->name('download.edit');
@@ -39,6 +45,8 @@ Route::post('/admin/download/store', [DownloadController::class, 'store'])->name
 Route::get('/admin/download/file/{fileName}', [DownloadController::class, 'downloadFile'])->name('admin.download.file');
 Route::delete('/admin/download/{id}', [DownloadController::class, 'destroy'])->name('admin.download.destroy');
 
+//User
+Route::get('/download', [UserDownloadController::class, 'index'])->name('download');
 
 
 
@@ -47,12 +55,13 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 
 // Route::get('/berita', function () { return view('admin/berita'); })->name('berita');
 
-// USER
-Route::get('/', function () {
-    return view('dashboard_user');
-})->name('dashboard_user');
 
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.user');
+Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
+
+Route::get('/', [UserDashboardController::class, 'index'])->name('dashboard_user');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard_user');
+Route::get('/das', [UserDashboardController::class, 'index'])->name('dashboard.user');
+Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
 
 Route::get('/tahapan_spbe', function () {
     return view('tahapan_spbe');
@@ -61,13 +70,18 @@ Route::get('/tahapan_spbe', function () {
 Route::get('/download', [UserDownloadController::class, 'index'])->name('user.download');
 
 
-// Admin
+/// Admin
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/profile', [AdminProfileController::class, 'show'])->name('profile');
-    Route::get('/admin/profile/edit', [AdminProfileController::class, 'edit'])->name('edit.profile');
-    Route::post('/admin/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
-});
+    // ... rute admin lainnya ...
 
+    // Rute untuk Profile
+    Route::get('/admin/profile', [\App\Http\Controllers\AdminProfileController::class, 'show'])->name('profile'); // Pastikan ini mengarah ke AdminProfileController
+    Route::get('/admin/profile/edit', [\App\Http\Controllers\AdminProfileController::class, 'edit'])->name('edit.profile');
+    Route::post('/admin/profile', [\App\Http\Controllers\AdminProfileController::class, 'update'])->name('admin.profile.update');
+
+    // Pastikan route upload TinyMCE ada dan mengarah ke controller yang benar
+    Route::post('/upload-image-tinymce', [\App\Http\Controllers\AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
+});
 // User
 Route::get('/userprofile', [UserProfileController::class, 'show'])->name('profile.show');
 
@@ -81,7 +95,9 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
 
+
 });
+Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 
 Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
@@ -120,6 +136,22 @@ Route::get('/admin/regulasi/download/{fileName}', [RegulasiController::class, 'd
 // User
 Route::get('/regulasi/index', [RegulasiController::class, 'indexUser'])->name('regulasi_index');
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Routes untuk Berita
+    Route::get('berita', [AdminBeritaController::class, 'index'])->name('berita');
+    Route::get('berita/create', [AdminBeritaController::class, 'create'])->name('berita.create');
+    Route::post('berita', [AdminBeritaController::class, 'store'])->name('berita.store');
+    // Perhatikan Route Model Binding untuk edit, update, destroy
+    // Jika Anda tidak menggunakan Route Model Binding (seperti di kode Anda yang lama),
+    // maka parameter harus ($id) bukan (Berita $berita)
+    Route::get('berita/{id}/edit', [AdminBeritaController::class, 'edit'])->name('berita.edit');
+    Route::put('berita/{id}', [AdminBeritaController::class, 'update'])->name('berita.update');
+    Route::delete('berita/{id}', [AdminBeritaController::class, 'destroy'])->name('berita.destroy');
+
+    // Route khusus untuk upload gambar CKEditor
+    // Perhatikan nama route di sini: admin.berita.upload_image
+    // Route::post('berita/upload-image', [BeritaController::class, 'uploadImage'])->name('berita.upload_image');
+});
 
 // Admin
 Route::get('/admin/evaluasi', [EvaluasiController::class, 'adminIndex'])->name('admin.evaluasi');
@@ -131,6 +163,54 @@ Route::put('/admin/evaluasi/{id}', [EvaluasiController::class, 'update'])->name(
 Route::delete('/admin/evaluasi/{id}', [EvaluasiController::class, 'destroy'])->name('admin.evaluasi.destroy');
 Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'downloadFile'])->name('admin.evaluasi.file');
 
-// User
-Route::get('/evaluasi/index', [EvaluasiController::class, 'index'])->name('evaluasi.list');
-Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
+
+// Route::get('/', [EvaluasiController::class, 'index'])->name('dashboard_user');
+
+
+
+// Untuk publik
+Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
+
+// Untuk admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Daftar tahun
+    Route::get('/indikator', [IndikatorController::class, 'index'])->name('indikator.index');
+
+    // Indikator per tahun
+    Route::get('/indikator/tahun/{tahun}', [IndikatorController::class, 'indikatorByTahun'])->name('indikator.tahun');
+
+    // Create indikator dengan parameter tahun
+    Route::get('/indikator/create/{tahun_id}', [IndikatorController::class, 'create'])->name('indikator.create');
+
+    // Store indikator dengan parameter tahun
+    Route::post('/indikator/store/{tahun}', [IndikatorController::class, 'store'])->name('indikator.store');
+
+    // Edit, update, delete indikator
+    Route::get('/indikator/{id}/edit', [IndikatorController::class, 'edit'])->name('indikator.edit');
+    Route::put('/indikator/{id}', [IndikatorController::class, 'update'])->name('indikator.update');
+    Route::delete('/indikator/{id}', [IndikatorController::class, 'destroy'])->name('indikator.destroy');
+});
+
+
+
+
+Route::get('/admin/indikator/tahun/{tahun}', [IndikatorController::class, 'indikatorByTahun'])->name('admin.indikator.tahun');
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/domain', [DomainController::class, 'index'])->name('admin.domain_index');
+    Route::get('/domain/create', [DomainController::class, 'create'])->name('admin.domain.create');
+    Route::post('/domain', [DomainController::class, 'store'])->name('admin.domain.store');
+    Route::get('/domain/{domain}/edit', [DomainController::class, 'edit'])->name('admin.domain.edit');
+    Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('admin.domain.update');
+    Route::delete('/domain/{domain}', [DomainController::class, 'destroy'])->name('admin.domain.destroy');
+});
+
+// Aspek
+Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
+Route::post('/admin/aspek', [AspectController::class, 'store'])->name('admin.aspect.store');
+
+
+// Route::get('/admin/domain', [DomainController::class, 'index'])->name('admin.domain.index');
+// Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
+
