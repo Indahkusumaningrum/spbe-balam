@@ -36,6 +36,8 @@ Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
 
+Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
+
 Route::get('/admin/download/', [DownloadController::class, 'index'])->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
 Route::get('/admin/download/edit/{id}', [DownloadController::class, 'edit'])->name('download.edit');
@@ -55,7 +57,7 @@ Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->na
 // Route::get('/berita', function () { return view('admin/berita'); })->name('berita');
 
 
-// Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
+Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berita.index');
 
 Route::get('/', [UserDashboardController::class, 'index'])->name('dashboard_user');
 Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard_user');
@@ -91,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
 
-    
+
 });
 Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 

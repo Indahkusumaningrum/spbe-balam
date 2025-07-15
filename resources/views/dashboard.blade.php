@@ -86,7 +86,19 @@
         }
         .berita-date { font-size: 13px; color: #777; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
         .berita-date i { margin-right: 5px; color: #facc15; }
-        .evaluasi-section { padding: 30px 0; background-color: #fff; text-align: center; }
+        .berita-section .berita-swiper-container .berita-navigation-wrapper { display: flex; justify-content: center; align-items: center; gap: 10px; position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: auto; z-index: 10; }
+        .berita-section .berita-swiper-container .swiper-pagination.berita-swiper-pagination { position: static; width: auto; margin: 0; }
+        .berita-section .berita-swiper-container .swiper-pagination-bullet { opacity: 0.8; background: #31353b; margin: 2px;}
+        .berita-section .berita-swiper-container .swiper-pagination-bullet-active { background: #148cb8; }
+        .berita-section .berita-swiper-container .berita-swiper-button-next,
+        .berita-section .berita-swiper-container .berita-swiper-button-prev {
+            position: static; margin-top: 0; transform: none; color: #444;
+        }
+        .berita-section .berita-swiper-container .berita-swiper-button-next .arrow-icon,
+        .berita-section .berita-swiper-container .berita-swiper-button-prev .arrow-icon {
+            font-size: 24px; color: #148cb8; text-shadow: none;
+        }
+        .evaluasi-section { padding: 30px 0; background-color: #fff; text-align: center; position: relative;}
         .evaluasi-section h2 { font-size: 26px; font-weight: bold; color: #2c3e50; position: relative; display: inline-block; }
         .evaluasi-section h2::after { content: ''; display: block; width: 100px; height: 4px; background-color: #facc15; margin: 10px auto 0; border-radius: 2px; }
         .evaluasi-swiper-container { width: 60%; max-width: 600px; margin: 40px auto 0; padding-bottom: 50px; overflow: hidden; }
@@ -107,6 +119,21 @@
         }
         .evaluasi-swiper-slide:hover .evaluasi-image-wrapper .overlay { opacity: 1; }
         .evaluasi-image-wrapper .overlay .tahun { font-size: 30px; font-weight: bold; color: #ecf0f1; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next,
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev {
+            background-image: none; background-size: 0; background-repeat: no-repeat; background-position: 0; margin-top: -16px;
+            width: auto; height: auto; position: absolute; top: 60%; transform: translateY(-50%); z-index: 10; cursor: pointer;
+        }
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next::after,
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev::after {
+            display: none;
+        }
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
+            font-size: 32px; color: #facc15; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev { left: 18%; }
+        .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next { right: 18%; }
         .modal { display: none; position: fixed; z-index: 1000; padding-top: 30px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); }
         .modal-content { margin: auto; display: block; max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
         .custom-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); overflow-y: auto; padding: 60px 0; }
@@ -131,6 +158,12 @@
             .berita-image-wrapper { height: 180px; }
             /* .berita-content-wrapper { padding: 15px; } */
             .berita-title { font-size: 16px; -webkit-line-clamp: 3; }
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
+                font-size: 24px;
+            }
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev { left: 10%; }
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next { right: 10%; }
             .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
             .modal-content { max-width: 90%; margin: auto;}
             .custom-modal-content { margin: auto; max-width: 100%; width: 700px;}
@@ -169,6 +202,12 @@
             .berita-image-wrapper { height: 120px; }
             /* .berita-content-wrapper { padding: 10px; } */
             .berita-title { font-size: 14px; -webkit-line-clamp: 4; }
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
+                font-size: 24px;
+            }
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev { left: 10%; }
+            .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next { right: 10%; }
             .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
             .modal-content { max-width: 90%; margin: auto;}
             .custom-modal-content { margin: auto; max-width: 100%; width: 400px;}
@@ -308,6 +347,11 @@
                     </div>
                 @endforelse
             </div>
+           <div class="berita-navigation-wrapper">
+                <div class="berita-swiper-button-prev"><i class="fas fa-chevron-circle-left arrow-icon"></i></div>
+                <div class="swiper-pagination berita-swiper-pagination"></div>
+                <div class="berita-swiper-button-next"><i class="fas fa-chevron-circle-right arrow-icon"></i></div>
+            </div>
         </div>
     </div>
 
@@ -336,6 +380,8 @@
                     </div>
                 @endforelse
             </div>
+            <div class="evaluasi-swiper-button-next"><i class="fas fa-chevron-circle-right arrow-icon"></i></div>
+            <div class="evaluasi-swiper-button-prev"><i class="fas fa-chevron-circle-left arrow-icon"></i></div>
         </div>
     </div>
 
@@ -379,7 +425,8 @@
         effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
         coverflowEffect: { rotate: 0, stretch: -40, depth: 100, modifier: 1, slideShadows: true, },
         autoplay: { delay: 5000, disableOnInteraction: false },
-        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        pagination: { el: ".berita-swiper-pagination", clickable: true, },
+        navigation: { nextEl: ".berita-swiper-button-next", prevEl: ".berita-swiper-button-prev" },
         breakpoints: {
             640: { slidesPerView: 1.5, spaceBetween: 5, },
             768: { slidesPerView: 1, spaceBetween: 15,},
@@ -392,7 +439,8 @@
         autoplay: { delay: 5000, disableOnInteraction: false },
         slidesPerView: 1,
         spaceBetween: 20,
-        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+        pagination: { el: ".evaluasi-swiper-pagination", clickable: true, },
+        navigation: { nextEl: ".evaluasi-swiper-button-next", prevEl: ".evaluasi-swiper-button-prev" },
         breakpoints: {
             640: { slidesPerView: 1, spaceBetween: 20, },
             768: { slidesPerView: 1, spaceBetween: 20,},
