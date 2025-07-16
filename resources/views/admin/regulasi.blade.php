@@ -1,5 +1,5 @@
 @extends('layouts.layout_admin')
-@section('title', 'Kelola Regulasi SPBE') {{-- Perbarui judul section --}}
+@section('title', 'Kelola Regulasi SPBE')
 
 @section('styles')
 <style>
@@ -43,6 +43,7 @@
     .modal-btn.confirm-btn { background-color: #dc3545; color: white; }
     .modal-btn.confirm-btn:hover { background-color: #c82333; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
 
     .filter-section { background-color: #ffffff; padding: 25px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 20px; }
     .filter-section form { display: flex; flex-wrap: wrap; gap: 20px; width: 100%; align-items: flex-end; }
@@ -104,7 +105,7 @@
 
 <div class="filter-section">
     <form method="GET" action="{{ route('admin.regulasi') }}" class="flex flex-wrap gap-4 w-full items-end">
-        
+
         <div class="filter-group">
             <label for="category-filter">Kategori</label>
             <select name="category" id="category-filter" class="form-control">
@@ -156,7 +157,6 @@
 </div>
 
 
-
 <div class="main-container">
     <div class="header-section">
         <h1>Regulasi SPBE</h1>
@@ -183,8 +183,8 @@
                 <tr>
                     <td data-label="Tahun">{{ $d->year }}</td>
                     <td data-label="Kategori">{{ $d->category }}</td>
-                    <td data-label="Konten">{{ $d->content }}</td>
                     <td data-label="Judul">{{ $d->title }}</td>
+                    <td data-label="Tentang">{{ $d->content }}</td>
                     <td data-label="File">
                         <a href="{{ route('admin.regulasi.file', $d->file_path) }}" target="_blank" class="btn-view-doc">
                             <i class="fas fa-file-alt"></i> Lihat Dokumen
@@ -194,7 +194,6 @@
                         <a href="{{ route('admin.regulasi.edit', ['id' => $d->id]) }}" class="btn-action-icon edit">
                             <i class="fas fa-pen"></i>
                         </a>
-                        {{-- Add a form for delete action to ensure proper HTTP method --}}
                         <form id="delete-form-{{ $d->id }}" action="{{ route('admin.regulasi.destroy', ['id' => $d->id]) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
@@ -206,14 +205,13 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">Tidak ada data regulasi.</td> {{-- Updated colspan to 5 --}}
+                    <td colspan="6" class="text-center">Tidak ada data regulasi.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
 </div>
 
-<!-- Custom Delete Confirmation Modal -->
 <div id="deleteModal" class="modal">
     <div class="modal-content">
         <p>Apakah Anda yakin ingin menghapus file ini?</p>
@@ -268,7 +266,6 @@
         if (modal) modal.style.display = 'none';
     }
 
-    // Menutup modal jika klik di luar
     window.onclick = function(event) {
         const deleteModal = document.getElementById('deleteModal');
         const successModal = document.getElementById('successModal');
