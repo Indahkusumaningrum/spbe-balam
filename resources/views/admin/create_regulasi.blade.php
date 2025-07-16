@@ -22,6 +22,19 @@
             margin-bottom: 30px;
         }
 
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .required-star {
+            color: red;
+            margin-left: 4px;
+        }
+
+
         .form-control {
             width: 100%;
             margin-bottom: 20px;
@@ -135,16 +148,19 @@
         <form action="{{ route('admin.regulasi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <label for="category">Kategori</label>
+            <label for="category">Kategori<span class="required-star">*</span></label>
             <input type="text" name="category" placeholder="Ex: Peraturan Walikota" class="form-control" required>
             
-            <label for="content">Judul</label>
+            <label for="year">Tahun<span class="required-star">*</span> </label>
+            <input type="number" name="year" id="year" placeholder="Ex: 2025" class="form-control" value="{{ old('year') }}" required min="1900" max="{{ date('Y') }}">
+
+            <label for="content">Judul<span class="required-star">*</span></label>
             <textarea name="content" placeholder="Ex: Peraturan Walikota PAN-RB RI Nomor 19 Tahun 2018" rows="5" class="form-control" required></textarea>
             
-            <label for="title">Tentang</label>
+            <label for="title">Tentang<span class="required-star">*</span></label>
             <input type="text" name="title" placeholder="Ex: Penyusunan Peta Proses Bisnis Instansi Pemerintah" class="form-control" required>
             
-            <label for="title">File</label>
+            <label for="title">File<span class="required-star">*</span></label>
             <input type="file" name="file" accept=".pdf,.docx,.xlsx,.zip,.rar,.png,.jpg" class="form-control" required>
 
             <div class="form-buttons">
