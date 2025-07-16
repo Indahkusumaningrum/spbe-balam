@@ -44,9 +44,9 @@
     .modal-btn.confirm-btn:hover { background-color: #c82333; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-    .filter-section { background-color: #ffffff; padding: 25px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 20px; }
+    .filter-section { background-color: #fff; padding: 25px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); margin-bottom: 30px; display: flex; flex-wrap: wrap; gap: 20px; }
     .filter-section form { display: flex; flex-wrap: wrap; gap: 20px; width: 100%; align-items: flex-end; }
-    .filter-group { flex: 1; min-width: 180px; display: flex; flex-direction: column; }
+    .filter-group { flex: 1; width: 180px; display: flex; flex-direction: column; }
     .filter-group label { display: block; font-size: 14px; font-weight: 600; color: #555; margin-bottom: 8px; }
     .filter-section .form-control { 
         width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px; background-color: #f9fafb; font-size: 15px; color: #333; 
