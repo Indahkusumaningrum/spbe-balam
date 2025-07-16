@@ -28,7 +28,7 @@
     .btn-view-doc { background-color: #3b82f6; display: inline-flex; align-items: center; gap: 8px; color: white; padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 12px; border: none; outline: none; transition: background-color 0.3s ease, transform 0.2s ease; }
     .btn-view-doc:hover { background-color: #2563eb; transform: translateY(-1px); }
     .btn-action-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; border: 1px solid; cursor: pointer; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease; box-sizing: border-box; }
-    .btn-action-icon.edit { background-color: #facc15; color: #fff; border-color: #facc15; }
+    .btn-action-icon.edit { background-color: #facc15; color: #fff; border-color: #facc15; text-decoration:none }
     .btn-action-icon.edit:hover { background-color: #eab308; border-color: #eab308; transform: scale(1.05); }
     .btn-action-icon.delete { background-color: red; color: #fff; }
     .btn-action-icon.delete:hover { background-color: darkred; transform: scale(1.05); }
@@ -51,7 +51,6 @@
     .filter-section .form-control { 
         width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px; background-color: #f9fafb; font-size: 15px; color: #333; 
         appearance: none; -webkit-appearance: none; -moz-appearance: none; 
-        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236B7280%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.6-6.4H18.6a17.6%2017.6%200%200%200-13.6%206.4%2017.6%2017.6%200%200%200%200%2025.3l128%20128a17.6%2017.6%200%200%200%2025.3%200l128-128a17.6%2017.6%200%200%200%200-25.3z%22%2F%3E%3C%2Fsvg%3E'); 
         background-repeat: no-repeat; background-position: right 12px top 50%; background-size: 12px auto; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease; 
     }
     .filter-section .form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); outline: none; }
@@ -104,6 +103,7 @@
 
 <div class="filter-section">
     <form method="GET" action="{{ route('admin.download') }}" class="flex flex-wrap gap-4 w-full items-end">
+        
         <div class="filter-group">
             <label for="category-filter">Kategori</label>
             <select name="category" id="category-filter" class="form-control">
@@ -128,6 +128,25 @@
             </select>
         </div>
 
+        <div class="filter-group" style="position: relative;">
+            <label for="search-filter">Cari</label>
+            <input 
+                type="text" 
+                name="search" 
+                id="search-filter" 
+                class="form-control" 
+                placeholder="Cari judul atau konten..."
+                value="{{ request('search') }}" style="width: 95%">
+            
+            @if(request('search'))
+            <span onclick="clearSearch()" 
+                style="position: absolute; right: 15px; top: 38px; cursor: pointer; font-size: 16px; color: #6b7280;">
+                &times;
+            </span>
+            @endif
+        </div>
+
+
         <button type="submit" class="btn-filter-submit"> <i class="fas fa-filter"></i> Filter </button>
     </form>
 </div>
@@ -147,8 +166,8 @@
             <tr>
                 <th style="width: 3%;">Tahun</th>
                 <th style="width: 15%;">Kategori</th>
-                <th style="width: 40%;">Judul</th>
-                <th style="width: 20%;">Tentang</th>
+                <th style="width: 37%;">Judul</th>
+                <th style="width: 23%;">Tentang</th>
                 <th style="width: 12%;">File</th>
                 <th style="width: 10%;">Aksi</th>
             </tr>
@@ -212,6 +231,14 @@
 
 @section('scripts')
 <script>
+
+    function clearSearch() {
+        const input = document.getElementById('search-filter');
+        input.value = '';
+        input.form.submit();
+    }
+
+    
     let formToDelete = null;
 
     function showDeleteModal(formId) {
