@@ -8,25 +8,33 @@ use App\Models\Download;
 class DownloadController extends Controller
 {
     public function index(Request $request)
-{
-    $query = Download::query();
-
-    if ($request->filled('category')) {
-        $query->where('category', $request->category);
+    {
+        $query = Download::query();
+    
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+    
+        if ($request->filled('year')) {
+            $query->where('year', $request->year);
+        }
+    
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%$search%")
+                  ->orWhere('content', 'like', "%$search%");
+            });
+        }
+    
+        $categories = Download::select('category')->distinct()->pluck('category');
+        $years = Download::select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
+    
+        $downloads = $query->get();
+    
+        return view('admin.download', compact('downloads', 'categories', 'years'));
     }
-
-    if ($request->filled('year')) {
-        $query->where('year', $request->year);
-    }
-
-    // Ambil semua unique kategori dan tahun untuk isi dropdown filter
-    $categories = Download::select('category')->distinct()->pluck('category');
-    $years = Download::select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
-
-    $downloads = $query->get();
-
-    return view('admin.download', compact('downloads', 'categories', 'years'));
-}
+    
 
     public function create() {
         return view('admin.create_download');

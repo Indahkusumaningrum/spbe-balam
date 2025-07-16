@@ -26,7 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
-// Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
+Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
 
 Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
     ->middleware('auth')
@@ -35,8 +35,6 @@ Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
 Route::get('/dashboardadmin', function () {
     return view('admin.dashboard_admin');
 })->middleware('auth')->name('dashboardadmin');
-
-Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
 
 Route::get('/admin/download/', [DownloadController::class, 'index'])->name('admin.download');
 Route::get('/admin/download/create', [DownloadController::class, 'create'])->name('download.create');
@@ -92,8 +90,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/berita/{id}', [AdminBeritaController::class, 'update'])->name('admin.berita.update');
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
-    Route::get('/admin/berita/load-more', [AdminBeritaController::class, 'loadMoreBerita'])->name('admin.berita.load-more');
 
+    Route::get('/admin/berita/load-more', [AdminBeritaController::class, 'loadMoreBerita'])->name('admin.berita.load-more');
 });
 Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 
@@ -212,4 +210,3 @@ Route::post('/admin/aspek', [AspectController::class, 'store'])->name('admin.asp
 
 // Route::get('/admin/domain', [DomainController::class, 'index'])->name('admin.domain.index');
 // Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
-
