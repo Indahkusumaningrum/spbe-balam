@@ -9,238 +9,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .galeri-container {
-            padding: 40px 60px;
+        .galeri-container {padding: 0 40px; display: inline-block; background-color: #fff; color: white; font-weight: 600; border-radius: 8px; text-decoration: none; margin-bottom: 24px; }
+        .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
+        .header-section h1 { color: #001e74; font-size: 32px;  font-weight: 700; position: relative; padding-bottom: 12px; margin: 0; letter-spacing: 0.5px; }
+        .header-section h1::after {
+            content: ''; position: absolute; left: 50%;  transform: translateX(-50%);  bottom: 0; width: 60px; height: 5px;
+            background: linear-gradient(to right, #facc15, #ff9a00); border-radius: 50px; box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
-        h1 {
-            font-size: 22px;
-            color: #001e74;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #facc15;
-            display: inline-block;
-            padding-bottom: 4px;
-        }
-
-        .galeri-container .btn-tambah {
-            display: inline-block;
-            background-color: #facc15;
-            color: white;
-            font-weight: 600;
-            padding: 10px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-bottom: 24px;
-            
-        }
-
-        .galeri-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .tambah {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .btn-add {
-            background-color: #facc15;
-            color: white;
-            padding: 6px;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-right: 7px;
-        }
-
-        .p {
-            font-size: 17px;
-            font-weight: bold;
-            color: #001e74
-        }
-
-        .galeri-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 0 -10px;
-        }
-
-        .galeri-card {
-            flex: 1 1 calc(25% - 20px); /* 4 kolom */
-            max-width: calc(25% - 20px);
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            background-color: #f9f9f9;
-        }
-
-        .galeri-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .galeri-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #001e74;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .galeri-actions {
-            display: flex;
-            justify-content: center; /* posisikan tombol-tombol di tengah horizontal */
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
+        .header-section h1:hover::after { width: 100%;  left: 0;  transform: translateX(0);  box-shadow: 0 6px 20px rgba(250, 204, 21, 0.7); }
+        .add-button-group { display: flex; align-items: center; gap: 10px; }
+        .btn-add-file { background-color: #28a745; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .btn-add-file i { margin-right: 8px; }
+        .btn-add-file:hover { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
+        .galeri-grid { display: flex; flex-wrap: wrap; gap: 20px; margin: 0 -10px; }
+        .galeri-card { flex: 1 1 calc(25% - 20px); max-width: calc(25% - 20px); border: 1px solid #ccc; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; flex-direction: column; background-color: #f9f9f9; }
+        .galeri-card img { width: 100%; height: 100%; object-fit: cover; }
+        .galeri-title { font-size: 16px; font-weight: 600; color: #001e74; padding: 10px; text-align: center; }
+        .galeri-actions { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; }
         .galeri-actions .btn-edit,
         .galeri-actions .btn-delete {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            border: none;
-            background-color: #e0e7ff; /* warna biru muda */
-            color: #001e74;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            text-decoration: none; /* Hapus garis bawah */
-
+            display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 8px; border: none; background-color: #e0e7ff;
+            color: #001e74; font-size: 16px; transition: background-color 0.3s ease; text-decoration: none;
         }
-
-        .galeri-actions .btn-edit:hover {
-            background-color: #c7d2fe;
-            text-decoration: none; /* Hapus garis bawah */
-        }
-
-        .galeri-actions .btn-delete {
-            background-color: #fee2e2; /* warna merah muda */
-            color: #b91c1c;
-        }
-
-        .galeri-actions .btn-delete:hover {
-            background-color: #fecaca;
-        }
-
-
-        .btn-edit, .btn-delete {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
+        .galeri-actions .btn-edit:hover { background-color: #c7d2fe; text-decoration: none; }
+        .galeri-actions .btn-delete { background-color: #fee2e2; color: #b91c1c; }
+        .galeri-actions .btn-delete:hover { background-color: #fecaca; }
+        .btn-edit, .btn-delete { background: none; border: none; cursor: pointer; font-size: 18px }
         .btn-edit i { color: #007bff; }
         .btn-delete i { color: #dc3545; }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-            .modal-content {
-                background: white;
-                padding: 20px;
-                max-width: 400px;
-                margin: 100px auto;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-                text-align: center;
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4) }
+        .modal-content { background: white; padding: 20px; max-width: 400px; margin: 100px auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); text-align: center; }
+        .modal-content p { font-size: 18px; margin-bottom: 20px; }
+        .modal-buttons {display: flex; justify-content: center; gap: 10px; }
+        .btn-cancel, .btn-confirm, .btn-ok { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; }
+        .btn-cancel { background-color: gray; color: white; }
+        .btn-confirm { background-color: red; color: white; }
+        .btn-ok { background-color: green; color: white; }
+        @media (max-width: 1024px) {
+            .galeri-container { padding: 0px 60px; }
+            .galeri-card {flex: 1 1 calc(33.333% - 20px); max-width: calc(33.333% - 20px); }
             }
-
-            .modal-content p {
-                font-size: 18px;
-                margin-bottom: 20px;
+        @media (max-width: 768px) {
+            .galeri-container { padding: 0px 60px; }
+            .galeri-card { flex: 1 1 calc(50% - 20px); max-width: calc(50% - 20px); }
             }
-
-            .modal-buttons {
-                display: flex;
-                justify-content: center;
-                gap: 10px;
+        @media (max-width: 480px) {
+            .galeri-container { padding: 0px 60px; }
+            .galeri-card { flex: 1 1 100%; max-width: 100%; }
             }
-
-            .btn-cancel,
-            .btn-confirm,
-            .btn-ok {
-                padding: 10px 20px;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-weight: bold;
-                font-size: 14px;
-            }
-
-            .btn-cancel {
-                background-color: gray;
-                color: white;
-            }
-
-            .btn-confirm {
-                background-color: red;
-                color: white;
-            }
-
-            .btn-ok {
-                background-color: green;
-                color: white;
-            }
-
-            @media (max-width: 1024px) {
-                .galeri-card {
-                    flex: 1 1 calc(33.333% - 20px); /* 3 kolom */
-                    max-width: calc(33.333% - 20px);
-                }
-            }
-
-            @media (max-width: 768px) {
-                .galeri-card {
-                    flex: 1 1 calc(50% - 20px); /* 2 kolom */
-                    max-width: calc(50% - 20px);
-                }
-            }
-
-            @media (max-width: 480px) {
-                .galeri-card {
-                    flex: 1 1 100%; /* 1 kolom */
-                    max-width: 100%;
-                }
-            }
-
-
     </style>
 </head>
 <body>
 @extends('layouts.layout_admin')
 @section('content')
 <div class="galeri-container">
-    <div class="galeri-header">
+    <div class="header-section">
         <h1>Galeri</h1>
-        <div class="tambah">
-            <a href="{{ route('admin.galeri.create') }}" class="btn-add"><i class="fas fa-plus" style="font-size: 17px;"></i> </a>
-            <p class="p">Tambah Foto</p>
+        <div class="add-button-group">
+            <a href="{{ route('admin.galeri.create') }}" class="btn-add-file"><i class="fas fa-plus" style="font-size: 17px;"></i>Tambah Foto </a>
         </div>
     </div>
 
