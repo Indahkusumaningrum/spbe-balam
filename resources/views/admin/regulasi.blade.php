@@ -11,9 +11,9 @@
     .header-section h1:hover::after { width: 100%; left: 0; transform: translateX(0); box-shadow: 0 6px 20px rgba(250, 204, 21, 0.7); }
 
     .add-button-group { display: flex; align-items: center; gap: 10px; }
-    .btn-add-file { background-color: #28a745; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+    .btn-add-file { background-color: green; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
     .btn-add-file i { margin-right: 8px; }
-    .btn-add-file:hover { background-color: #218838; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
+    .btn-add-file:hover { background-color: darkgreen; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
     .add-button-group p { margin: 0; font-size: 15px; font-weight: 500; color: #555; }
 
     .data-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; margin-top: 20px; }
@@ -137,7 +137,7 @@
                 name="search" 
                 id="search-filter" 
                 class="form-control" 
-                placeholder="Cari judul atau konten..." value="{{ request('search') }}" style="width: 95%">
+                placeholder="Cari judul atau konten..." value="{{ request('search') }}" style="width: 92%">
             
             @if(request('search'))
             <span onclick="clearSearch()" 

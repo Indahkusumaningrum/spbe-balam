@@ -7,102 +7,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .form-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 14px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        }
-
-        h2 {
-            text-align: center;
-            color: #001e74;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #001e74;
-            text-align: left;
-        }
-
-        input[type="text"],
-        input[type="file"],
-        textarea {
-            width: 98%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
+        .form-container { max-width: 1200px; margin: 0 auto; background: white; padding: 40px; border-radius: 14px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        h2 { text-align: center; color: #001e74; font-weight: bold; margin-bottom: 30px; }
+        .form-label { display: block; font-size: 17px; font-weight: 600; margin-bottom: 8px; color: #001e74; text-align: left; }
+        input[type="text"], input[type="file"], textarea { width: 98%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; margin-bottom: 20px; transition: all 0.3s ease; }
         input[type="text"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #facc15;
-            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.2);
-        }
+        textarea:focus { outline: none; border-color: #facc15; box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.2); }
+        textarea { min-height: 150px; resize: vertical; }
+        .form-buttons { display: flex; justify-content: flex-end; gap: 10px; }
+        
+        .btn { padding: 10px 25px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px; }
+        .btn-green { background-color: green; color: white; }
+        .btn-red { background-color: red; color: white; text-decoration: none; display: inline-block; }
+        .btn-green:hover{ background-color: darkgreen; }
+        .btn-red:hover{ background-color: darkred }
 
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn-green {
-            background-color: green;
-            color: white;
-        }
-
-        .btn-red {
-            background-color: red;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-green:hover{
-            background-color: darkgreen;
-        }
-
-        .btn-red:hover{
-            background-color: darkred
-        }
-
-        .gambar {
-            margin-top: 10px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 30%;
-        }
+        .gambar { margin-top: 10px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 30%; }
     </style>
 
 </head>
 <body>
 @extends('layouts.layout_admin')
-@section('title', 'Manage Profile')
+@section('title', 'Manage Evaluasi')
 @section('content')
 
     <div class="form-container">
