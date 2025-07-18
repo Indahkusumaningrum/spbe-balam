@@ -9,5 +9,5 @@ class Regulasi extends Model
 {
     protected $table = 'regulations';
     
-    protected $fillable = ['kategori', 'judul', 'file_path'];
+    protected $fillable = ['kategori', 'judul','file_path']; 
 }

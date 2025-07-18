@@ -154,9 +154,7 @@
             .main .swiper-container .swiper-wrapper .swiper-slide .card-image img { height: auto;}
             .berita-section { padding: 40px 0px; }
             .berita-swiper-container { max-width: 960px; }
-            /* .berita-swiper-slide { padding: 15px; } */
             .berita-image-wrapper { height: 180px; }
-            /* .berita-content-wrapper { padding: 15px; } */
             .berita-title { font-size: 16px; -webkit-line-clamp: 3; }
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
@@ -182,7 +180,6 @@
             .berita-swiper-slide { padding: 0px; }
             .berita-swiper-slide img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.3s ease; }
             .berita-image-wrapper { height: 180px; }
-            /* .berita-content-wrapper { padding: 12px; } */
             .berita-title { font-size: 15px; -webkit-line-clamp: 3; }
             .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
             .modal-content { max-width: 90%; margin: auto;}
@@ -198,9 +195,7 @@
             .main .swiper-container .swiper-container .swiper-button-prev .arrow-icon { font-size: 24px; }
             .berita-section { padding: 40px 0px; }
             .berita-swiper-container { max-width: 400px; }
-            /* .berita-swiper-slide { padding: 10px; } */
             .berita-image-wrapper { height: 120px; }
-            /* .berita-content-wrapper { padding: 10px; } */
             .berita-title { font-size: 14px; -webkit-line-clamp: 4; }
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
@@ -213,11 +208,196 @@
             .custom-modal-content { margin: auto; max-width: 100%; width: 400px;}
             .custom-modal-header h2 { font-size: 20px;}
         }
+
+        /* --- Best Practice Apps Section --- */
+        .best-practice-section {
+            padding: 80px 0; /* Tambah padding vertikal */
+            background-color: #f8f9fa; /* Warna latar belakang lebih lembut */
+            text-align: center;
+        }
+
+        .best-practice-section h2 {
+            font-size: 36px; /* Ukuran font lebih besar */
+            color: #2c3e50;
+            margin-bottom: 50px; /* Jarak bawah lebih besar */
+            font-weight: 700; /* Tebal */
+            position: relative;
+            display: inline-block;
+            letter-spacing: 0.5px; /* Sedikit spasi antar huruf */
+        }
+
+        .best-practice-section h2::after {
+            content: '';
+            display: block;
+            width: 80px; /* Lebar underline lebih pendek */
+            height: 5px; /* Tebal underline */
+            background-color: #facc15; /* Warna kuning stabil */
+            margin: 15px auto 0; /* Posisi underline */
+            border-radius: 3px;
+        }
+
+        /* Container untuk layout grid */
+        .app-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsif grid */
+            gap: 30px; /* Jarak antar kartu */
+            max-width: 1200px; /* Lebar maksimum container */
+            margin: 0 auto; /* Tengah-tengah */
+            padding: 0 20px; /* Padding samping untuk responsivitas */
+        }
+
+        .app-card {
+            background: #ffffff;
+            border-radius: 12px; /* Radius sudut lebih lembut */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Shadow yang lebih halus */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 30px; /* Padding internal kartu */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            height: 100%; /* Memastikan tinggi kartu sama */
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px); /* Efek angkat lebih jelas */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Shadow lebih gelap saat hover */
+        }
+
+        .app-card img {
+            width: 100px; /* Ukuran ikon tetap */
+            height: 100px; /* Ukuran ikon tetap */
+            margin: 0 auto 25px; /* Jarak bawah ikon */
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover img {
+            transform: scale(1.08); /* Ikon membesar sedikit saat hover */
+        }
+
+        .app-card h3 {
+            font-size: 22px; /* Ukuran judul lebih besar */
+            font-weight: 700; /* Lebih tebal */
+            color: #1a202c; /* Warna judul lebih gelap */
+            line-height: 1.3;
+            margin-bottom: 12px; /* Jarak bawah judul */
+        }
+
+        .app-card p {
+            font-size: 15px; /* Ukuran deskripsi lebih besar */
+            color: #555; /* Warna teks deskripsi */
+            min-height: 45px; /* Memastikan tinggi deskripsi minimal */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Batasi 2 baris */
+            -webkit-box-orient: vertical;
+        }
+
+        /* Responsiveness for grid */
+        @media (max-width: 768px) {
+            .app-grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Kolom lebih rapat di tablet */
+                gap: 20px;
+            }
+            .best-practice-section h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-grid-container {
+                grid-template-columns: 1fr; /* Satu kolom di mobile */
+                gap: 20px;
+                padding: 0 15px;
+            }
+            .best-practice-section {
+                padding: 50px 0;
+            }
+            .best-practice-section h2 {
+                font-size: 26px;
+                margin-bottom: 30px;
+            }
+            .app-card {
+                padding: 25px;
+            }
+            .app-card img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+            .app-card h3 {
+                font-size: 20px;
+            }
+            .app-card p {
+                font-size: 14px;
+            }
+        }
+
+        .app-swiper-container {  max-width: 100%; padding-bottom: 40px; overflow: hidden; margin: 0 auto; }
+        .app-swiper-wrapper { display: flex; }
+        .app-swiper-slide {
+            background: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: left; display: flex; flex-direction: column; height: auto; width: 380px; overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+        }
+        .app-swiper-slide:not(.swiper-slide-active) { opacity: 0.7; transform: scale(0.9); }
+        .app-swiper-slide-active { opacity: 1; transform: scale(1); }
+        .app-swiper-slide:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
+        
+
+
+        .app-card-link {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            padding: 20px;
+        }
+
+        .app-swiper-slide img {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .app-swiper-slide h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #001e74;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .app-swiper-slide p {
+            font-size: 14px;
+            color: #777;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .app-carousel-nav {
+            display: none;
+        }
     </style>
 </head>
 <body>
 @section('navbar', true)
-@extends('layouts.layout_user')
+@extends('layouts.layout_user') {{-- Asumsi ini adalah blade layout Anda --}}
+
 @section('content')
 <main class="main">
     <div class="swiper-container">
@@ -274,9 +454,9 @@
         </div>
         <div class="info-card">
             <img src="{{ asset('asset/icon/kegiatan.png') }}" alt="Kegiatan" class="info-icon">
-            <h3>Kegiatan</h3>
-            <p>Maka inti dari kegiatan SPBE adalah membangun layanan publik yang berkualitas, dengan didukung kesiapan pada aplikasi, infrastruktur dan keamanan SPBE.</p>
-            <a href="#" class="btn-selengkapnya">Selengkapnya</a>
+            <h3>Evaluasi</h3>
+            <p>Hasil Evaluasi SPBE.</p>
+            <a href="#evaluasi-section" class="btn-selengkapnya">Selengkapnya</a>
         </div>
     </div>
 
@@ -337,7 +517,7 @@
                             </div>
                             <div class="berita-content-wrapper">
                                 <h3 class="berita-title">{{ $berita->judul }}</h3>
-                                    <span class="berita-date"><i class="far fa-calendar-alt"></i> {{ $berita->created_at->format('d M Y') }}</span>
+                                <span class="berita-date"><i class="far fa-calendar-alt"></i> {{ $berita->created_at->format('d M Y') }}</span>
                             </div>
                         </a>
                     </div>
@@ -356,7 +536,7 @@
     </div>
 
     {{-- Section Evaluasi --}}
-    <div class="evaluasi-section">
+    <div class="evaluasi-section" id="evaluasi-section">
         <h2>Hasil Evaluasi </h2>
         <div class="evaluasi-swiper-container">
             <div class="swiper-wrapper evaluasi-swiper-wrapper">
@@ -385,7 +565,67 @@
         </div>
     </div>
 
-    <!-- Modal Bootstrap-like -->
+    {{-- Section Best Practice Apps --}}
+    <d class="best-practice-section">
+        <h2>Best Practice</h2>
+        <div class="app-swiper-container">
+            <div class="app-swiper-wrapper">
+                <div class="app-swiper-slide">
+                    <a href="https://satudata.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
+                        <h3>Satu Data</h3>
+                        <p>Layanan Data Terbuka</p>
+                    </a>
+                </div>
+                <div class="app-swiper-slide">
+                    <a href="https://jdih.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
+                        <h3>JDIH</h3>
+                        <p>Jaringan Dokumentasi dan Informasi hukum</p>
+                    </a>
+                </div>
+                <div class="app-swiper-slide">
+                    <a href="https://bandarlampungkota.go.id/new/egov.html" class="app-card-link" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('asset/icon/logo-bandar-lampung.png') }}" alt="e-gov">
+                        <h3>E-Goverment</h3>
+                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </a>
+                </div>
+                <div class="app-swiper-slide">
+                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card-link" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
+                        <h3>SPSE</h3>
+                        <p>Sistem Pengadaan Secara Elektronik</p>
+                    </a>
+                </div>
+                <div class="app-swiper-slide">
+                    <a href="https://seribuwajah.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV" style= "width:100px; height:100px;">
+                        <h3>CCTV Seribu Wajah</h3>
+                        <p>Sistem Monitoring CCTV</p>
+                    </a>
+                </div>
+                <div class="app-swiper-slide">
+                    <a href="https://jdih.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
+                        <h3>JDIH</h3>
+                        <p>Jaringan Dokumentasi dan Informasi hukum</p>
+                    </a>
+                </div>
+                <div class="app-swiper-slide">
+                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card-link">
+                        <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
+                        <h3>SPSE</h3>
+                        <p>Sistem Pengadaan Secara Elektronik</p>
+                    </a>
+                </div>
+                
+            </div>
+            {{-- Navigation buttons are intentionally removed for this section --}}
+        </div>
+    </div><section class="best-practice-section">
+
+
     <div class="custom-modal" id="popupModal">
         <div class="custom-modal-content">
             <div class="custom-modal-header">
@@ -396,8 +636,6 @@
         </div>
     </div>
 
-
-    <!-- Modal Image Preview -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImage">
@@ -409,6 +647,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.esm.bundle.min.js"></script>
 <script>
+    // Main Banner Swiper
     var swiper = new Swiper(".swiper-container", {
         effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto', loop: true, speed: 1000,
         coverflowEffect: { rotate: 30, stretch: 20, depth: 100, modifier: 1, slideShadows: true, },
@@ -421,6 +660,7 @@
         }
     });
 
+    // Berita Swiper
     var swiperBerita = new Swiper(".berita-swiper-container", {
         effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
         coverflowEffect: { rotate: 0, stretch: -40, depth: 100, modifier: 1, slideShadows: true, },
@@ -434,6 +674,7 @@
         }
     });
 
+    // Evaluasi Swiper
     var swiperEvaluasi = new Swiper(".evaluasi-swiper-container", {
         effect: 'slide', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
         autoplay: { delay: 5000, disableOnInteraction: false },
@@ -448,7 +689,20 @@
         }
     });
 
-     function openModal(imageSrc, title = "Hasil Evaluasi") {
+    var swiperApp = new Swiper(".app-swiper-container", {
+        effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
+        coverflowEffect: { rotate: 0, stretch: -40, depth: 100, modifier: 1, slideShadows: true, },
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        pagination: { el: ".berita-swiper-pagination", clickable: true, },
+        navigation: { nextEl: ".berita-swiper-button-next", prevEl: ".berita-swiper-button-prev" },
+        breakpoints: {
+            640: { slidesPerView: 1.5, spaceBetween: 5, },
+            768: { slidesPerView: 1, spaceBetween: 15,},
+            1024: { slidesPerView: 3, spaceBetween: 5, },
+        }
+    });
+
+    function openModal(imageSrc, title = "Hasil Evaluasi") {
         document.getElementById("modalImage").src = imageSrc;
         document.getElementById("modalTitle").innerText = title;
         document.getElementById("popupModal").style.display = "block";
@@ -464,8 +718,6 @@
             modal.style.display = "none";
         }
     }
-
-
 </script>
 @endpush
 </body>
