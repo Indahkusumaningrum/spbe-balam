@@ -99,16 +99,16 @@
             <a href="{{ route('admin.tahapan_spbe') }}" class="btn-selengkapnya">Manage</a>
         </div>
         <div class="info-card">
+            <div class="info-card">
+                <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
+                <h3>Evaluasi</h3>
+                <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
+                <a href="{{ route('admin.evaluasi') }}" class="btn-selengkapnya">Manage</a>
+            </div>
             <img src="{{ asset('asset/icon/kegiatan.png') }}" alt="Kegiatan" class="info-icon">
             <h3>Kegiatan</h3>
             <p>Maka inti dari kegiatan SPBE adalah membangun layanan publik yang berkualitas, dengan didukung kesiapan pada aplikasi, infrastruktur dan keamanan SPBE.</p>
             <a href="#" class="btn-selengkapnya">Manage</a>
-        </div>
-        <div class="info-card">
-            <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
-            <h3>Evaluasi</h3>
-            <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
-            <a href="{{ route('admin.evaluasi') }}" class="btn-selengkapnya">Manage</a>
         </div>
     </div>
 @endsection
