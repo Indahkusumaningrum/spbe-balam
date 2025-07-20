@@ -16,6 +16,8 @@ use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\IndikatorController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\AspectController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\AdminContactController;
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])
@@ -99,10 +101,35 @@ Route::get('/berita/index', [UserBeritaController::class, 'index'])->name('berit
 Route::get('/berita/{id_berita}', [UserBeritaController::class, 'show'])->name('berita.show');
 
 
-//KONTAK
+#KONTAK
+
+Route::post('/contact', [EmailController::class, 'store'])->name('contact.store');
+
+//USER
 Route::get('/kontak', function () {
     return view('kontak_show_user');
 })->name('kontak.user');
+
+//ADMIN
+// Admin routes (with auth middleware)
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+
+    Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
+    Route::get('/contact/{id}', [AdminContactController::class, 'show'])->name('admin.contact.show');
+    Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.destroy');
+    Route::get('/contact/count', [AdminContactController::class, 'getCount'])->name('admin.contact.count');
+     // Routes untuk menandai sebagai sudah dibaca
+    Route::get('/contact/{id}/read', [AdminContactController::class, 'markAsReadFromEmail'])->name('admin.contact.read');
+    Route::post('/contact/{id}/mark-read', [AdminContactController::class, 'markAsRead'])->name('admin.contact.mark-read');
+    
+    // Ajax route untuk update status
+    Route::patch('/contact/{id}/status', [AdminContactController::class, 'updateStatus'])->name('admin.contact.update-status');
+    
+    // API route untuk mendapatkan jumlah pesan
+    Route::get('/contact/api/count', [AdminContactController::class, 'count'])->name('admin.contact.count');
+});
+
+
 
 
 

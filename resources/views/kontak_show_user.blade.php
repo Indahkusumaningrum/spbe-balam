@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('asset/img/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -54,6 +55,42 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: start;
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Contact Form */
@@ -144,6 +181,12 @@
             box-shadow: 0 10px 25px rgba(250, 204, 21, 0.4);
         }
 
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* Contact Info */
         .contact-info {
             display: flex;
@@ -215,37 +258,24 @@
             margin-left: 65px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .spbe-navbar {
-                padding: 15px 20px;
-            }
-
-            .spbe-navbar .menu {
-                font-size: 14px;
-                gap: 15px;
-            }
-
-            .contact-section {
-                padding: 60px 20px;
-            }
-
-            .contact-header h1 {
-                font-size: 2rem;
-            }
+        .info-details a {
+            color: #001e74;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        /* Animation for form validation */
+        .info-details a:hover {
+            color: #facc15;
+        }
+
+        /* Error Messages */
+        .error-message {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: 5px;
+            display: block;
+        }
+
         .form-group.error input,
         .form-group.error textarea {
             border-color: #ef4444;
@@ -263,247 +293,275 @@
             border-color: #22c55e;
         }
 
-        /* Loading state for submit button */
-        .submit-btn.loading {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .submit-btn.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
             width: 20px;
             height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 2px solid transparent;
-            border-top: 2px solid white;
+            border: 2px solid #ffffff;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-section {
+                padding: 60px 20px;
+            }
+
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
+
 @section('navbar', true)
 @extends('layouts.layout_user')
 @section('content')
 
-    <section class="contact-section">
-        <div class="contact-container">
-            <div class="contact-header">
-                <h1>Hubungi Kami</h1>
-                <p style="color: #64748b; font-size: 1.1rem; margin-top: 15px;">
-                    Kami siap membantu Anda dengan segala pertanyaan dan kebutuhan informasi SPBE
-                </p>
+<section class="contact-section">
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>Hubungi Kami</h1>
+            <p style="color: #64748b; font-size: 1.1rem; margin-top: 15px;">
+                Kami siap membantu Anda dengan segala pertanyaan dan kebutuhan informasi SPBE
+            </p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Kirim Pesan</h2>
+                
+                <div id="alert" class="alert"></div>
+                
+                <form id="contactForm">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Nama Lengkap" required>
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        <span class="error-message" id="message-error"></span>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span id="btnText">Kirim Pesan</span>
+                    </button>
+                </form>
             </div>
 
-            <div class="contact-content">
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h2>Kirim Pesan</h2>
-                    <form id="contactForm" onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Nama Lengkap" required>
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submitBtn">
-                            <span id="btnText">Kirim Pesan</span>
-                        </button>
-                    </form>
+                        <h3 class="info-title">Alamat</h3>
+                    </div>
+                    <div class="info-details">
+                        Jl. Dr. Susilo No.2, Sumur Batu, Teluk Betung Utara, Kota Bandar Lampung, Lampung 35212
+                    </div>
                 </div>
 
-                <!-- Contact Info -->
-                <div class="contact-info">
-                    <div class="info-card">
-                        <div class="info-header">
-                            <div class="info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <h3 class="info-title">Alamat</h3>
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
                         </div>
-                        <div class="info-details">
-                            Jl. Dr. Susilo No.2, Sumur Batu, Teluk Betung Utara, Kota Bandar Lampung, Lampung 35212
-                        </div>
+                        <h3 class="info-title">Telepon</h3>
                     </div>
-
-                    <div class="info-card">
-                        <div class="info-header">
-                            <div class="info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <h3 class="info-title">Telepon</h3>
-                        </div>
-                        <div class="info-details">
-                            (0721) 123456<br>
-                            (0721) 252041
-                        </div>
+                    <div class="info-details">
+                        <a href="tel:0721123456">(0721) 123456</a><br>
+                        <a href="tel:0721252041">(0721) 252041</a>
                     </div>
+                </div>
 
-                    <div class="info-card">
-                        <div class="info-header">
-                            <div class="info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h3 class="info-title">Email</h3>
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        <div class="info-details">
-                            spbe@pemkotbandarlamp.go.id<br>
-                            spbe@bandarlampung.go.id
+                        <h3 class="info-title">Email</h3>
+                    </div>
+                    <div class="info-details">
+                        <a href="mailto:spbe@pemkotbandarlampung.go.id">spbe@pemkotbandarlampung.go.id</a><br>
+                        <a href="mailto:spbe@bandarlampung.go.id">spbe@bandarlampung.go.id</a>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-header">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
                         </div>
+                        <h3 class="info-title">Jam Operasional</h3>
+                    </div>
+                    <div class="info-details">
+                        Senin - Jumat: 08:00 - 16:00 WIB<br>
+                        Sabtu: 08:00 - 12:00 WIB<br>
+                        Minggu: Tutup
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 @endsection
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const alert = document.getElementById('alert');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
 
-    <script>
-        // Form validation and submission
-        function handleSubmit(event) {
-            event.preventDefault();
+    // Setup CSRF token for AJAX requests
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            const form = event.target;
-            const name = document.getElementById('name');
-            const email = document.getElementById('email');
-            const message = document.getElementById('message');
-            const submitBtn = document.getElementById('submitBtn');
-            const btnText = document.getElementById('btnText');
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Reset previous states
+        clearErrors();
+        hideAlert();
+        
+        // Get form data
+        const formData = new FormData(form);
+        
+        // Show loading state
+        showLoading();
+        
+        try {
+            const response = await fetch('{{ route("contact.store") }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json',
+                },
+                body: formData
+            });
 
-            // Reset previous states
-            clearValidationStates();
+            const result = await response.json();
 
-            // Validate form
-            let isValid = true;
-
-            if (!name.value.trim()) {
-                showFieldError(name, 'Nama harus diisi');
-                isValid = false;
-            } else if (name.value.trim().length < 2) {
-                showFieldError(name, 'Nama minimal 2 karakter');
-                isValid = false;
+            if (result.success) {
+                showAlert('success', result.message);
+                form.reset();
+                clearErrors();
             } else {
-                showFieldSuccess(name);
-            }
-
-            if (!email.value.trim()) {
-                showFieldError(email, 'Email harus diisi');
-                isValid = false;
-            } else if (!isValidEmail(email.value)) {
-                showFieldError(email, 'Format email tidak valid');
-                isValid = false;
-            } else {
-                showFieldSuccess(email);
-            }
-
-            if (!message.value.trim()) {
-                showFieldError(message, 'Pesan harus diisi');
-                isValid = false;
-            } else if (message.value.trim().length < 10) {
-                showFieldError(message, 'Pesan minimal 10 karakter');
-                isValid = false;
-            } else {
-                showFieldSuccess(message);
-            }
-
-            if (isValid) {
-                // Show loading state
-                submitBtn.classList.add('loading');
-                btnText.textContent = 'Mengirim...';
-                submitBtn.disabled = true;
-
-                // Simulate API call
-                setTimeout(() => {
-                    alert('Pesan berhasil dikirim! Terima kasih telah menghubungi kami.');
-                    form.reset();
-                    clearValidationStates();
-
-                    // Reset button state
-                    submitBtn.classList.remove('loading');
-                    btnText.textContent = 'Kirim Pesan';
-                    submitBtn.disabled = false;
-                }, 2000);
-            }
-        }
-
-        function showFieldError(field, message) {
-            const formGroup = field.closest('.form-group');
-            formGroup.classList.add('error');
-            formGroup.classList.remove('success');
-
-            // Remove existing error message
-            const existingError = formGroup.querySelector('.error-message');
-            if (existingError) {
-                existingError.remove();
-            }
-
-            // Add error message
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.style.color = '#ef4444';
-            errorDiv.style.fontSize = '14px';
-            errorDiv.style.marginTop = '5px';
-            errorDiv.textContent = message;
-            formGroup.appendChild(errorDiv);
-        }
-
-        function showFieldSuccess(field) {
-            const formGroup = field.closest('.form-group');
-            formGroup.classList.add('success');
-            formGroup.classList.remove('error');
-
-            // Remove error message
-            const existingError = formGroup.querySelector('.error-message');
-            if (existingError) {
-                existingError.remove();
-            }
-        }
-
-        function clearValidationStates() {
-            const formGroups = document.querySelectorAll('.form-group');
-            formGroups.forEach(group => {
-                group.classList.remove('error', 'success');
-                const errorMessage = group.querySelector('.error-message');
-                if (errorMessage) {
-                    errorMessage.remove();
+                if (result.errors) {
+                    showValidationErrors(result.errors);
+                } else {
+                    showAlert('error', result.message || 'Terjadi kesalahan saat mengirim pesan');
                 }
-            });
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('error', 'Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.');
+        } finally {
+            hideLoading();
         }
+    });
 
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
+    function showLoading() {
+        submitBtn.disabled = true;
+        btnText.innerHTML = '<span class="loading-spinner"></span>Mengirim...';
+    }
 
-        function showAlert(page) {
-            alert(`Navigasi ke halaman ${page} akan diimplementasikan`);
-        }
+    function hideLoading() {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Kirim Pesan';
+    }
 
-        // Add smooth scrolling for better UX
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add focus events for better form interaction
-            const inputs = document.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.closest('.form-group').classList.add('focused');
-                });
+    function showAlert(type, message) {
+        alert.className = `alert alert-${type} show`;
+        alert.textContent = message;
+        
+        // Auto hide after 5 seconds
+        setTimeout(() => {
+            hideAlert();
+        }, 5000);
+    }
 
-                input.addEventListener('blur', function() {
-                    this.closest('.form-group').classList.remove('focused');
-                });
-            });
+    function hideAlert() {
+        alert.classList.remove('show');
+    }
+
+    function showValidationErrors(errors) {
+        Object.keys(errors).forEach(field => {
+            const errorElement = document.getElementById(`${field}-error`);
+            const inputElement = document.getElementById(field);
+            
+            if (errorElement && inputElement) {
+                errorElement.textContent = errors[field][0];
+                inputElement.closest('.form-group').classList.add('error');
+            }
         });
-    </script>
+    }
+
+    function clearErrors() {
+        document.querySelectorAll('.error-message').forEach(element => {
+            element.textContent = '';
+        });
+        
+        document.querySelectorAll('.form-group').forEach(group => {
+            group.classList.remove('error', 'success');
+        });
+    }
+
+    // Real-time validation
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            const formGroup = this.closest('.form-group');
+            const errorElement = document.getElementById(`${this.name}-error`);
+            
+            if (this.value.trim() !== '') {
+                formGroup.classList.remove('error');
+                formGroup.classList.add('success');
+                if (errorElement) {
+                    errorElement.textContent = '';
+                }
+            }
+        });
+
+        input.addEventListener('focus', function() {
+            this.closest('.form-group').classList.add('focused');
+        });
+
+        input.addEventListener('blur', function() {
+            this.closest('.form-group').classList.remove('focused');
+        });
+    });
+});
+</script>
+
 </body>
 </html>
