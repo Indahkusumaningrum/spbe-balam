@@ -65,7 +65,7 @@ class IndikatorController extends Controller
     }
 
 
-    
+
 
     public function edit($id)
     {
@@ -142,4 +142,44 @@ class IndikatorController extends Controller
         // Pastikan Anda melewatkan semua variabel yang dibutuhkan ke view
         return view('admin.indikator_per_tahun', compact('tahun', 'indikators', 'domains', 'allAspects'));
     }
+
+    // Menampilkan halaman pemilihan tahun untuk user
+public function userIndex(Request $request)
+{
+    $tahunList = Tahun::orderBy('tahun', 'asc')->get();
+    $tahunTerpilih = $request->input('tahun');
+
+    return view('indikator_show', compact('tahunList', 'tahunTerpilih'));
+}
+
+// Menampilkan indikator sesuai tahun yang dipilih user
+public function userIndikatorByTahun(Request $request, Tahun $tahun)
+{
+    $domains = Domain::all();
+    $allAspects = Aspect::all();
+
+    $indikators = Indikator::whereHas('aspect', function($query) use ($tahun) {
+        $query->where('tahun_id', $tahun->id);
+    });
+
+    // Filter domain, aspek, dan pencarian jika ada dari form user
+    if ($request->filled('filter_domain')) {
+        $indikators->whereHas('aspect.domain', function($query) use ($request) {
+            $query->where('id', $request->filter_domain);
+        });
+    }
+
+    if ($request->filled('filter_aspect')) {
+        $indikators->where('aspect_id', $request->filter_aspect);
+    }
+
+    if ($request->filled('search_indikator')) {
+        $indikators->where('nama', 'like', '%' . $request->search_indikator . '%');
+    }
+
+    $indikators = $indikators->get();
+
+    return view('indikator_list_tahun', compact('tahun', 'indikators', 'domains', 'allAspects'));
+}
+
 }

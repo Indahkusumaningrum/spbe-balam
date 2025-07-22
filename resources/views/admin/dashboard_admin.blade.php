@@ -7,77 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body{
-            background-color: white;
-        }
-
-        .spbe-info-section {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            padding: 40px 20px;
-            background-color: #ffffff;
-        }
-
-        .btn-selengkapnya {
-            display: inline-block;
-            background-color: #ffae00;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-selengkapnya:hover {
-            transform: scale(1.05);
-        }
-
-        .info-card {
-            width: 200px;
-            background-color: white;
-            border: 1.5px solid #facc15;
-            border-radius: 16px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-            padding: 24px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .info-card:hover {
-            transform: translateY(-20px);
-        }
-
-        .info-card .info-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 12px;
-        }
-
-        .info-card h3 {
-            font-size: 18px;
-            margin: 0 0 8px;
-            color: #000;
-        }
-
-        .info-card p {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 16px;
-        }
-
-        .info-card a {
-            color: white;
-            font-weight: 600;
-        }
-
-        .info-card .info-icon {
-            height: 90px;
-            width: 90px;
-        }
+        body{ background-color: white; }
+        .btn-selengkapnya { display: inline-block; background-color: #ffae00; color: white; padding: 8px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; }
+        .btn-selengkapnya:hover { transform: scale(1.05); }
+        .spbe-info-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 50px; padding: 40px 20px; background-color: #ffffff; }
+        .info-card { width: 250px; min-width: 250px; max-width: 100%; border: 1.5px solid #facc15; border-radius: 16px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); padding: 24px; text-align: center; transition: transform 0.3s; }
+        .info-card:hover { transform: translateY(-20px); }
+        .info-card .info-icon { width: 90px; height: 90px; margin-bottom: 15px; }
+        .info-card h3 { font-size: 18px; margin: 0 0 8px; color: #000; }
+        .info-card p { font-size: 14px; color: #333; margin-bottom: 16px; }
+        .info-card a { color: white; font-weight: 600; }
+        .info-card .info-icon { height: 90px; width: 90px; }
     </style>
 </head>
 <body>
@@ -97,12 +37,6 @@
             <h3>Tahapan SPBE</h3>
             <p>Terbagi dalam Peta Rencana SPBE yaitu: Tahapan Rencana Strategis, Tahapan Pembangunan Fondasi SPBE, Tahapan Pengembangan SPBE, dan Inisiatif Strategis</p>
             <a href="{{ route('admin.tahapan_spbe') }}" class="btn-selengkapnya">Manage</a>
-        </div>
-        <div class="info-card">
-            <img src="{{ asset('asset/icon/kegiatan.png') }}" alt="Kegiatan" class="info-icon">
-            <h3>Kegiatan</h3>
-            <p>Maka inti dari kegiatan SPBE adalah membangun layanan publik yang berkualitas, dengan didukung kesiapan pada aplikasi, infrastruktur dan keamanan SPBE.</p>
-            <a href="#" class="btn-selengkapnya">Manage</a>
         </div>
         <div class="info-card">
             <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">

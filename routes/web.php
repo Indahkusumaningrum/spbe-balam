@@ -166,7 +166,13 @@ Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'd
 
 
 // Untuk publik
-Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
+// Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
+// Untuk user memilih tahun terlebih dahulu
+Route::get('/indikator', [IndikatorController::class, 'userIndex'])->name('indikator.show');
+
+// Untuk melihat indikator berdasarkan tahun
+Route::get('/indikator/tahun/{tahun}', [IndikatorController::class, 'userIndikatorByTahun'])->name('indikator.tahun');
+
 
 // Untuk admin
 Route::prefix('admin')->name('admin.')->group(function () {
