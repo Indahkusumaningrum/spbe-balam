@@ -336,61 +336,79 @@
                 font-size: 14px;
             }
         }
-
-        .app-swiper-container {  max-width: 100%; padding-bottom: 40px; overflow: hidden; margin: 0 auto; }
-        .app-swiper-wrapper { display: flex; }
-        .app-swiper-slide {
-            background: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); text-align: left; display: flex; flex-direction: column; height: auto; width: 380px; overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, width 0.3s ease;
-        }
-        .app-swiper-slide:not(.swiper-slide-active) { opacity: 0.7; transform: scale(0.9); }
-        .app-swiper-slide-active { opacity: 1; transform: scale(1); }
-        .app-swiper-slide:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
-        
-
-
-        .app-card-link {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            text-decoration: none;
-            color: inherit;
-            padding: 20px;
-        }
-
-        .app-swiper-slide img {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px;
-            object-fit: contain;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .app-swiper-slide:hover img {
-            transform: scale(1.05);
-        }
-
-        .app-swiper-slide h3 {
-            font-size: 18px;
-            font-weight: bold;
-            color: #001e74;
-            line-height: 1.3;
-            margin-bottom: 10px;
-        }
-
-        .app-swiper-slide p {
-            font-size: 14px;
-            color: #777;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
         .app-carousel-nav {
             display: none;
+        }
+
+        /* Style for banner text overlay */
+        .swiper-slide .banner-text-overlay {
+            position: absolute; /* Posisikan teks secara absolut di atas gambar */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* Gunakan flexbox untuk penataan teks */
+            flex-direction: column; /* Teks akan tersusun vertikal */
+            justify-content: center; /* Pusatkan teks secara vertikal */
+            align-items: flex-start; /* Ratakan teks ke kiri */
+            padding: 0 50px; /* Beri padding di sisi kiri dan kanan */
+            color: white; /* Warna teks */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Efek bayangan agar teks lebih terbaca */
+            text-align: left; /* Pastikan teks rata kiri */
+            pointer-events: none; /* Agar klik pada teks tetap mengaktifkan link di belakangnya */
+            z-index: 2; /* Pastikan teks di atas gambar */
+        }
+
+        .swiper-slide .banner-text-overlay h1 {
+            font-size: 40px;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        .swiper-slide .banner-text-overlay p {
+            font-size: 18px; /* Ukuran font untuk paragraf */
+            margin: 5px 0;
+            line-height: 1.3;
+        }
+
+        /* Penyesuaian responsif untuk teks banner */
+        @media (max-width: 1024px) {
+            .swiper-slide .banner-text-overlay {
+                padding: 0 40px;
+            }
+            .swiper-slide .banner-text-overlay h1 {
+                font-size: 2.5em;
+            }
+            .swiper-slide .banner-text-overlay p {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .swiper-slide .banner-text-overlay {
+                padding: 0 25px;
+            }
+            .swiper-slide .banner-text-overlay h1 {
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+            .swiper-slide .banner-text-overlay p {
+                font-size: 1em;
+                margin: 2px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper-slide .banner-text-overlay {
+                padding: 0 15px;
+            }
+            .swiper-slide .banner-text-overlay h1 {
+                font-size: 1.4em;
+            }
+            .swiper-slide .banner-text-overlay p {
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -403,6 +421,18 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             {{-- Main Banner Slides --}}
+
+            <div class="swiper-slide">
+                <a href="https://example.com/page3" target="_blank" class="card-link">
+                    <div class="card-image"><img src="/asset/img/4.png" alt="Image Slider"></div>
+                    <div class="banner-text-overlay">
+                        <h1>Selamat Datang</h1>
+                        <p>di website Sistem Pemerintahan</p>
+                        <p>Berbasis Elektronik</p>
+                        <p>Kota Bandar Lampung</p>
+                    </div>
+                </a>
+            </div>
             <div class="swiper-slide">
                 <a href="https://tauval.spbe.go.id/" target="_blank" class="card-link">
                     <div class="card-image"><img src="/asset/img/1.png" alt="Image Slider"></div>
@@ -415,24 +445,10 @@
             </div>
             <div class="swiper-slide">
                 <a href="https://example.com/page3" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/2.png" alt="Image Slider"></div>
+                    <div class="card-image"><img src="/asset/img/3.png" alt="Image Slider"></div>
                 </a>
             </div>
-            <div class="swiper-slide">
-                <a href="https://example.com/page4" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/1.png" alt="Image Slider"></div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="https://example.com/page5" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/1.png" alt="Image Slider"></div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="https://example.com/page6" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/2.png" alt="Image Slider"></div>
-                </a>
-            </div>
+            
         </div>
         <div class="swiper-button-next"><i class="fas fa-chevron-circle-right arrow-icon"></i></div>
         <div class="swiper-button-prev"><i class="fas fa-chevron-circle-left arrow-icon"></i></div>
@@ -565,65 +581,46 @@
         </div>
     </div>
 
-    {{-- Section Best Practice Apps --}}
-    <d class="best-practice-section">
-        <h2>Best Practice</h2>
-        <div class="app-swiper-container">
-            <div class="app-swiper-wrapper">
-                <div class="app-swiper-slide">
-                    <a href="https://satudata.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
-                        <h3>Satu Data</h3>
-                        <p>Layanan Data Terbuka</p>
-                    </a>
-                </div>
-                <div class="app-swiper-slide">
-                    <a href="https://jdih.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
-                        <h3>JDIH</h3>
-                        <p>Jaringan Dokumentasi dan Informasi hukum</p>
-                    </a>
-                </div>
-                <div class="app-swiper-slide">
-                    <a href="https://bandarlampungkota.go.id/new/egov.html" class="app-card-link" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('asset/icon/logo-bandar-lampung.png') }}" alt="e-gov">
-                        <h3>E-Goverment</h3>
-                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </a>
-                </div>
-                <div class="app-swiper-slide">
-                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card-link" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
-                        <h3>SPSE</h3>
-                        <p>Sistem Pengadaan Secara Elektronik</p>
-                    </a>
-                </div>
-                <div class="app-swiper-slide">
-                    <a href="https://seribuwajah.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV" style= "width:100px; height:100px;">
-                        <h3>CCTV Seribu Wajah</h3>
-                        <p>Sistem Monitoring CCTV</p>
-                    </a>
-                </div>
-                <div class="app-swiper-slide">
-                    <a href="https://jdih.bandarlampungkota.go.id/" class="app-card-link" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
-                        <h3>JDIH</h3>
-                        <p>Jaringan Dokumentasi dan Informasi hukum</p>
-                    </a>
-                </div>
-                <div class="app-swiper-slide">
-                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card-link">
-                        <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
-                        <h3>SPSE</h3>
-                        <p>Sistem Pengadaan Secara Elektronik</p>
-                    </a>
-                </div>
-                
-            </div>
-            {{-- Navigation buttons are intentionally removed for this section --}}
-        </div>
-    </div><section class="best-practice-section">
+    <div class="best-practice-section">
+    <h2>Aplikasi</h2>
+    <div class="app-grid-container">
+        <a href="https://satudata.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
+            <h3>Satu Data</h3>
+            <p>Layanan Data Terbuka</p>
+        </a>
+        <a href="https://jdih.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
+            <h3>JDIH</h3>
+            <p>Jaringan Dokumentasi dan Informasi hukum</p>
+        </a>
+        <a href="https://bandarlampungkota.go.id/new/egov.html" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-bandar-lampung.png') }}" alt="e-gov">
+            <h3>E-Goverment</h3>
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </a>
+        <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
+            <h3>SPSE</h3>
+            <p>Sistem Pengadaan Secara Elektronik</p>
+        </a>
+        <a href="https://seribuwajah.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV" style= "width:100px; height:100px;">
+            <h3>CCTV Seribu Wajah</h3>
+            <p>Sistem Monitoring CCTV</p>
+        </a>
+        <a href="https://jdih.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
+            <h3>JDIH</h3>
+            <p>Jaringan Dokumentasi dan Informasi hukum</p>
+        </a>
+        <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
+            <h3>SPSE</h3>
+            <p>Sistem Pengadaan Secara Elektronik</p>
+        </a>
+    </div>
+</div>
 
 
     <div class="custom-modal" id="popupModal">
@@ -686,19 +683,6 @@
             640: { slidesPerView: 1, spaceBetween: 20, },
             768: { slidesPerView: 1, spaceBetween: 20,},
             1024: { slidesPerView: 1, spaceBetween: 20, },
-        }
-    });
-
-    var swiperApp = new Swiper(".app-swiper-container", {
-        effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
-        coverflowEffect: { rotate: 0, stretch: -40, depth: 100, modifier: 1, slideShadows: true, },
-        autoplay: { delay: 5000, disableOnInteraction: false },
-        pagination: { el: ".berita-swiper-pagination", clickable: true, },
-        navigation: { nextEl: ".berita-swiper-button-next", prevEl: ".berita-swiper-button-prev" },
-        breakpoints: {
-            640: { slidesPerView: 1.5, spaceBetween: 5, },
-            768: { slidesPerView: 1, spaceBetween: 15,},
-            1024: { slidesPerView: 3, spaceBetween: 5, },
         }
     });
 
