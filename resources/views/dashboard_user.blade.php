@@ -593,6 +593,119 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* New styles for Best Practice Apps */
+        .best-practice-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+
+        .best-practice-section h2 {
+            font-size: 28px;
+            color: #1e293b;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .best-practice-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background-color: #facc15;
+            border-radius: 2px;
+        }
+
+        .app-carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .app-carousel-track {
+            display: flex;
+            justify-content: center; /* Center the items when there are few */
+            gap: 20px;
+            padding: 20px 0;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .app-card {
+            min-width: 250px; /* Adjust based on desired card width */
+            max-width: 250px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            flex-shrink: 0; /* Prevent shrinking */
+            border: 1px solid #e0e0e0;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .app-card img {
+            width: 100px; /* Adjust icon size */
+            height: 100px;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .app-card h3 {
+            font-size: 20px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .app-card p {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .app-carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 5;
+            pointer-events: none; /* Allow clicks to pass through to buttons */
+        }
+
+        .app-carousel-nav button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+            pointer-events: all; /* Make buttons clickable */
+        }
+
+        .app-carousel-nav button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .app-carousel-nav .prev-app {
+            margin-left: -5px; /* Adjust position */
+        }
+
+        .app-carousel-nav .next-app {
+            margin-right: -5px; /* Adjust position */
+        }
+
 
     </style>
 </head>
@@ -615,19 +728,17 @@
 
 @section('content')
     <div class="spbe-banner">
-         <div class="banner-wrapper">
-            <img class="banner-slide" src="/asset/img/1.png" alt="Slide 1">
-            <img class="banner-slide" src="/asset/img/2.png" alt="Slide 2">
+           <div class="banner-wrapper">
+             <img class="banner-slide" src="/asset/img/1.png" alt="Slide 1">
+             <img class="banner-slide" src="/asset/img/2.png" alt="Slide 2">
         </div>
         {{-- <img class="banner-slide active" src="/asset/img/1.png" alt="Slide 1"> --}}
-        <!-- Teks penjelasan untuk Banner 1 -->
         <div class="banner-text1" id="bannerText1">
             <h1>Selamat Datang</h1>
             <p>di Sistem Pemerintahan Berbasis Elektronik Kota Bandar Lampung</p>
         </div>
 
         {{-- <img class="banner-slide" src="/asset/img/2.png" alt="Slide 2"> --}}
-        <!-- Teks penjelasan untuk Banner 2 -->
         <div class="banner-text" id="bannerText2">
             <h1>Regulasi</h1>
             <p>Pahami regulasi dalam penerapan Sistem Pemerintahan Berbasis Elektronik.</p>
@@ -733,7 +844,6 @@
     </div>
 
 
-    <!-- Modal Bootstrap-like -->
     <div class="custom-modal" id="popupModal">
         <div class="custom-modal-content">
             <div class="custom-modal-header">
@@ -750,14 +860,49 @@
     </div>
 
 
-    <!-- Modal Image Preview -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImage">
     </div>
 
+    {{-- Section Best Practice Apps --}}
+    <section class="best-practice-section">
+        <h2>Best Practice</h2>
+        <div class="app-carousel-container">
+            <div class="app-carousel-track" id="appCarouselTrack">
+                <div class="app-card">
+                    <img src="{{ asset('asset/icon/mpp.png') }}" alt="MPP">
+                    <h3>MPP</h3>
+                    <p>Mal Pelayanan Publik Merdeka</p>
+                </div>
+                <div class="app-card">
+                    <img src="{{ asset('asset/icon/siapel.png') }}" alt="SIAPEL">
+                    <h3>SIAPEL</h3>
+                    <p>Layanan Kependudukan</p>
+                </div>
+                <div class="app-card">
+                    <img src="{{ asset('asset/icon/perizinan.png') }}" alt="IZOL">
+                    <h3>IZOL</h3>
+                    <p>Layanan Perizinan</p>
+                </div>
+                <div class="app-card">
+                    <img src="{{ asset('asset/icon/pajak daerah.png') }}" alt="PAJAK DAERAH">
+                    <h3>PAJAK DAERAH</h3>
+                    <p>Layanan Pajak Daerah</p>
+                </div>
+                <div class="app-card">
+                    <img src="{{ asset('asset/icon/cctv.png') }}" alt="CCTV">
+                    <h3>CCTV</h3>
+                    <p>Sistem Monitoring CCTV</p>
+                </div>
+            </div>
+            <div class="app-carousel-nav">
+                <button class="prev-app" onclick="moveAppSlide(-1)">&#10094;</button>
+                <button class="next-app" onclick="moveAppSlide(1)">&#10095;</button>
+            </div>
+        </div>
+    </section>
 
-    <!-- Section Tauval SPBE -->
     <section class="spbe-tauval-section">
         <div class="tauval-container">
             <div class="tauval-content">
@@ -800,7 +945,7 @@
     }
 
     function prevSlide() {
-        current = (current + 1 + totalSlides) % totalSlides;
+        current = (current - 1 + totalSlides) % totalSlides; // Fixed to go backwards
         showSlide(current);
     }
 
@@ -813,20 +958,18 @@
     function moveSlide(direction) {
         const track = document.getElementById("carouselTrack");
         const cards = document.querySelectorAll(".evaluasi-card");
+        if (cards.length === 0) return; // Handle no cards case
         const cardWidth = cards[0].offsetWidth;
         const totalCards = cards.length;
-        const visibleCards = 2;
-        const maxIndex = totalCards - visibleCards;
+        const visibleCards = 2; // Assuming 2 cards are visible at a time
 
         currentIndex += direction;
 
-        // Kalau ke kanan dan sudah di akhir, kembali ke 0
-        if (currentIndex > maxIndex) {
+        if (currentIndex > totalCards - visibleCards) {
             currentIndex = 0;
+        } else if (currentIndex < 0) {
+            currentIndex = totalCards - visibleCards;
         }
-
-        // Kalau ke kiri, tetap dibatasi minimum 0
-        if (currentIndex < 0) currentIndex = 0;
 
         track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     }
@@ -852,6 +995,32 @@
             modal.style.display = "none";
         }
     }
+
+    // New script for Best Practice Apps Carousel
+    let currentAppIndex = 0;
+    function moveAppSlide(direction) {
+        const appTrack = document.getElementById("appCarouselTrack");
+        const appCards = document.querySelectorAll(".app-card");
+        if (appCards.length === 0) return;
+        const appCardWidth = appCards[0].offsetWidth + 20; // Card width + gap
+        const totalAppCards = appCards.length;
+        const visibleAppCards = 3; // Assuming 3 app cards are visible at a time
+
+        currentAppIndex += direction;
+
+        if (currentAppIndex > totalAppCards - visibleAppCards) {
+            currentAppIndex = 0;
+        } else if (currentAppIndex < 0) {
+            currentAppIndex = totalAppCards - visibleAppCards;
+        }
+
+        appTrack.style.transform = `translateX(-${currentAppIndex * appCardWidth}px)`;
+    }
+
+    // Auto-slide for Best Practice Apps
+    setInterval(() => {
+        moveAppSlide(1);
+    }, 5000); // Change slide every 5 seconds
 
 </script>
 @endpush

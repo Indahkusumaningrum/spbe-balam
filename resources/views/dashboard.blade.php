@@ -213,9 +213,7 @@
             .main .swiper-container .swiper-wrapper .swiper-slide .card-image img { height: auto;}
             .berita-section { padding: 40px 0px; }
             .berita-swiper-container { max-width: 960px; }
-            /* .berita-swiper-slide { padding: 15px; } */
             .berita-image-wrapper { height: 180px; }
-            /* .berita-content-wrapper { padding: 15px; } */
             .berita-title { font-size: 16px; -webkit-line-clamp: 3; }
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
@@ -241,7 +239,6 @@
             .berita-swiper-slide { padding: 0px; }
             .berita-swiper-slide img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.3s ease; }
             .berita-image-wrapper { height: 180px; }
-            /* .berita-content-wrapper { padding: 12px; } */
             .berita-title { font-size: 15px; -webkit-line-clamp: 3; }
             .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
             .modal-content { max-width: 90%; margin: auto;}
@@ -257,9 +254,7 @@
             .main .swiper-container .swiper-container .swiper-button-prev .arrow-icon { font-size: 24px; }
             .berita-section { padding: 40px 0px; }
             .berita-swiper-container { max-width: 400px; }
-            /* .berita-swiper-slide { padding: 10px; } */
             .berita-image-wrapper { height: 120px; }
-            /* .berita-content-wrapper { padding: 10px; } */
             .berita-title { font-size: 14px; -webkit-line-clamp: 4; }
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-next .arrow-icon,
             .evaluasi-section .evaluasi-swiper-container .evaluasi-swiper-button-prev .arrow-icon {
@@ -272,16 +267,231 @@
             .custom-modal-content { margin: auto; max-width: 100%; width: 400px;}
             .custom-modal-header h2 { font-size: 20px;}
         }
+
+        /* --- Best Practice Apps Section --- */
+        .best-practice-section {
+            padding: 80px 0; /* Tambah padding vertikal */
+            background-color: #f8f9fa; /* Warna latar belakang lebih lembut */
+            text-align: center;
+        }
+
+        .best-practice-section h2 {
+            font-size: 36px; /* Ukuran font lebih besar */
+            color: #2c3e50;
+            margin-bottom: 50px; /* Jarak bawah lebih besar */
+            font-weight: 700; /* Tebal */
+            position: relative;
+            display: inline-block;
+            letter-spacing: 0.5px; /* Sedikit spasi antar huruf */
+        }
+
+        .best-practice-section h2::after {
+            content: '';
+            display: block;
+            width: 80px; /* Lebar underline lebih pendek */
+            height: 5px; /* Tebal underline */
+            background-color: #facc15; /* Warna kuning stabil */
+            margin: 15px auto 0; /* Posisi underline */
+            border-radius: 3px;
+        }
+
+        /* Container untuk layout grid */
+        .app-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsif grid */
+            gap: 30px; /* Jarak antar kartu */
+            max-width: 1200px; /* Lebar maksimum container */
+            margin: 0 auto; /* Tengah-tengah */
+            padding: 0 20px; /* Padding samping untuk responsivitas */
+        }
+
+        .app-card {
+            background: #ffffff;
+            border-radius: 12px; /* Radius sudut lebih lembut */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Shadow yang lebih halus */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 30px; /* Padding internal kartu */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            height: 100%; /* Memastikan tinggi kartu sama */
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px); /* Efek angkat lebih jelas */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Shadow lebih gelap saat hover */
+        }
+
+        .app-card img {
+            width: 100px; /* Ukuran ikon tetap */
+            height: 100px; /* Ukuran ikon tetap */
+            margin: 0 auto 25px; /* Jarak bawah ikon */
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover img {
+            transform: scale(1.08); /* Ikon membesar sedikit saat hover */
+        }
+
+        .app-card h3 {
+            font-size: 22px; /* Ukuran judul lebih besar */
+            font-weight: 700; /* Lebih tebal */
+            color: #1a202c; /* Warna judul lebih gelap */
+            line-height: 1.3;
+            margin-bottom: 12px; /* Jarak bawah judul */
+        }
+
+        .app-card p {
+            font-size: 15px; /* Ukuran deskripsi lebih besar */
+            color: #555; /* Warna teks deskripsi */
+            min-height: 45px; /* Memastikan tinggi deskripsi minimal */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Batasi 2 baris */
+            -webkit-box-orient: vertical;
+        }
+
+        /* Responsiveness for grid */
+        @media (max-width: 768px) {
+            .app-grid-container {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Kolom lebih rapat di tablet */
+                gap: 20px;
+            }
+            .best-practice-section h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-grid-container {
+                grid-template-columns: 1fr; /* Satu kolom di mobile */
+                gap: 20px;
+                padding: 0 15px;
+            }
+            .best-practice-section {
+                padding: 50px 0;
+            }
+            .best-practice-section h2 {
+                font-size: 26px;
+                margin-bottom: 30px;
+            }
+            .app-card {
+                padding: 25px;
+            }
+            .app-card img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+            .app-card h3 {
+                font-size: 20px;
+            }
+            .app-card p {
+                font-size: 14px;
+            }
+        }
+        .app-carousel-nav {
+            display: none;
+        }
+
+        /* Style for banner text overlay */
+        .swiper-slide .banner-text-overlay {
+            position: absolute; /* Posisikan teks secara absolut di atas gambar */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* Gunakan flexbox untuk penataan teks */
+            flex-direction: column; /* Teks akan tersusun vertikal */
+            justify-content: center; /* Pusatkan teks secara vertikal */
+            align-items: flex-start; /* Ratakan teks ke kiri */
+            padding: 0 50px; /* Beri padding di sisi kiri dan kanan */
+            color: white; /* Warna teks */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Efek bayangan agar teks lebih terbaca */
+            text-align: left; /* Pastikan teks rata kiri */
+            pointer-events: none; /* Agar klik pada teks tetap mengaktifkan link di belakangnya */
+            z-index: 2; /* Pastikan teks di atas gambar */
+        }
+
+        .swiper-slide .banner-text-overlay h1 {
+            font-size: 40px;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            font-weight: bold;
+        }
+
+        .swiper-slide .banner-text-overlay p {
+            font-size: 18px; /* Ukuran font untuk paragraf */
+            margin: 5px 0;
+            line-height: 1.3;
+        }
+
+        /* Penyesuaian responsif untuk teks banner */
+        @media (max-width: 1024px) {
+            .swiper-slide .banner-text-overlay {
+                padding: 0 40px;
+            }
+            .swiper-slide .banner-text-overlay h1 {
+                font-size: 2.5em;
+            }
+            .swiper-slide .banner-text-overlay p {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .swiper-slide .banner-text-overlay {
+                padding: 0 25px;
+            }
+            .swiper-slide .banner-text-overlay h1 {
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+            .swiper-slide .banner-text-overlay p {
+                font-size: 1em;
+                margin: 2px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper-slide .banner-text-overlay {
+                padding: 0 15px;
+            }
+            .swiper-slide .banner-text-overlay h1 {
+                font-size: 1.4em;
+            }
+            .swiper-slide .banner-text-overlay p {
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
 @section('navbar', true)
-@extends('layouts.layout_user')
+@extends('layouts.layout_user') {{-- Asumsi ini adalah blade layout Anda --}}
+
 @section('content')
 <main class="main">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             {{-- Main Banner Slides --}}
+
+            <div class="swiper-slide">
+                <a href="https://example.com/page3" target="_blank" class="card-link">
+                    <div class="card-image"><img src="/asset/img/4.png" alt="Image Slider"></div>
+                    <div class="banner-text-overlay">
+                        <h1>Selamat Datang</h1>
+                        <p>di website Sistem Pemerintahan</p>
+                        <p>Berbasis Elektronik</p>
+                        <p>Kota Bandar Lampung</p>
+                    </div>
+                </a>
+            </div>
             <div class="swiper-slide">
                 <a href="https://tauval.spbe.go.id/" target="_blank" class="card-link">
                     <div class="card-image"><img src="/asset/img/1.png" alt="Image Slider"></div>
@@ -294,24 +504,10 @@
             </div>
             <div class="swiper-slide">
                 <a href="https://example.com/page3" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/2.png" alt="Image Slider"></div>
+                    <div class="card-image"><img src="/asset/img/3.png" alt="Image Slider"></div>
                 </a>
             </div>
-            <div class="swiper-slide">
-                <a href="https://example.com/page4" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/1.png" alt="Image Slider"></div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="https://example.com/page5" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/1.png" alt="Image Slider"></div>
-                </a>
-            </div>
-            <div class="swiper-slide">
-                <a href="https://example.com/page6" target="_blank" class="card-link">
-                    <div class="card-image"><img src="/asset/img/2.png" alt="Image Slider"></div>
-                </a>
-            </div>
+            
         </div>
         <div class="swiper-button-next"><i class="fas fa-chevron-circle-right arrow-icon"></i></div>
         <div class="swiper-button-prev"><i class="fas fa-chevron-circle-left arrow-icon"></i></div>
@@ -332,6 +528,7 @@
             <a href="{{ route('tahapan_spbe') }}" class="btn-selengkapnya">Selengkapnya</a>
         </div>
         <div class="info-card">
+  <p>Hasil Evaluasi SPBE.</p>
             <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Kegiatan" class="info-icon">
             <h3>Evaluasi</h3>
             <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis.</p>
@@ -396,7 +593,7 @@
                             </div>
                             <div class="berita-content-wrapper">
                                 <h3 class="berita-title">{{ $berita->judul }}</h3>
-                                    <span class="berita-date"><i class="far fa-calendar-alt"></i> {{ $berita->created_at->format('d M Y') }}</span>
+                                <span class="berita-date"><i class="far fa-calendar-alt"></i> {{ $berita->created_at->format('d M Y') }}</span>
                             </div>
                         </a>
                     </div>
@@ -443,6 +640,47 @@
             <div class="evaluasi-swiper-button-prev"><i class="fas fa-chevron-circle-left arrow-icon"></i></div>
         </div>
     </div>
+
+    <div class="best-practice-section">
+    <h2>Aplikasi</h2>
+    <div class="app-grid-container">
+        <a href="https://satudata.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
+            <h3>Satu Data</h3>
+            <p>Layanan Data Terbuka</p>
+        </a>
+        <a href="https://jdih.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
+            <h3>JDIH</h3>
+            <p>Jaringan Dokumentasi dan Informasi hukum</p>
+        </a>
+        <a href="https://bandarlampungkota.go.id/new/egov.html" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-bandar-lampung.png') }}" alt="e-gov">
+            <h3>E-Goverment</h3>
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </a>
+        <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
+            <h3>SPSE</h3>
+            <p>Sistem Pengadaan Secara Elektronik</p>
+        </a>
+        <a href="https://seribuwajah.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV" style= "width:100px; height:100px;">
+            <h3>CCTV Seribu Wajah</h3>
+            <p>Sistem Monitoring CCTV</p>
+        </a>
+        <a href="https://jdih.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
+            <h3>JDIH</h3>
+            <p>Jaringan Dokumentasi dan Informasi hukum</p>
+        </a>
+        <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card" target="_blank" rel="noopener noreferrer">
+            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
+            <h3>SPSE</h3>
+            <p>Sistem Pengadaan Secara Elektronik</p>
+        </a>
+    </div>
+</div>
 
     <div class="custom-modal" id="popupModal">
         <div class="custom-modal-content">
@@ -557,6 +795,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.esm.bundle.min.js"></script>
 <script>
+    // Main Banner Swiper
     var swiper = new Swiper(".swiper-container", {
         effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto', loop: true, speed: 1000,
         coverflowEffect: { rotate: 30, stretch: 20, depth: 100, modifier: 1, slideShadows: true, },
@@ -569,6 +808,7 @@
         }
     });
 
+    // Berita Swiper
     var swiperBerita = new Swiper(".berita-swiper-container", {
         effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
         coverflowEffect: { rotate: 0, stretch: -40, depth: 100, modifier: 1, slideShadows: true, },
@@ -582,6 +822,7 @@
         }
     });
 
+    // Evaluasi Swiper
     var swiperEvaluasi = new Swiper(".evaluasi-swiper-container", {
         effect: 'slide', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
         autoplay: { delay: 5000, disableOnInteraction: false },
