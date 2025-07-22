@@ -21,15 +21,16 @@
         body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); color: var(--text-dark); }
         .main-container { width: 90%; max-width: 1200px; margin: 50px auto; padding: 40px; box-sizing: border-box; }
         .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
-        .header-section h1 { color: var(--primary-blue); font-size: 28px; font-weight: 700; position: relative; padding-bottom: 10px; margin: 0; }
-        .header-section h1::after { content: ''; position: absolute; left: 0; bottom: 0; width: 80px; height: 4px; background-color: var(--accent-yellow); border-radius: 2px; }
-        .add-button-group { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-        .btn-add-evaluasi { 
-            background-color: var(--accent-yellow); color: white; padding: 8px 12px; border-radius: 8px; border: none; text-decoration: none; display: inline-flex;
-            align-items: center; gap: 8px; font-size: 15px; transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-        }
-        .btn-add-evaluasi:hover { background-color: #eab308; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); color: white; }
-        .add-button-group p { font-size: 18px; font-weight: 700; color: var(--primary-blue); margin: 0; }
+        .header-section h1 { color: #001e74; font-size: 32px; font-weight: 700; position: relative; padding-bottom: 12px; margin: 0; letter-spacing: 0.5px; }
+        .header-section h1::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 60px; height: 5px; background: linear-gradient(to right, #facc15, #ff9a00); border-radius: 50px; box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .header-section h1:hover::after { width: 100%; left: 0; transform: translateX(0); box-shadow: 0 6px 20px rgba(250, 204, 21, 0.7); }
+        
+        .add-button-group { display: flex; align-items: center; gap: 10px; }
+        .btn-add-evaluasi { background-color: green; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .btn-add-evaluasi i { margin-right: 8px; }
+        .btn-add-evaluasi:hover { background-color: darkgreen; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
+        .add-button-group p { margin: 0; font-size: 15px; font-weight: 500; color: #555; }
+        
         .evaluasi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
         .evaluasi-card { background: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--box-shadow-light); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;}
         .evaluasi-card:hover { transform: translateY(-8px); box-shadow: var(--box-shadow-hover); }
@@ -41,16 +42,18 @@
         .evaluasi-info-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 15px; border-top: 1px solid #eee; }
         .tanggal { font-size: 13px; color: var(--text-light); font-weight: 500; }
         .card-actions-group { display: flex; gap: 8px; } 
+        
         .btn-card-icon {
             display: inline-flex; align-items: center; justify-content: center; padding: 6px; width: 36px; height: 36px; border-radius: 8px; border: 1px solid; cursor: pointer; font-size: 15px; color: white; 
             transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease; box-sizing: border-box; text-decoration: none;
         }
         .btn-card-icon.view { background-color: #3b82f6; border-color: #3b82f6; }
         .btn-card-icon.view:hover { background-color: #2563eb; border-color: #2563eb; transform: scale(1.05); }
-        .btn-card-icon.edit { background-color: var(--accent-yellow); color: var(--text-dark); border-color: var(--accent-yellow); }
+        .btn-card-icon.edit { background-color: var(--accent-yellow); color: #fff; border-color: var(--accent-yellow); }
         .btn-card-icon.edit:hover { background-color: #eab308; border-color: #eab308; transform: scale(1.05); }
         .btn-card-icon.delete { background-color: #ef4444; border-color: #ef4444; }
         .btn-card-icon.delete:hover { background-color: #dc2626; border-color: #dc2626; transform: scale(1.05); }
+        
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; }
         .modal-content { background-color: #fff; margin: auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 450px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease-out; }
         .modal-content p { font-size: 18px; font-weight: 500; margin-bottom: 25px; color: #333; }
@@ -60,6 +63,7 @@
         .modal-btn.cancel-btn:hover { background-color: #bbb; }
         .modal-btn.confirm-btn { background-color: #dc3545; color: white; }
         .modal-btn.confirm-btn:hover { background-color: #c82333; }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -104,8 +108,7 @@
         <div class="header-section">
             <h1>Daftar Evaluasi SPBE</h1>
             <div class="add-button-group">
-                <a href="{{ route('admin.evaluasi.create') }}" class="btn-add-evaluasi"> <i class="fas fa-plus"></i> </a>
-                <p>Tambah Hasil Evaluasi</p>
+                <a href="{{ route('admin.evaluasi.create') }}" class="btn-add-evaluasi"> <i class="fas fa-plus"></i> Tambah</a>
             </div>
         </div>
 

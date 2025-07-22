@@ -93,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
 
-    
+    Route::get('/admin/berita/load-more', [AdminBeritaController::class, 'loadMoreBerita'])->name('admin.berita.load-more');
 });
 Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 

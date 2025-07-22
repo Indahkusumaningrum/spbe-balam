@@ -9,13 +9,12 @@
     <style>
         .galeri-container {
             width: 80%;
-            margin: 50px auto;
+            margin: 0 auto;
             background-color: #ffffff;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
         .galeri-container h1 {
             color: #001e74;
             font-size: 28px;
@@ -57,7 +56,7 @@
         }
 
         button[type="submit"]:hover {
-            background-color: #006400;
+            background-color: darkgreen;
         }
 
         .btn-kembali {
