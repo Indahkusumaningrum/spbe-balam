@@ -93,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/berita/{id}', [AdminBeritaController::class, 'destroy'])->name('admin.berita.destroy');
     Route::get('/admin/berita/{id}/detail', [AdminBeritaController::class, 'show'])->name('admin.berita.show');
 
-    
+    Route::get('/admin/berita/load-more', [AdminBeritaController::class, 'loadMoreBerita'])->name('admin.berita.load-more');
 });
 Route::post('/upload-image-tinymce', [AdminBeritaController::class, 'uploadImageTinyMCE'])->name('tinymce.upload.image');
 
@@ -193,7 +193,13 @@ Route::get('/admin/evaluasi/file/{documentName}', [EvaluasiController::class, 'd
 
 
 // Untuk publik
-Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
+// Route::get('/indikator', [IndikatorController::class, 'publicIndex'])->name('indikator.index');
+// Untuk user memilih tahun terlebih dahulu
+Route::get('/indikator', [IndikatorController::class, 'userIndex'])->name('indikator.show');
+
+// Untuk melihat indikator berdasarkan tahun
+Route::get('/indikator/tahun/{tahun}', [IndikatorController::class, 'userIndikatorByTahun'])->name('indikator.tahun');
+
 
 // Untuk admin
 Route::prefix('admin')->name('admin.')->group(function () {

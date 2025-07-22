@@ -1,7 +1,7 @@
-@extends('layouts.layout_admin')
-@section('title', 'Kelola Indikator')
+@extends('layouts.layout_user')
+@section('navbar', true)
+@section('title', 'Indikator SPBE')
 
-@section('styles')
 <style>
     body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: #fff; color: #333; }
     .main-container { width: 95%; max-width: 1200px; margin: 0px auto; background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); box-sizing: border-box; }
@@ -45,8 +45,8 @@
         .data-table tbody tr { margin-bottom: 15px; border: 1px solid #ddd; display: block; padding: 10px; }
         .data-table td { border-bottom: 1px solid #eee; display: block; text-align: right; font-size: 14px; padding-left: 50%; position: relative; }
         .data-table td::before { content: attr(data-label); position: absolute; left: 10px; width: 45%; padding-right: 10px; white-space: nowrap; text-align: left; font-weight: 600; color: #4b5563; }
-        .data-table td:last-child { border-bottom: 0; } 
-        .data-table .text-center { padding: 15px !important; } 
+        .data-table td:last-child { border-bottom: 0; }
+        .data-table .text-center { padding: 15px !important; }
     }
 
     @media (max-width: 480px) {
@@ -60,7 +60,7 @@
         .btn-action { padding: 6px 12px; font-size: 13px; }
     }
 </style>
-@endsection
+
 
 @section('content')
 <div class="main-container">
@@ -72,7 +72,7 @@
         </div>
     @endif
 
-    <form method="GET" action="{{ route('admin.indikator.index') }}" class="filter-form">
+    <form method="GET" action="{{ route('indikator.show') }}" class="filter-form">
         <label for="tahun">Filter Tahun:</label>
         <select name="tahun" id="tahun" onchange="this.form.submit()">
             <option value="">-- Semua Tahun --</option>
@@ -102,7 +102,7 @@
                 <td data-label="Tahun">{{ $tahun->tahun }}</td>
                 <td data-label="Nama Form">Evaluasi SPBE Tahun {{ $tahun->tahun }}</td>
                 <td data-label="Aksi">
-                    <a href="{{ route('admin.indikator.tahun', $tahun->id) }}" class="btn-action btn-info">
+                    <a href="{{ route('indikator.tahun', $tahun->id) }}" class="btn-action btn-info">
                         <i class="fas fa-eye"></i> Lihat Selengkapnya
                     </a>
                 </td>

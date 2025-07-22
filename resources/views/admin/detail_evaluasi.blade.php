@@ -21,9 +21,9 @@
     .evaluation-image { width: 100%; height: auto; max-height: 400px; object-fit: contain;  border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); border: 1px solid #e0e0e0; }
     .actions-overlay { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; background-color: rgba(255, 255, 255, 0.8); padding: 8px 12px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 10; }
     .btn-action-icon { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; font-size: 16px;  border-radius: 50%; border: none; cursor: pointer; color: #fff; transition: background-color 0.3s ease, transform 0.2s ease; }
-    .btn-action-icon.edit { background-color: #3b82f6; } 
+    .btn-action-icon.edit { background-color: #3b82f6; }
     .btn-action-icon.edit:hover { background-color: #2563eb; transform: scale(1.05); }
-    .btn-action-icon.delete { background-color: #ef4444; } 
+    .btn-action-icon.delete { background-color: #ef4444; }
     .btn-action-icon.delete:hover { background-color: #dc2626; transform: scale(1.05); }
     .metadata-info { color: var(--text-muted); font-weight: 500; font-size: 15px; margin-bottom: 30px; text-align: center; }
     .document-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
@@ -94,7 +94,7 @@
 
     <div class="image-actions-wrapper">
         <img src="{{ asset('uploads/evaluasi/' . $evaluation->image) }}" alt="Gambar Evaluasi" class="evaluation-image">
-        
+
         <div class="actions-overlay">
             <a href="{{ route('admin.evaluasi.edit', $evaluation->id) }}" class="btn-action-icon edit">
                 <i class="fas fa-pen"></i>

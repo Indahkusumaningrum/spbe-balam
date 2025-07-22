@@ -8,86 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .form-container {
-            max-width: 60%;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: #f8fafc;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .form-container h2 {
-            font-size: 24px;
-            color: #001e74;
-            margin-bottom: 25px;
-            display: block;
-            padding-bottom: 6px;
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-top: 18px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 8px;
-        }
-
-        input[type="text"],
-        select,
-        textarea {
-            width: 96%;
-            padding: 12px 16px;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: #1e3a8a;
-            outline: none;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .btn-primary {
-            background-color: #1e3a8a;
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: rgb(13, 127, 250);
-        }
-
-        .btn-secondary {
-            background-color: #e2e8f0;
-            color: #1e293b;
-            border: none;
-            margin-left: 10px;
-        }
-
-        .btn-secondary:hover {
-            background-color: #cbd5e1;
-        }
+            max-width: 80%; margin: 0 auto; padding: 40px; background-color: #fff; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); font-family: 'Poppins', sans-serif; }
+        .form-container h2 { font-size: 24px; color: #001e74; margin-bottom: 25px; display: block; padding-bottom: 6px; text-align: center; }
+        label { display: block; margin-top: 18px; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
+        input[type="text"], select,
+        textarea { width: 96%; padding: 12px 16px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 15px; transition: border-color 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: #1e3a8a; outline: none; }
+        textarea { resize: vertical; }
+        
+        .btn { display: inline-block; margin-top: 25px; padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; cursor: pointer;  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; }
+        .btn:hover{ transform: translateY(-2px); }
+        .btn-primary { background-color: green; color: white; border: none; }
+        .btn-primary:hover { background-color: darkgreen }
+        .btn-secondary { background-color: #e2e8f0; color: #1e293b; border: none; margin-left: 10px; }
+        .btn-secondary:hover { background-color: #cbd5e1; }
     </style>
 </head>
 <body>

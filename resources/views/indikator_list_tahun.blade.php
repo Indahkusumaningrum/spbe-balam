@@ -1,7 +1,7 @@
-@extends('layouts.layout_admin')
-@section('title', "Indikator")
+@extends('layouts.layout_user')
+@section('navbar', true)
+@section('title', 'Indikator SPBE')
 
-@section('styles')
 <style>
     body { font-family: 'Poppins', sans-serif; background-color: #fff; color: #333; }
     .main-container { width: 100%; max-width: 1200px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); box-sizing: border-box; }
@@ -61,13 +61,13 @@
     @media (max-width: 768px) {
         .main-container { width: 95%; padding: 25px; margin: 30px auto; }
         .main-container h1 { font-size: 24px; margin-bottom: 25px; }
-        .action-buttons-group { flex-direction: column; gap: 10px; align-items: center; } 
+        .action-buttons-group { flex-direction: column; gap: 10px; align-items: center; }
         .btn-action { width: 100%; }
 
-        .filter-form-group { flex-direction: column; align-items: stretch; } 
-        .filter-item { min-width: unset; width: 100%; } 
-        .filter-buttons { flex-direction: column; gap: 10px; width: 100%; } 
-        .filter-buttons .btn-action { width: 100%; } 
+        .filter-form-group { flex-direction: column; align-items: stretch; }
+        .filter-item { min-width: unset; width: 100%; }
+        .filter-buttons { flex-direction: column; gap: 10px; width: 100%; }
+        .filter-buttons .btn-action { width: 100%; }
 
         .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr { display: block; }
         .data-table thead tr { position: absolute; top: -9999px; left: -9999px; }
@@ -79,33 +79,17 @@
     @media (max-width: 480px) {
         .main-container { width: 95%; padding: 25px; }
         .main-container h1 { font-size: 24px; margin-bottom: 25px; }
-        .action-buttons-group { align-items: center; } 
-        .btn-action { width: 90%; } 
-        .data-table td { font-size: 13px; padding-left: 45%; } 
+        .action-buttons-group { align-items: center; }
+        .btn-action { width: 90%; }
+        .data-table td { font-size: 13px; padding-left: 45%; }
         .data-table td::before { width: 40%; }
         .btn-warning { width: 100px;}
     }
 </style>
-@endsection
 
 @section('content')
 <div class="main-container">
     <h1>Daftar Indikator SPBE Tahun {{ $tahun->tahun }}</h1>
-
-    <div class="action-buttons-group">
-        <a href="{{ route('admin.indikator.create', $tahun->id) }}" class="btn-action btn-success">
-            <i class="fas fa-plus-circle"></i> Tambah Indikator
-        </a>
-        <a href="{{ route('admin.domain_index') }}" class="btn-action btn-primary">
-            <i class="fas fa-sitemap"></i> Kelola Domain
-        </a>
-        <a href="{{ route('admin.aspect.index') }}" class="btn-action btn-info">
-            <i class="fas fa-layer-group"></i> Kelola Aspek
-        </a>
-        <a href="{{ route('admin.indikator.index') }}" class="btn-action btn-secondary">
-            <i class="fas fa-arrow-left"></i> Kembali ke Daftar Tahun
-        </a>
-    </div>
 
     <form method="GET" action="{{ route('admin.indikator.tahun', $tahun->id) }}" class="filter-form-group">
         <div class="filter-item">
@@ -150,7 +134,6 @@
                 <th>Aspek</th>
                 <th>Indikator</th>
                 <th>Penjelasan</th>
-                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -161,14 +144,6 @@
                 <td data-label="Aspek">{{ $indikator->aspect->nama }}</td>
                 <td data-label="Indikator">{{ $indikator->nama }}</td>
                 <td data-label="Penjelasan">{{ $indikator->penjelasan }}</td>
-                <td data-label="Aksi" class="action-cell">
-                    <a href="{{ route('admin.indikator.edit', $indikator->id) }}" class="btn-action btn-warning btn-sm">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
-                    <button class="btn-action btn-danger btn-sm" onclick="showDeleteModal('{{ route('admin.indikator.destroy', $indikator->id) }}')">
-                        <i class="fas fa-trash-alt"></i> Hapus
-                    </button>
-                </td>
             </tr>
             @empty
             <tr>
@@ -194,7 +169,7 @@
 </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script>
     const allAspectsData = @json($allAspects);
 
@@ -245,4 +220,5 @@
         }
     });
 </script>
-@endsection
+@endpush
+
