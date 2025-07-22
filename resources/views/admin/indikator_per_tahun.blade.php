@@ -160,8 +160,7 @@
                 <td data-label="Domain">{{ $indikator->aspect->domain->nama }}</td>
                 <td data-label="Aspek">{{ $indikator->aspect->nama }}</td>
                 <td data-label="Indikator">{{ $indikator->nama }}</td>
-                <td data-label="Penjelasan">{{ $indikator->penjelasan }}</td>
-                <td data-label="Aksi" class="action-cell">
+                <td data-label="Penjelasan">{!! nl2br(e($indikator->penjelasan)) !!}</td>                <td data-label="Aksi" class="action-cell">
                     <a href="{{ route('admin.indikator.edit', $indikator->id) }}" class="btn-action btn-warning btn-sm">
                         <i class="fas fa-edit"></i> Edit
                     </a>
