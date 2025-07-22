@@ -140,7 +140,7 @@
         .custom-modal-content { background-color: #fff; margin: auto; border-radius: 10px; max-width: 100%; width: 800px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); overflow: hidden; animation: fadeIn 0.3s ease-in-out; }
         .custom-modal-header { background-color: #1e3a8a; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center }
         .custom-modal-body { padding: 24px; text-align: center; }
-        .custom-modal-image { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .custom-modal-image { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin-bottom: 20px;} /* Added margin-bottom */
         .btn-close { background-color: #1e3a8a; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
         .btn-close:hover { background-color: #3749b7; }
         .custom-close { font-size: 38px; cursor: pointer; }
@@ -148,6 +148,65 @@
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .document-section { margin-top: 20px; text-align: left; border-top: 1px solid #eee; padding-top: 20px; }
+        .document-section .section-label { font-size: 18px; color: #2c3e50; margin-bottom: 15px; font-weight: bold; }
+        .document-item { display: flex; align-items: center; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px; }
+        .document-icon { font-size: 28px; color: #facc15; margin-right: 15px; }
+        .document-details { flex-grow: 1; }
+        .document-details .file-name { font-size: 16px; color: #333; margin: 0; word-break: break-all; }
+        .btn-download {
+            display: inline-flex; align-items: center; background-color: #007bff; color: white; padding: 8px 15px; border-radius: 5px;
+            text-decoration: none; font-weight: 500; transition: background-color 0.3s ease, transform 0.2s ease
+        }
+        .btn-download i { margin-right: 8px; }
+        .btn-download:hover { background-color: #0056b3; transform: scale(1.05);}
+        .form-text { font-style: italic; }
+
+        .aplikasi-section { padding: 60px 0px; background-color: #fff; text-align: center; }
+        .aplikasi-section h2 { font-size: 28px; color: #2c3e50; margin-bottom: 40px; font-weight: bold; }
+        .aplikasi-section h2::after { content: ''; display: block; width: 120px; height: 4px; background-color: #facc15; margin: 10px auto 0; border-radius: 2px; }
+        .aplikasi-swiper-container { max-width: 100%; padding-bottom: 40px; overflow: hidden; margin: 0 auto }
+        .aplikasi-swiper-wrapper { display: flex; }
+        .aplikasi-swiper-slide {
+            background: #fff; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left; display: flex; flex-direction: column; height: auto; width: 380px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; opacity: 1;  transform: scale(1); 
+        }
+        .aplikasi-swiper-slide-active { opacity: 1; transform: scale(1); }
+        .aplikasi-swiper-slide:hover {transform: translateY(-5px);  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); } 
+.aplikasi-card-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
+.aplikasi-image-wrapper { width: 100%; height: 240px; overflow: hidden; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; justify-content: center; align-items: center; padding: 10px; }
+.aplikasi-swiper-slide img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; transition: transform 0.3s ease; }
+.aplikasi-swiper-slide:hover img {transform: scale(1.05) }
+.aplikasi-content-wrapper { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.aplikasi-title { font-size: 16px; font-weight: bold; color: #001e74; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 10px; }
+.aplikasi-description { font-size: 14px; color: #555; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.aplikasi-section .aplikasi-swiper-container .aplikasi-navigation-wrapper { display: flex; justify-content: center; align-items: center; gap: 10px; position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: auto; z-index: 10; }
+/* 
+@media (max-width: 1024px) {
+    .aplikasi-section { padding: 40px 0px; }
+    .aplikasi-swiper-container { max-width: 960px; }
+    .aplikasi-image-wrapper { height: 180px; }
+    .aplikasi-title { font-size: 16px; -webkit-line-clamp: 3; }
+}
+
+@media (max-width: 767px) {
+    .aplikasi-section { padding: 30px 0px; }
+    .aplikasi-swiper-container { max-width: 720px; }
+    .aplikasi-swiper-slide { padding: 0px; }
+    .aplikasi-swiper-slide img { width: 100%; height: 140px; object-fit: cover; } 
+    .aplikasi-image-wrapper { height: 180px; }
+    .aplikasi-title { font-size: 15px; -webkit-line-clamp: 3; }
+}
+
+@media (max-width: 480px) {
+    .aplikasi-section { padding: 40px 0px; }
+    .aplikasi-swiper-container { max-width: 400px; }
+    .aplikasi-image-wrapper { height: 120px; }
+    .aplikasi-title { font-size: 14px; -webkit-line-clamp: 4; }
+} */
+
         @media (max-width: 1024px) {
             .main .swiper-container { height: auto; padding-bottom: 30px; }
             .main .swiper-container .swiper-wrapper .swiper-slide { width: 80% !important; }
@@ -465,13 +524,14 @@
         <div class="info-card">
             <img src="{{ asset('asset/icon/tahapan.png') }}" alt="Tahapan SPBE" class="info-icon">
             <h3>Tahapan SPBE</h3>
-            <p>Terbagi dalam Peta Rencana SPBE yaitu: Tahapan Rencana Strategis, Tahapan Pembangunan Fondasi SPBE, Tahapan Pengembangan SPBE, dan Inisiatif Strategis</p>
+            <p>Terbagi dalam Peta Rencana SPBE yaitu: Tahapan Rencana Strategis, Tahapan Pembangunan Fondasi SPBE, Tahapan Pengembangan SPBE, dan Inisiatif Strategis.</p>
             <a href="{{ route('tahapan_spbe') }}" class="btn-selengkapnya">Selengkapnya</a>
         </div>
         <div class="info-card">
-            <img src="{{ asset('asset/icon/kegiatan.png') }}" alt="Kegiatan" class="info-icon">
+  <p>Hasil Evaluasi SPBE.</p>
+            <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Kegiatan" class="info-icon">
             <h3>Evaluasi</h3>
-            <p>Hasil Evaluasi SPBE.</p>
+            <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis.</p>
             <a href="#evaluasi-section" class="btn-selengkapnya">Selengkapnya</a>
         </div>
     </div>
@@ -559,7 +619,7 @@
                 @forelse($evaluations as $evaluation)
                     <div class="swiper-slide evaluasi-swiper-slide">
                         <a href="javascript:void(0);" class="evaluasi-card-link"
-                        onclick="openModal('{{ asset('uploads/evaluasi/' . $evaluation->image) }}', '{{ $evaluation->title }}')">
+                        onclick="openModal('{{ asset('uploads/evaluasi/' . $evaluation->image) }}', '{{ $evaluation->title }}', '{{ $evaluation->document ? asset('admin/evaluasi/file/' . $evaluation->document) : '' }}', '{{ $evaluation->document ?? '' }}')">
                             <div class="evaluasi-image-wrapper">
                                 <img src="{{ asset('uploads/evaluasi/' . $evaluation->image) }}" alt="{{ $evaluation->title }}">
                                 <div class="overlay">
@@ -622,20 +682,111 @@
     </div>
 </div>
 
-
     <div class="custom-modal" id="popupModal">
         <div class="custom-modal-content">
             <div class="custom-modal-header">
                 <h2 id="modalTitle">Hasil Evaluasi</h2>
                 <span class="custom-close" onclick="closeModal()">&times;</span>
             </div>
-            <div class="custom-modal-body"> <img id="modalImage" src="" alt="Evaluasi SPBE" class="custom-modal-image"> </div>
+            <div class="custom-modal-body">
+                <img id="modalImage" src="" alt="Evaluasi SPBE" class="custom-modal-image">
+                <div class="document-section">
+                    <h3 class="section-label">Dokumen Pendukung:</h3>
+                    <div id="documentSectionContent">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImage">
+    </div>
+
+    <div class="aplikasi-section">
+        <h2>Aplikasi Pemerintah Kota</h2>
+        <div class="aplikasi-swiper-container">
+            <div class="swiper-wrapper aplikasi-swiper-wrapper">
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://satudata.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">Satu Data</h3>
+                            <p class="aplikasi-description">Layanan Data Terbuka</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://jdih.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">JDIH</h3>
+                            <p class="aplikasi-description">Jaringan Dokumentasi dan Informasi hukum</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://bandarlampungkota.go.id/new/egov.html" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-bandar-lampung.png') }}" alt="e-gov">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">E-Goverment</h3>
+                            <p class="aplikasi-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">SPSE</h3>
+                            <p class="aplikasi-description">Sistem Pengadaan Secara Elektronik</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://seribuwajah.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">CCTV Seribu Wajah</h3>
+                            <p class="aplikasi-description">Sistem Monitoring CCTV</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://jdih.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">JDIH</h3>
+                            <p class="aplikasi-description">Jaringan Dokumentasi dan Informasi hukum</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">SPSE</h3>
+                            <p class="aplikasi-description">Sistem Pengadaan Secara Elektronik</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
@@ -686,9 +837,29 @@
         }
     });
 
-    function openModal(imageSrc, title = "Hasil Evaluasi") {
+    function openModal(imageSrc, title = "Hasil Evaluasi", documentUrl = '', documentName = '') {
         document.getElementById("modalImage").src = imageSrc;
         document.getElementById("modalTitle").innerText = title;
+
+        const documentSectionContent = document.getElementById("documentSectionContent");
+        if (documentUrl && documentName) {
+            documentSectionContent.innerHTML = `
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="document-details">
+                        <p class="file-name">${documentName}</p>
+                    </div>
+                    <a href="${documentUrl}" target="_blank" class="btn-download">
+                        <i class="fas fa-download"></i> Lihat
+                    </a>
+                </div>
+            `;
+        } else {
+            documentSectionContent.innerHTML = `<p class="form-text" style="color: var(--text-muted);">Tidak ada dokumen pendukung.</p>`;
+        }
+
         document.getElementById("popupModal").style.display = "block";
     }
 
@@ -702,6 +873,19 @@
             modal.style.display = "none";
         }
     }
+
+    var swiperAplikasi = new Swiper(".aplikasi-swiper-container", {
+        effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
+        coverflowEffect: { rotate: 0, stretch: -40, depth: 100, modifier: 1, slideShadows: false, },
+        autoplay: { delay: 6000, disableOnInteraction: false },
+        pagination: { el: ".aplikasi-swiper-pagination", clickable: true, },
+        navigation: { nextEl: ".aplikasi-swiper-button-next", prevEl: ".aplikasi-swiper-button-prev" },
+        breakpoints: {
+            640: { slidesPerView: 1.5, spaceBetween: 5, },
+            768: { slidesPerView: 1, spaceBetween: 15,},
+            1024: { slidesPerView: 3, spaceBetween: 5, },
+        }
+    });
 </script>
 @endpush
 </body>
