@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Detail Berita: {{ $berita->judul }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Admin - Manage Berita')
+
+@section('styles')
     <style>
         body { font-family: 'Poppins', sans-serif; color: #333; background-color: #fff; line-height: 1.6; margin: 0 }
         #main-content-wrapper { padding: 20px 40px; }
@@ -66,10 +62,8 @@
             .berita-actions-top .btn-action { padding: 8px 12px; font-size: 0.9em; }
         }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Detail Berita')
+@endsection
+
 @section('content')
 
     <div class="berita-wrapper">
@@ -117,6 +111,3 @@
     </div>
 
 @endsection
-
-</body>
-</html>

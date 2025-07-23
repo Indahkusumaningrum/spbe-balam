@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Evaluasi SPBE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Kelola Evaluasi SPBE')
+@section('styles')
     <style>
         :root {
             --primary-blue: #001e74;
@@ -18,7 +13,7 @@
             --box-shadow-light: 0 4px 15px rgba(0,0,0,0.1);
             --box-shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
         }
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: var(--light-gray); color: var(--text-dark); }
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color:#fff; color: var(--text-dark); }
         .main-container { width: 90%; max-width: 1200px; margin: 50px auto; padding: 40px; box-sizing: border-box; }
         .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
         .header-section h1 { color: #001e74; font-size: 32px; font-weight: 700; position: relative; padding-bottom: 12px; margin: 0; letter-spacing: 0.5px; }
@@ -98,10 +93,8 @@
             .evaluasi-content h3 { font-size: 16px; }
         }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Kelola Evaluasi SPBE')
+@endsection
+
 @section('content')
 
     <div class="main-container">
@@ -159,7 +152,9 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('scripts')
 <script>
     function showDeleteModal(deleteUrl) {
         document.getElementById('deleteForm').action = deleteUrl;
@@ -178,5 +173,3 @@
     }
 </script>
 @endsection
-</body>
-</html>

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Berita</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Admin - Manage Berita')
+
+@section('styles')
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #fff; color: #333; }
         .main-container { display: inline block; padding: 30px; max-width: 1200px; margin: 0 auto; }
@@ -75,10 +71,8 @@
             .btn-detail { width: 30px; height: 30px; font-size: 13px; }
         }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Berita')
+@endsection
+
 @section('content')
 
     <div class="main-container">
@@ -167,5 +161,3 @@
     });
 </script>
 @endsection
-</body>
-</html>

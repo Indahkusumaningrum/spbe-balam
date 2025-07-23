@@ -31,7 +31,7 @@
     .filter-item { flex: 1; min-width: 150px; }
     .filter-item label { font-weight: 600; display: block; margin-bottom: 8px; color: #333; font-size: 15px; }
     .filter-item select, .filter-item input[type="text"] { width: 100%; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; background-color: #fff; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-    .filter-item select:focus, .filter-item input[type="text"]:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); outline: none; }
+    .filter-item select:focus, .filter-item input[type="text"]:focus { border-color: #facc15; outline: none; }
     .filter-buttons { display: flex; gap: 10px; }
 
     .data-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; margin-top: 20px; }

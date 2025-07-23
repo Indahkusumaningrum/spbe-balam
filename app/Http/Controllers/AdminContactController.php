@@ -28,7 +28,8 @@ class AdminContactController extends Controller
             });
         }
 
-        $messages = $query->paginate(10);
+        $messages = $query->get();
+        
         $stats = [
             'total' => ContactMessage::count(),
             'unread' => ContactMessage::unread()->count(),

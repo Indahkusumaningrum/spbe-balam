@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Tambah File</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+@extends('layouts.layout_admin')
+@section('title', 'Admin - Manage Download')
+
+@section('styles')
     <style>
         .form-container {
             max-width: 700px;
-            width: 90%; /* Make it more responsive */
-            margin: 20px auto; /* Add some vertical margin */
+            width: 90%; 
+            margin: 20px auto; 
             background: white;
             padding: 40px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -201,10 +198,8 @@
             }
 
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Download')
+@endsection
+
 @section('content')
 
     <div class="form-container">
@@ -245,7 +240,7 @@
             </div>
         </form>
     </div>
-@endsection
+
 
 <!-- Modal Konfirmasi -->
 <div id="saveModal" class="modal">
@@ -271,7 +266,9 @@
 </div>
 @endif
 
+@endsection
 
+@section('scripts')
 
 <script>
         function showSaveModal() {
@@ -297,5 +294,4 @@
             }
         }
     </script>
-</body>
-</html>
+@endsection

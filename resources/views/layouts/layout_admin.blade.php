@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    <link rel="icon" href="{{ asset('asset/img/logo.png') }}" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     @yield('styles')
@@ -13,7 +14,7 @@
         .btn-logout { background-color: #facc15; color: #001e74; padding: 8px 16px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; gap: 8px; }
         .btn-logout:hover { background-color: #e0b814; }
 
-        .nav-bar { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 10px 30px; border-bottom: 1px solid #ccc; flex-wrap: wrap; position: relative; }
+        .nav-bar { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 10px 30px; border-bottom: 1px solid #ccc; flex-wrap: wrap; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .nav-menu-wrapper { display: flex; flex-direction: column; align-items: flex-start; margin-left: 50px; }
         .nav-bar img { height: 70px; }
         .nav-toggle-container { justify-content: flex-end; margin-left: auto; }
@@ -65,6 +66,7 @@
         }
         @media (max-width: 480px) {
             .welcome-heading { font-size: 22px; }
+            .nav-bar { display: flex; align-items: center; justify-content: space-between; background-color: white; padding: 10px 30px; border-bottom: 1px solid #ccc; flex-wrap: wrap; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         }
     </style>
 </head>

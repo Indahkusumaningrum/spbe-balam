@@ -15,7 +15,7 @@
     .form-control {
         width: 100%; padding: 12px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; box-sizing: border-box;
         transition: border-color 0.3s ease, box-shadow 0.3s ease; background-color: #fff; }
-    .form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); outline: none; }
+    .form-control:focus { border-color: #facc15; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); outline: none; }
     textarea.form-control { resize: vertical; min-height: 120px; }
     .form-buttons { display: flex; justify-content: flex-end; gap: 15px; margin-top: 40px; }
 

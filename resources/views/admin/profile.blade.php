@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Admin - Manage Profile')
+
+@section('styles')
+
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #fff; color: #333; line-height: 1.6; } 
         .main-container { width: 90%; max-width: 1200px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); box-sizing: border-box; }
@@ -55,10 +52,8 @@
             .profile-section-title { font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
         }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Profile')
+@endsection
+
 @section('content')
 
     <div class="main-container">
@@ -92,5 +87,4 @@
         </div>
     </div>
 @endsection
-</body>
-</html>
+
