@@ -528,7 +528,6 @@
             <a href="{{ route('tahapan_spbe') }}" class="btn-selengkapnya">Selengkapnya</a>
         </div>
         <div class="info-card">
-  <p>Hasil Evaluasi SPBE.</p>
             <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Kegiatan" class="info-icon">
             <h3>Evaluasi</h3>
             <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis.</p>
@@ -640,47 +639,6 @@
             <div class="evaluasi-swiper-button-prev"><i class="fas fa-chevron-circle-left arrow-icon"></i></div>
         </div>
     </div>
-
-    <div class="best-practice-section">
-    <h2>Aplikasi</h2>
-    <div class="app-grid-container">
-        <a href="https://satudata.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
-            <h3>Satu Data</h3>
-            <p>Layanan Data Terbuka</p>
-        </a>
-        <a href="https://jdih.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
-            <h3>JDIH</h3>
-            <p>Jaringan Dokumentasi dan Informasi hukum</p>
-        </a>
-        <a href="https://bandarlampungkota.go.id/new/egov.html" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-bandar-lampung.png') }}" alt="e-gov">
-            <h3>E-Goverment</h3>
-            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </a>
-        <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
-            <h3>SPSE</h3>
-            <p>Sistem Pengadaan Secara Elektronik</p>
-        </a>
-        <a href="https://seribuwajah.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV" style= "width:100px; height:100px;">
-            <h3>CCTV Seribu Wajah</h3>
-            <p>Sistem Monitoring CCTV</p>
-        </a>
-        <a href="https://jdih.bandarlampungkota.go.id/" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH" style= "width:100px; height:100px;">
-            <h3>JDIH</h3>
-            <p>Jaringan Dokumentasi dan Informasi hukum</p>
-        </a>
-        <a href="https://spse.inaproc.id/bandarlampungkota/" class="app-card" target="_blank" rel="noopener noreferrer">
-            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE" style= "width:100px; height:100px;">
-            <h3>SPSE</h3>
-            <p>Sistem Pengadaan Secara Elektronik</p>
-        </a>
-    </div>
-</div>
 
     <div class="custom-modal" id="popupModal">
         <div class="custom-modal-content">

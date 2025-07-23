@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SPBE - Pemerintah Kota Bandar Lampung</title>
     <style>
-        .galeri-container {
-            padding: 40px 60px;
-        }
-
+        .header-section { display: flex; justify-content: center; align-items: center; margin: 30px; flex-wrap: wrap; gap: 15px;}
+        .header-section .title{ color: #001e74; font-size: 32px; font-weight: 700; position: relative;  margin: 30px; letter-spacing: 0.5px; text-align: center;}
+        .header-section .title::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0;  margin-bottom: -10px; width: 50px; height: 5px; background: linear-gradient(to right, #facc15, #ff9a00); border-radius: 50px; box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .header-section .title:hover::after { width: 100%; left: 0; transform: translateX(0); box-shadow: 0 6px 20px rgba(250, 204, 21, 0.7);}
+        
         .galeri-grid {
             display: flex;
             flex-wrap: wrap;
@@ -88,6 +89,9 @@
 @section('content')
 
 <div class="galeri-container">
+    <div class="header-section">
+        <h1 class="title">Galeri </h1>
+    </div>
     <div class="galeri-grid">
         @foreach ($galleries as $gallery)
             <div class="galeri-card">

@@ -37,9 +37,10 @@ class EvaluasiController extends Controller
 
         $documentName = null;
         if($request->hasFile('document')) {
-            $documentName = $request->document->getClientOriginalName();
+            $documentName = time().'_'.$request->document->getClientOriginalName(); // TAMBAHKAN time()
             $request->document->move(public_path('uploads/documents'), $documentName);
         }
+        
 
         Evaluasi::create([
             'title' => $request->title,
@@ -68,16 +69,22 @@ class EvaluasiController extends Controller
         ]);
 
         if($request->hasFile('image')) {
+
+            if($evaluation->document && file_exists(public_path('uploads/documents/' . $evaluation->document))) {
+                unlink(public_path('uploads/documents/' . $evaluation->document));
+            }
+            
             $imageName = time() .'_'. $request->image->getClientOriginalName();
             $request->image->move(public_path('uploads/evaluasi'), $imageName);
             $evaluation->image = $imageName;
         }
 
         if($request->hasFile('document')) {
-            $documentName = $request->document->getClientOriginalName();
+            $documentName = time().'_'.$request->document->getClientOriginalName(); // TAMBAHKAN time()
             $request->document->move(public_path('uploads/documents'), $documentName);
             $evaluation->document = $documentName;
         }
+        
 
         $evaluation->title = $request->title;
         $evaluation->save();

@@ -91,7 +91,7 @@
 <div class="main-container">
     <h1>Daftar Indikator SPBE Tahun {{ $tahun->tahun }}</h1>
 
-    <form method="GET" action="{{ route('admin.indikator.tahun', $tahun->id) }}" class="filter-form-group">
+    <form method="GET" action="{{ route('indikator.tahun', $tahun->id) }}" class="filter-form-group">
         <div class="filter-item">
             <label for="filter_domain">Filter Domain:</label>
             <select name="filter_domain" id="filter_domain" class="form-control">
@@ -120,7 +120,7 @@
             <button type="submit" class="btn-action btn-primary">
                 <i class="fas fa-filter"></i> Terapkan Filter
             </button>
-            <a href="{{ route('admin.indikator.tahun', $tahun->id) }}" class="btn-action btn-secondary">
+            <a href="{{ route('indikator.tahun', $tahun->id) }}" class="btn-action btn-secondary">
                 <i class="fas fa-sync-alt"></i> Reset Filter
             </a>
         </div>
@@ -143,7 +143,7 @@
                 <td data-label="Domain">{{ $indikator->aspect->domain->nama }}</td>
                 <td data-label="Aspek">{{ $indikator->aspect->nama }}</td>
                 <td data-label="Indikator">{{ $indikator->nama }}</td>
-                <td data-label="Penjelasan">{{ $indikator->penjelasan }}</td>
+                <td data-label="Penjelasan">{!! nl2br(e($indikator->penjelasan)) !!}</td>
             </tr>
             @empty
             <tr>
