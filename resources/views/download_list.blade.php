@@ -72,7 +72,7 @@
 @section('content')
 
 <div class="filter-section">
-    <form method="GET" action="{{ route('admin.download') }}" class="flex flex-wrap gap-4 w-full items-end">
+    <form method="GET" action="{{ route('download') }}" class="flex flex-wrap gap-4 w-full items-end">
 
         <div class="filter-group">
             <label for="category-filter">Kategori</label>

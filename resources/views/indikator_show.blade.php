@@ -4,9 +4,13 @@
 
 <style>
     body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background-color: #fff; color: #333; }
-    .main-container { width: 95%; max-width: 1200px; margin: 0px auto; background-color: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); box-sizing: border-box; }
-    .main-container h1 { color: #001e74; font-size: 28px; font-weight: 700; margin-bottom: 30px; text-align: center; position: relative; padding-bottom: 10px; }
-
+    .main-container { width: 95%; max-width: 1200px; margin: 0px auto; background-color: #fff; padding: 0 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); box-sizing: border-box; }
+    /* .main-container h1 { color: #001e74; font-size: 28px; font-weight: 700; margin-bottom: 30px; text-align: center; position: relative; padding-bottom: 10px; } */
+    .header-section { display: flex; justify-content: center; align-items: center; margin: 30px; flex-wrap: wrap; gap: 15px;}
+    .header-section h1{ color: #001e74; font-size: 32px; font-weight: 700; position: relative;  margin: 30px; letter-spacing: 0.5px; text-align: center;}
+    .header-section h1::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0;  margin-bottom: -10px; width: 160px; height: 5px; background: linear-gradient(to right, #facc15, #ff9a00); border-radius: 50px; box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .header-section h1:hover::after { width: 100%; left: 0; transform: translateX(0); box-shadow: 0 6px 20px rgba(250, 204, 21, 0.7);}
+        
     .alert { padding: 18px 25px; margin-bottom: 25px; border-radius: 8px; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px; line-height: 1.5; border: 1px solid; }
     .alert-success { background-color: #d1fae5; color: #065f46; border-color: #34d399; }
     .alert i { font-size: 20px; }
@@ -64,7 +68,9 @@
 
 @section('content')
 <div class="main-container">
-    <h1>Daftar Evaluasi SPBE Berdasarkan Tahun</h1>
+    <div class="header-section">
+        <h1>Daftar Indikator SPBE Berdasarkan Tahun</h1>
+    </div>
 
     @if(session('success'))
         <div class="alert alert-success">

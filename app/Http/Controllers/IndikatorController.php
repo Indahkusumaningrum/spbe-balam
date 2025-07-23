@@ -19,24 +19,6 @@ class IndikatorController extends Controller
         return view('admin.indikator_index', compact('tahunList', 'tahunTerpilih'));
     }
 
-    public function publicIndex(Request $request)
-    {
-        $domains = Domain::all();
-
-        // Filter jika ada domain_id
-        $query = Indikator::with('aspect.domain');
-
-        if ($request->filled('domain_id')) {
-            $query->whereHas('aspect.domain', function ($q) use ($request) {
-                $q->where('id', $request->domain_id);
-            });
-        }
-
-        $indikators = $query->get();
-
-        return view('indikator_list', compact('indikators', 'domains'));
-    }
-
 
     public function create($tahun_id)
     {
@@ -137,7 +119,7 @@ class IndikatorController extends Controller
             $indikators->where('nama', 'like', '%' . $request->search_indikator . '%');
         }
 
-        $indikators = $indikators->get(); // Eksekusi query
+        $indikators = $indikators->get();
 
         // Pastikan Anda melewatkan semua variabel yang dibutuhkan ke view
         return view('admin.indikator_per_tahun', compact('tahun', 'indikators', 'domains', 'allAspects'));
