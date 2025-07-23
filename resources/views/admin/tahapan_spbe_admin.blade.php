@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Tahapan SPBE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Tahapan SPBE')
+@section('styles')
     <style>
         :root {
             --primary-blue: #2E5894; 
@@ -21,7 +16,7 @@
             --header-gradient-start: #3B66A4; /* Biru yang lebih dalam */
             --header-gradient-end: #2E5894;  
         }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: var(--light-gray); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: #fff; color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
         .progress-section { padding-bottom: 80px;  text-align: center; overflow: hidden; box-sizing: border-box; }
         .title { color: var(--primary-blue); font-size: 35px; text-align: center; font-weight: 700; margin-bottom: 15px; position: relative; }
         .title::after { content: ''; position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%); width: 100px; height: 4px; background-color: #FFC300; border-radius: 2px; }
@@ -100,10 +95,8 @@
             .timeline-item-description { font-size: 0.8em; }
         }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Profile')
+@endsection
+
 @section('content')
 
     <h1 class="title">Alur Evaluasi SPBE</h1><p></p>
@@ -169,6 +162,9 @@
             </div>
         </div>
 
+    @endsection
+
+    @section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const line = document.querySelector('.timeline-line');
@@ -200,5 +196,4 @@
         });
     </script>
 @endsection
-</body>
-</html>
+

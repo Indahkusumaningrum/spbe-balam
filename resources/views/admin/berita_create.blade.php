@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Berita</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.tiny.cloud/1/d76o0fl5eus3mqblrpoqew4ucr8b7y6nahboxpuujphg15lj/tinymce/5.10.7/tinymce.min.js?v=123" referrerpolicy="origin"></script>
+@extends('layouts.layout_admin')
+@section('title', 'Admin - Manage Berita')
+
+@section('styles')
     <style>
         .berita-container { width: 80%; margin: 0 auto; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
         .berita-container h1 { color: #001e74; font-size: 28px; font-weight: 700; margin-bottom: 30px; text-align: center; }
@@ -26,10 +21,8 @@
         .form-buttons { display: flex; gap: 15px; margin-top: 20px; }
         .form-buttons .btn { flex-grow: 1; text-align: center; }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Berita')
+@endsection
+
 @section('content')
 
     <div class="berita-container">
@@ -146,5 +139,3 @@
 </script>
 @endsection
 
-</body>
-</html>

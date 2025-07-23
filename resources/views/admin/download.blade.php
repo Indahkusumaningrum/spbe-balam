@@ -53,7 +53,7 @@
         appearance: none; -webkit-appearance: none; -moz-appearance: none; 
         background-repeat: no-repeat; background-position: right 12px top 50%; background-size: 12px auto; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease; 
     }
-    .filter-section .form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); outline: none; }
+    .filter-group select:focus, .filter-group input:focus { outline: none; border-color: #facc15; }
     .btn-filter-submit { 
         background-color: #001e74; color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; 
         border: none; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); margin-top: 0; 

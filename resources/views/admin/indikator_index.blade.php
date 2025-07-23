@@ -14,7 +14,7 @@
     .filter-form { margin-bottom: 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 15px; background-color: #f8f9fa; padding: 15px 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
     .filter-form label { font-weight: 600; color: #333; font-size: 16px; }
     .filter-form select { width: auto; padding: 10px 15px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 16px; background-color: #fff; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-    .filter-form select:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); outline: none; }
+    .filter-form select:focus { border-color: #facc15; outline: none; }
 
     .data-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; margin-top: 20px; }
     .data-table thead tr { background-color: #001e74; color: #ffffff; text-align: left; border-radius: 8px; }

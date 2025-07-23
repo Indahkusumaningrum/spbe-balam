@@ -12,7 +12,7 @@
     @yield('style')
     <style>
         body { margin: 0; font-family: 'Poppins', sans-serif; line-height: 1.6; }
-        .spbe-navbar { background: white; display: flex; align-items: center; padding: 10px 30px; justify-content: space-between; box-shadow: 0 3px 10px rgba(0, 30, 116, 0.1); }
+        .spbe-navbar { background: white; display: flex; align-items: center; padding: 10px 30px; justify-content: space-between; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box; }
         .spbe-navbar img { height: 65px; }
         .spbe-navbar .menu { display: flex; list-style: none; gap: 40px; margin: 0; padding: 0; font-size: 17px; margin-right: 40px; font-weight: bold;}
         .spbe-navbar .menu li a { color: #001e74; text-decoration: none; font-weight: bold; position: relative; padding-bottom: 7px; transition: color 0.3s ease; }
@@ -93,10 +93,10 @@
                     <img src="{{ asset('asset/img/logo-spbe.png') }}" alt="Logo SPBE" class="footer-logo">
                     <p>Merupakan media atau wadah informasi sekaligus pengelolaan data indikator SPBE di lingkungan Pemerintah Kota Lampung</p>
                     <div class="footer-social">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/diskominfobandarlampung"><i class="fa-brands fa-facebook-f"></i></a>
                         <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/kominfokotabandarlampung"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@kominfobandarlampung"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
 

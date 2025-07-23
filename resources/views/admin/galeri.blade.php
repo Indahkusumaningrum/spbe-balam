@@ -1,5 +1,3 @@
-<!-- GALERI UNTUK ADMIN -->
-<!-- resources/views/admin/galeri/index.blade.php -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        .galeri-container {padding: 0 40px; display: inline-block; background-color: #fff; color: white; font-weight: 600; border-radius: 8px; text-decoration: none; margin-bottom: 24px; }
+        .galeri-container { display: block; max-width: 1200px; width: 95%; margin: 40px auto; background-color: #fff; padding: 30px; border-radius: 12px; box-sizing: border-box; }        
         .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
         .header-section h1 { color: #001e74; font-size: 32px;  font-weight: 700; position: relative; padding-bottom: 12px; margin: 0; letter-spacing: 0.5px; }
         .header-section h1::after {

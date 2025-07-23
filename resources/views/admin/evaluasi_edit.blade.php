@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Berita</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Kelola Evaluasi SPBE')
+ @section('styles')
     <style>
         .form-container { max-width: 1200px; margin: 0 auto; background: white; padding: 40px; border-radius: 14px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
         h2 { text-align: center; color: #001e74; font-weight: bold; margin-bottom: 30px; }
@@ -24,11 +19,7 @@
 
         .gambar { margin-top: 10px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 30%; }
     </style>
-
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Evaluasi')
+@endsection
 @section('content')
 
     <div class="form-container">
@@ -67,5 +58,4 @@
         </form>
     </div>
 @endsection
-</body>
-</html>
+

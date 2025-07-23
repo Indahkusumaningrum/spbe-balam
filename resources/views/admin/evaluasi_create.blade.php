@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manage Berita</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@extends('layouts.layout_admin')
+@section('title', 'Kelola Evaluasi SPBE')
+@section('styles')
     <style>
         .berita-container { width: 80%; margin: 0 auto; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
         .berita-container h1 {color: #001e74; font-size: 28px; font-weight: 700; margin-bottom: 30px; text-align: center; }
@@ -18,10 +13,8 @@
         .btn-kembali { background-color: #ccc; color: #000; padding: 10px 24px; border: none; border-radius: 8px; font-size: 16px; text-decoration: none; display: inline-block; text-align: center; transition: background-color 0.3s ease; }
         .btn-kembali:hover { background-color: #bbb; }
     </style>
-</head>
-<body>
-@extends('layouts.layout_admin')
-@section('title', 'Manage Evaluasi')
+@endsection
+
 @section('content')
 
     <div class="berita-container">
@@ -52,5 +45,3 @@
 
 @endsection
 
-</body>
-</html>
