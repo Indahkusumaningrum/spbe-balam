@@ -20,6 +20,17 @@
         textarea { resize: vertical; }
         .form-buttons { display: flex; gap: 15px; margin-top: 20px; }
         .form-buttons .btn { flex-grow: 1; text-align: center; }
+        .required-star {
+            color: red;
+            margin-left: 4px;
+        }
+        .alert { padding: 18px 25px; margin-bottom: 25px; border-radius: 8px; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 12px; line-height: 1.5; }
+        .alert-success { background-color: #d1fae5; color: #065f46; border: 1px solid #34d399; }
+        .alert-danger { background-color: #fee2e2; color: #991b1b; border: 1px solid #ef4444; }
+        .alert ul { margin: 0; padding-left: 20px; list-style-type: disc; }
+        .alert i { font-size: 20px; }
+        .text-danger { color: #dc2626; font-size: 14px; margin-top: 5px; display: block; }
+
     </style>
 @endsection
 
@@ -28,15 +39,31 @@
     <div class="berita-container">
         <h1>Buat Berita Baru</h1>
 
+        @if (session('success'))
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div style="margin-bottom: 15px;">
-                <label for="judul">Judul:</label><br>
+                <label for="judul">Judul:<span class="required-star">*</span> </label><br>
                 <input type="text" name="judul" id="judul" style="width: 100%;">
             </div>
 
             <div style="margin-bottom: 15px;">
-                <label for="konten">Konten:</label><br>
+                <label for="konten">Konten:<span class="required-star">*</span> </label><br>
                 <textarea name="konten" id="konten" rows="10" style="width: 100%;"></textarea>
             </div>
 
@@ -139,4 +166,3 @@
     });
 </script>
 @endsection
-

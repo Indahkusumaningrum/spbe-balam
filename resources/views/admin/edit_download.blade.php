@@ -151,7 +151,7 @@
             @csrf
             @method('PUT')
 
-            <label class="form-label">Kategori:</label>
+            <label class="form-label">Kategori:<span class="required-star">*</span> </label>
             <input type="text" name="category" value= "{{ $download->category }}">
             
             <label class="form-label">Tahun:</label>
