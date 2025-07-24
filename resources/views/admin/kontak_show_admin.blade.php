@@ -5,7 +5,7 @@
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Poppins', sans-serif; background: #fff; color: #334155; }
-    .dashboard-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .dashboard-container { max-width: 1300px; margin: 0 auto; padding: 20px; }
     .page-header { background: white; padding: 0 30px; border-radius: 15px; margin-bottom: 30px; }
     .page-header h1 { color: #001e74; font-size: 32px; margin-bottom: 10px; display: inline-block; padding-bottom: 4px; position: relative; }
     .page-header h1::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 160px; height: 5px; background: linear-gradient(to right, #facc15, #ff9a00); border-radius: 50px; box-shadow: 0 4px 10px rgba(250, 204, 21, 0.5); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
@@ -239,9 +239,15 @@
                         <td>
                             <strong>{{ $message->name }}</strong>
                         </td>
-                        <td>{{ $message->email }}</td>
                         <td>
-                            <div class="message-preview">{{ $message->message }}</div>
+                            <div class="message-preview">
+                                {{ Str::limit($message->email, 20, '...') }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="message-preview">
+                                {{ Str::limit($message->message, 50, '...') }}
+                            </div>
                         </td>
                         <td>
                             <span class="status-badge status-{{ $message->status ?? 'unread' }}">
@@ -294,7 +300,7 @@
 
     async function markAsRead(id) {
         try {
-            const response = await fetch(`/admin/contact/${id}/mark-read`, {
+            const response = await fetch(/admin/contact/${id}/mark-read, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
