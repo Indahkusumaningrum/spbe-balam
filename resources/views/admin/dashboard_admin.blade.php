@@ -10,7 +10,7 @@
         body{ background-color: white; }
         .btn-selengkapnya { display: inline-block; background-color: #ffae00; color: white; padding: 8px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; }
         .btn-selengkapnya:hover { transform: scale(1.05); }
-        .spbe-info-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 50px; padding: 10px 20px; background-color: #ffffff; }
+        .spbe-info-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 50px; padding: 10px 20px; background-color: #ffffff; margin-bottom: 100px;}
         .info-card { width: 250px; min-width: 250px; max-width: 100%; border: 1.5px solid #facc15; border-radius: 16px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); padding: 24px; text-align: center; transition: transform 0.3s; }
         .info-card:hover { transform: translateY(-20px); }
         .info-card .info-icon { width: 90px; height: 90px; margin-bottom: 15px; }

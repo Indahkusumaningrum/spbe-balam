@@ -55,6 +55,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.tiny.cloud/1/d76o0fl5eus3mqblrpoqew4ucr8b7y6nahboxpuujphg15lj/tinymce/5.10.7/tinymce.min.js?v=profile" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
         selector: '#konten',

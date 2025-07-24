@@ -28,9 +28,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Route::get('/download', function () { return view('admin/download'); })->name('admin.download');
-Route::get('/admin/tahapan_spbe', [DashboardAdminController::class, 'tahapan'])->name('admin.tahapan_spbe');
+Route::get('/admin/tahapan_spbe', [AdminContactController::class, 'tahapan'])->name('admin.tahapan_spbe');
 
-Route::get('/dashboardadmin', [DashboardAdminController::class, 'index'])
+Route::get('/dashboardadmin', [AdminContactController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard.admin');
 
@@ -114,7 +114,7 @@ Route::get('/kontak', function () {
 // Admin routes (with auth middleware)
 Route::middleware(['auth'])->prefix('admin')->group(function () {
 
-    Route::get('/contact', [AdminContactController::class, 'index'])->name('admin.contact.index');
+    Route::get('/contact', [AdminContactController::class, 'indexContact'])->name('admin.contact.index');
     Route::get('/contact/{id}', [AdminContactController::class, 'show'])->name('admin.contact.show');
     Route::delete('/contact/{id}', [AdminContactController::class, 'destroy'])->name('admin.contact.destroy');
     Route::get('/contact/count', [AdminContactController::class, 'getCount'])->name('admin.contact.count');

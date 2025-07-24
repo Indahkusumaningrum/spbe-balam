@@ -8,8 +8,19 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AdminContactController extends Controller
+
 {
-    public function index(Request $request)
+
+    public function index()
+    {
+        return view('admin.dashboard_admin');
+    }
+
+    public function tahapan(){
+        return view ('admin.tahapan_spbe_admin');
+    }
+
+    public function indexContact(Request $request)
     {
         $query = ContactMessage::orderBy('created_at', 'desc');
 
