@@ -86,6 +86,29 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Captcha styling */
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .captcha-reload-btn {
+            background-color: #facc15;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .captcha-reload-btn:hover {
+            background-color: #f59e0b;
+        }
+
         @media (max-width: 1024px) {
             .contact-content { grid-template-columns: 1fr; gap: 40px; }
             .contact-section { padding: 60px 20px; }
@@ -148,6 +171,15 @@
                         <textarea id="message" name="message" placeholder="Tulis pesan Anda di sini..." required></textarea>
                         <span class="error-message" id="message-error"></span>
                     </div>
+                    <div class="form-group">
+                        <div class="captcha-container" id="captcha-container">
+                            {!! captcha_img('flat') !!}
+                            <button type="button" class="captcha-reload-btn" id="reload">&#x21bb;</button>
+                        </div>
+                        <input id="captcha" type="text" name="captcha" required placeholder="Masukkan captcha" style="margin-top: 10px;">
+                        <span class="error-message" id="captcha-error"></span>
+                    </div>
+                    
                     <button type="submit" class="submit-btn" id="submitBtn">
                         <span id="btnText">Kirim Pesan</span>
                     </button>
@@ -203,8 +235,7 @@
                     </div>
                     <div class="info-details">
                         Senin - Jumat: 08:00 - 16:00 WIB<br>
-                        Sabtu: 08:00 - 12:00 WIB<br>
-                        Minggu: Tutup
+                        Sabtu - Minggu: Tutup
                     </div>
                 </div>
             </div>
@@ -224,8 +255,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup CSRF token for AJAX requests
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+    // Function to setup captcha reload
+    function setupCaptchaReload() {
+        const reloadBtn = document.getElementById('reload');
+        if (reloadBtn) {
+            // Remove any existing event listeners
+            reloadBtn.replaceWith(reloadBtn.cloneNode(true));
+            const newReloadBtn = document.getElementById('reload');
+            
+            newReloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Captcha reload clicked');
+                
+                fetch('/reload-captcha')
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        console.log('Captcha reloaded:', data);
+                        const captchaContainer = document.getElementById('captcha-container');
+                        if (captchaContainer && data.captcha) {
+                            captchaContainer.innerHTML = data.captcha + '<button type="button" class="captcha-reload-btn" id="reload">&#x21bb;</button>';
+                            // Re-setup event listener for new button
+                            setupCaptchaReload();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error reloading captcha:', error);
+                        showAlert('error', 'Gagal memuat ulang captcha. Silakan coba lagi.');
+                    });
+            });
+        }
+    }
+
+    // Initialize captcha reload
+    setupCaptchaReload();
+
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        console.log('Form submitted');
         
         // Reset previous states
         clearErrors();
@@ -234,11 +305,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get form data
         const formData = new FormData(form);
         
+        // Log form data for debugging
+        for (let [key, value] of formData.entries()) {
+            console.log(key + ': ' + value);
+        }
+        
         // Show loading state
         showLoading();
         
         try {
-            const response = await fetch('{{ route("contact.store") }}', {
+            const response = await fetch('/contact', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
@@ -247,12 +323,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData
             });
 
+            console.log('Response status:', response.status);
             const result = await response.json();
+            console.log('Response data:', result);
 
             if (result.success) {
                 showAlert('success', result.message);
                 form.reset();
                 clearErrors();
+                // Reload captcha after successful submission
+                document.getElementById('reload').click();
             } else {
                 if (result.errors) {
                     showValidationErrors(result.errors);
@@ -261,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Fetch error:', error);
             showAlert('error', 'Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.');
         } finally {
             hideLoading();
@@ -281,6 +361,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function showAlert(type, message) {
         alert.className = `alert alert-${type} show`;
         alert.textContent = message;
+        
+        // Scroll to alert
+        alert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         
         // Auto hide after 5 seconds
         setTimeout(() => {
@@ -302,6 +385,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputElement.closest('.form-group').classList.add('error');
             }
         });
+        
+        // Show general error alert
+        showAlert('error', 'Mohon perbaiki kesalahan pada form.');
     }
 
     function clearErrors() {
@@ -338,6 +424,11 @@ document.addEventListener('DOMContentLoaded', function() {
             this.closest('.form-group').classList.remove('focused');
         });
     });
+
+    // Debug: Check if elements exist
+    console.log('Form element:', form);
+    console.log('Submit button:', submitBtn);
+    console.log('CSRF token:', csrfToken);
 });
 </script>
 
