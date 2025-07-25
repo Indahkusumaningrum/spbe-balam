@@ -125,6 +125,9 @@
             </a>
         </div>
     </form>
+    <a href="{{ route('indikator.show') }}" class="btn-action btn-secondary">
+        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Tahun
+    </a>
 
     <table class="data-table">
         <thead>
