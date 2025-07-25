@@ -48,6 +48,10 @@
         .form-container h2 { font-size: 20px; }
         .btn { padding: 10px 15px; font-size: 14px; }
     }
+    .required-star {
+            color: red;
+            margin-left: 4px;
+        }
 </style>
 @endsection
 
@@ -75,7 +79,7 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="judul" class="form-label">Judul:</label>
+            <label for="judul" class="form-label">Judul:<span class="required-star">*</span></label>
             <input type="text" id="judul" name="judul" class="form-control" value="{{ old('judul', $berita->judul) }}" required>
             @error('judul')
                 <div class="text-danger">{{ $message }}</div>
@@ -83,7 +87,7 @@
         </div>
 
         <div class="form-group">
-            <label for="konten" class="form-label">Konten:</label>
+            <label for="konten" class="form-label">Konten:<span class="required-star">*</span></label>
             <textarea name="konten" id="konten" class="form-control" rows="10" required>{{ old('konten', $berita->konten) }}</textarea>
             @error('konten')
                 <div class="text-danger">{{ $message }}</div>

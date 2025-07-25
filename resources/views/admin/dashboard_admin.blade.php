@@ -11,7 +11,7 @@
         .btn-selengkapnya { display: inline-block; background-color: #ffae00; color: white; padding: 8px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background-color 0.3s ease, transform 0.2s ease; }
         .btn-selengkapnya:hover { transform: scale(1.05); }
         .spbe-info-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 50px; padding: 10px 20px; background-color: #ffffff; margin-bottom: 100px;}
-        .info-card { width: 250px; min-width: 250px; max-width: 100%; border: 1.5px solid #facc15; border-radius: 16px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); padding: 24px; text-align: center; transition: transform 0.3s; }
+        .info-card { width: 250px; min-width: 250px; max-width: 100%; border: 1.5px solid #facc15; border-radius: 16px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); padding: 24px; text-align: center; transition: transform 0.3s; margin-top: 50px;}
         .info-card:hover { transform: translateY(-20px); }
         .info-card .info-icon { width: 90px; height: 90px; margin-bottom: 15px; }
         .info-card h3 { font-size: 18px; margin: 0 0 8px; color: #000; }
@@ -35,36 +35,7 @@
 @extends('layouts.layout_admin')
 @section('title', 'Dashboard Admin')
 @section('content')
-    <!-- Statistics -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon total">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <div class="stat-content">
-                <h3>{{ $stats['total'] ?? 0 }}</h3>
-                <p>Total Pesan</p>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon unread">
-                <i class="fas fa-envelope"></i>
-            </div>
-            <div class="stat-content">
-                <h3>{{ $stats['unread'] ?? 0 }}</h3>
-                <p>Belum Dibaca</p>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon read">
-                <i class="fas fa-envelope-open"></i>
-            </div>
-            <div class="stat-content">
-                <h3>{{ $stats['read'] ?? 0 }}</h3>
-                <p>Sudah Dibaca</p>
-            </div>
-        </div>
-    </div>
+    
     <div class="spbe-info-section">
         <div class="info-card">
             <img src="{{ asset('asset/icon/regulasi.png') }}" alt="Regulasi" class="info-icon">
@@ -78,12 +49,7 @@
             <p>Terbagi dalam Peta Rencana SPBE yaitu: Tahapan Rencana Strategis, Tahapan Pembangunan Fondasi SPBE, Tahapan Pengembangan SPBE, dan Inisiatif Strategis</p>
             <a href="{{ route('admin.tahapan_spbe') }}" class="btn-selengkapnya">Manage</a>
         </div>
-        <div class="info-card">
-            <img src="{{ asset('asset/icon/evaluasi.png') }}" alt="Evaluasi" class="info-icon">
-            <h3>Evaluasi</h3>
-            <p>Hasil evaluasi untuk mengetahui Indeks SPBE sebagai acuan untuk tingkat kematangan penerapan SPBE baik dalam kapabilitas proses maupun kapabilitas fungsi teknis</p>
-            <a href="{{ route('admin.evaluasi') }}" class="btn-selengkapnya">Manage</a>
-        </div>
+    
     </div>
 @endsection
 

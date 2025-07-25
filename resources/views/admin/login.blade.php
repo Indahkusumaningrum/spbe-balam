@@ -174,8 +174,13 @@
           <input type="password" id="password" name="password" class="form-control" required />
         </div>
 
-        <div class="forgot">
-          <a href="#">Forgot Password?</a>
+        <div class="mb-3">
+            <label for="captcha">Kode Captcha</label>
+            <div class="d-flex mb-2 align-items-center">
+                {!! captcha_img('flat') !!}
+                <button type="button" class="btn btn-link ms-2" id="reload" style="color:white; background-color:#faac15;">&#x21bb;</button>
+            </div>
+            <input id="captcha" type="text" class="form-control" name="captcha" required placeholder="Masukkan captcha">
         </div>
 
         <button type="submit" class="btn w-100">Login</button>
@@ -188,5 +193,16 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('reload').addEventListener('click', function () {
+        fetch('/reload-captcha')
+            .then(res => res.json())
+            .then(data => {
+                document.querySelector('.mb-3 div').innerHTML = data.captcha + '<button type="button" class="btn btn-link ms-2" id="reload" style="color:white; background-color:#faac15;">&#x21bb;</button>';
+            });
+    });
+  </script>
+
+
 </body>
 </html>
