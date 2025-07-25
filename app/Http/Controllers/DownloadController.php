@@ -27,9 +27,9 @@ class DownloadController extends Controller
             });
         }
     
-        $categories = Download::select('category')->distinct()->pluck('category');
-        $years = Download::select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
-    
+        $categories = Download::whereNotNull('category')->select('category')->distinct()->pluck('category');
+        $years = Download::whereNotNull('year')->select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
+      
         $downloads = $query->get();
     
         return view('admin.download', compact('downloads', 'categories', 'years'));
