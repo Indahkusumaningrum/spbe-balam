@@ -103,7 +103,7 @@ class AdminBeritaController extends Controller
     public function uploadImageTinyMCE(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
         ]);
 
         if ($request->hasFile('file')) {

@@ -242,3 +242,12 @@ Route::post('/admin/aspek', [AspectController::class, 'store'])->name('admin.asp
 
 // Route::get('/admin/domain', [DomainController::class, 'index'])->name('admin.domain.index');
 // Route::get('/admin/aspek', [AspectController::class, 'index'])->name('admin.aspect.index');
+
+
+// routes/web.php
+
+use Mews\Captcha\Facades\Captcha;
+
+Route::get('/reload-captcha', function () {
+    return response()->json(['captcha'=> captcha_img('flat')]);
+});

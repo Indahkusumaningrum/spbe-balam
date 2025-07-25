@@ -113,29 +113,28 @@
             background-color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); overflow: hidden;
             transition: background-color: 0.3s ease-in-out; color: 0.3s ease-in-out; flex-direction: column; height: auto;
         }
-        .evaluasi-swiper-slide:not(.swiper-slide-active) { opacity: 0.7; transform: scale(0.9); }
-        .evaluasi-swiper-slide-active { opacity: 1; transform: scale(1); }
-        .evaluasi-swiper-slide:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); }
-        .evaluasi-card-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
-        .evaluasi-image-wrapper { position: relative; width: 100%; padding-top: 75%; overflow: hidden; border-top-left-radius: 10px; border-top-right-radius: 10px; }
-        .evaluasi-image-wrapper img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease-in-out; }
-        .evaluasi-swiper-slide:hover .evaluasi-image-wrapper img { transform: scale(1.05); }
-        .evaluasi-image-wrapper .overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease-in-out;
+
+        .aplikasi-section { padding: 60px 0px; background-color: #fff; text-align: center; }
+        .aplikasi-section h2 { font-size: 28px; color: #2c3e50; margin-bottom: 40px; font-weight: bold; }
+        .aplikasi-section h2::after { content: ''; display: block; width: 120px; height: 4px; background-color: #facc15; margin: 10px auto 0; border-radius: 2px; }
+        .aplikasi-swiper-container { max-width: 100%; padding-bottom: 40px; overflow: hidden; margin: 0 auto }
+        .aplikasi-swiper-wrapper { display: flex; }
+        .aplikasi-swiper-slide {
+            background: #fff; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: left; display: flex; flex-direction: column; height: auto; width: 220px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; opacity: 1;  transform: scale(1);
         }
-        .evaluasi-swiper-slide:hover .evaluasi-image-wrapper .overlay { opacity: 1; }
-        .evaluasi-image-wrapper .overlay .tahun { font-size: 30px; font-weight: bold; color: #ecf0f1; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
-        .modal { display: none; position: fixed; z-index: 1000; padding-top: 30px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); }
-        .modal-content { margin: auto; display: block; max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
-        .custom-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); overflow-y: auto; padding: 60px 0; }
-        .custom-modal-content { background-color: #fff; margin: auto; border-radius: 10px; max-width: 100%; width: 800px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); overflow: hidden; animation: fadeIn 0.3s ease-in-out; }
-        .custom-modal-header { background-color: #1e3a8a; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center }
-        .custom-modal-body { padding: 24px; text-align: center; }
-        .custom-modal-image { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-        .btn-close { background-color: #1e3a8a; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
-        .btn-close:hover { background-color: #3749b7; }
-        .custom-close { font-size: 38px; cursor: pointer; }
+        .aplikasi-swiper-slide-active { opacity: 1; transform: scale(1); }
+        .aplikasi-swiper-slide:hover {transform: translateY(-5px);  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
+        .aplikasi-card-link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; }
+        .aplikasi-image-wrapper { width: 100%; height: 150px; overflow: hidden; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; justify-content: center; align-items: center; padding: 10px; }
+        .aplikasi-swiper-slide img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; transition: transform 0.3s ease; }
+        .aplikasi-swiper-slide:hover img {transform: scale(1.05) }
+        .aplikasi-content-wrapper { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .aplikasi-title { font-size: 16px; font-weight: bold; color: #001e74; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 10px; }
+        .aplikasi-description { font-size: 14px; color: #555; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+        .aplikasi-section .aplikasi-swiper-container .aplikasi-navigation-wrapper { display: flex; justify-content: center; align-items: center; gap: 10px; position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: auto; z-index: 10; }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -158,10 +157,10 @@
             .berita-image-wrapper { height: 180px; }
             /* .berita-content-wrapper { padding: 15px; } */
             .berita-title { font-size: 16px; -webkit-line-clamp: 3; }
-            .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
-            .modal-content { max-width: 90%; margin: auto;}
-            .custom-modal-content { margin: auto; max-width: 100%; width: 700px;}
-            .custom-modal-header h2 { font-size: 26px;}
+            .aplikasi-section { padding: 40px 0px; }
+            .aplikasi-swiper-container { max-width: 960px; }
+            .aplikasi-image-wrapper { height: 180px; }
+            .aplikasi-title { font-size: 16px; -webkit-line-clamp: 3; }
 
         }
         @media (min-width: 768px) and (max-width: 1024px) {
@@ -184,10 +183,12 @@
             .berita-image-wrapper { height: 180px; }
             /* .berita-content-wrapper { padding: 12px; } */
             .berita-title { font-size: 15px; -webkit-line-clamp: 3; }
-            .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
-            .modal-content { max-width: 90%; margin: auto;}
-            .custom-modal-content { margin: auto; max-width: 100%; width:700px;}
-            .custom-modal-header h2 { font-size: 20px;}
+            .aplikasi-section { padding: 30px 0px; }
+            .aplikasi-swiper-container { max-width: 720px; }
+            .aplikasi-swiper-slide { padding: 0px; }
+            .aplikasi-swiper-slide img { width: 100%; height: 140px; object-fit: cover; } /* Adjust as needed */
+            .aplikasi-image-wrapper { height: 180px; }
+            .aplikasi-title { font-size: 15px; -webkit-line-clamp: 3; }
         }
         @media (max-width: 480px) {
             .container { padding: 32px 16px; }
@@ -210,39 +211,11 @@
             .berita-image-wrapper { height: 120px; }
             /* .berita-content-wrapper { padding: 10px; } */
             .berita-title { font-size: 14px; -webkit-line-clamp: 4; }
-            .modal { width: 90%; height: 100%; margin: auto; top: 50%;}
-            .modal-content { max-width: 90%; margin: auto;}
-            .custom-modal-content { margin: auto; max-width: 100%; width: 400px;}
-            .custom-modal-header h2 { font-size: 20px;}
+            .aplikasi-section { padding: 40px 0px; }
+            .aplikasi-swiper-container { max-width: 400px; }
+            .aplikasi-image-wrapper { height: 120px; }
+            .aplikasi-title { font-size: 14px; -webkit-line-clamp: 4; }
         }
-
-
-
-
-    /* --- Responsive Adjustments for Banner Text --- */
-    @media (max-width: 1024px) {
-        .swiper-slide .banner-text-overlay {
-            padding: 0 60px;
-        }
-        .swiper-slide .banner-text-overlay h1 {
-            font-size: 2.8em;
-        }
-        .swiper-slide .banner-text-overlay p {
-            font-size: 1.5em;
-        }
-    }
-
-    /* @media (max-width: 480px) {
-        .swiper-slide .banner-text-overlay {
-            padding: 0 20px;
-        }
-        .swiper-slide .banner-text-overlay h1 {
-            font-size: 1.6em;
-        }
-        .swiper-slide .banner-text-overlay p {
-            font-size: 0.9em;
-        }
-    } */
     </style>
 </head>
 <body>
@@ -309,12 +282,6 @@
             <h3>Tahapan SPBE</h3>
             <p>Terbagi dalam Peta Rencana SPBE yaitu: Tahapan Rencana Strategis, Tahapan Pembangunan Fondasi SPBE, Tahapan Pengembangan SPBE, dan Inisiatif Strategis</p>
             <a href="{{ route('tahapan_spbe') }}" class="btn-selengkapnya">Selengkapnya</a>
-        </div>
-        <div class="info-card">
-            <img src="{{ asset('asset/icon/kegiatan.png') }}" alt="Kegiatan" class="info-icon">
-            <h3>Kegiatan</h3>
-            <p>Maka inti dari kegiatan SPBE adalah membangun layanan publik yang berkualitas, dengan didukung kesiapan pada aplikasi, infrastruktur dan keamanan SPBE.</p>
-            <a href="#" class="btn-selengkapnya">Selengkapnya</a>
         </div>
     </div>
 
@@ -388,50 +355,111 @@
         </div>
     </div>
 
-    {{-- Section Evaluasi --}}
-    <div class="evaluasi-section">
-        <h2>Hasil Evaluasi </h2>
-        <div class="evaluasi-swiper-container">
-            <div class="swiper-wrapper evaluasi-swiper-wrapper">
-                @forelse($evaluations as $evaluation)
-                    <div class="swiper-slide evaluasi-swiper-slide">
-                        <a href="javascript:void(0);" class="evaluasi-card-link"
-                        onclick="openModal('{{ asset('uploads/evaluasi/' . $evaluation->image) }}', '{{ $evaluation->title }}')">
-                            <div class="evaluasi-image-wrapper">
-                                <img src="{{ asset('uploads/evaluasi/' . $evaluation->image) }}" alt="{{ $evaluation->title }}">
-                                <div class="overlay">
-                                    <div class="tahun">
-                                        {{ Str::of($evaluation->title)->match('/Tahun \d{4}/') }}
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @empty
-                    <div class="swiper-slide evaluasi-swiper-slide">
-                        <p>Belum ada hasil evaluasi terbaru saat ini.</p>
-                    </div>
-                @endforelse
+    <div class="aplikasi-section">
+        <h2>Aplikasi Pemerintah Kota</h2>
+        <div class="aplikasi-swiper-container">
+            <div class="swiper-wrapper aplikasi-swiper-wrapper">
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://satudata.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-satu-data.svg') }}" alt="Satu-data">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">Satu Data</h3>
+                            <p class="aplikasi-description">Layanan Data Terbuka</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://jdih.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-jdih.png') }}" alt="JDIH">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">JDIH</h3>
+                            <p class="aplikasi-description">Jaringan Dokumentasi dan Informasi hukum</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://disdukcapil.bandarlampungkota.go.id/pelayanan" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/icon_permen_manis.png') }}" alt="e-gov">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">Permen Manis</h3>
+                            <p class="aplikasi-description">Pelayanan melalui Online Masyarakat Duduk Manis Disdukcapil Kota Bandar Lampung </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://spse.inaproc.id/bandarlampungkota/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-spse.png') }}" alt="SPSE">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">SPSE</h3>
+                            <p class="aplikasi-description">Sistem Pengadaan Secara Elektronik</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://seribuwajah.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-seribu-wajah.png') }}" alt="CCTV">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">CCTV Seribu Wajah</h3>
+                            <p class="aplikasi-description">Sistem Monitoring CCTV Kota Bandar Lampung</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://disdikbud.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-dapodik.png') }}" alt="JDIH">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">DAPODIK</h3>
+                            <p class="aplikasi-description">Sistem Informasi Data Pokok Kependidikan Secara Nasional</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://abangpol.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/logo-abangpol.png') }}" alt="SPSE">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">ABANGPOL</h3>
+                            <p class="aplikasi-description">Aplikasi Badan Kesbangpol Kota Bandar Lampung</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://dpmptsp.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/saibetikk.png') }}" alt="SPSE">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">Sai Betik</h3>
+                            <p class="aplikasi-description">Aplikasi Perizinan Kota Bandar Lampung</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="swiper-slide aplikasi-swiper-slide">
+                    <a href="https://sipanda.bandarlampungkota.go.id/" class="aplikasi-card-link" target="_blank" rel="noopener noreferrer">
+                        <div class="aplikasi-image-wrapper">
+                            <img src="{{ asset('asset/icon/sipanda.png') }}" alt="SPSE">
+                        </div>
+                        <div class="aplikasi-content-wrapper">
+                            <h3 class="aplikasi-title">SIPANDA SAI HAGOM</h3>
+                            <p class="aplikasi-description">Sistem Panel Data Satuan Informasi Harga Komoditi</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Modal Bootstrap-like -->
-    <div class="custom-modal" id="popupModal">
-        <div class="custom-modal-content">
-            <div class="custom-modal-header">
-                <h2 id="modalTitle">Hasil Evaluasi</h2>
-                <span class="custom-close" onclick="closeModal()">&times;</span>
-            </div>
-            <div class="custom-modal-body"> <img id="modalImage" src="" alt="Evaluasi SPBE" class="custom-modal-image"> </div>
-        </div>
-    </div>
-
-
-    <!-- Modal Image Preview -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalImage">
     </div>
 
 @endsection
@@ -464,19 +492,6 @@
         }
     });
 
-    var swiperEvaluasi = new Swiper(".evaluasi-swiper-container", {
-        effect: 'slide', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000,
-        autoplay: { delay: 5000, disableOnInteraction: false },
-        slidesPerView: 1,
-        spaceBetween: 20,
-        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-        breakpoints: {
-            640: { slidesPerView: 1, spaceBetween: 20, },
-            768: { slidesPerView: 1, spaceBetween: 20,},
-            1024: { slidesPerView: 1, spaceBetween: 20, },
-        }
-    });
-
      function openModal(imageSrc, title = "Hasil Evaluasi") {
         document.getElementById("modalImage").src = imageSrc;
         document.getElementById("modalTitle").innerText = title;
@@ -494,6 +509,18 @@
         }
     }
 
+    //Aplikasi Swiper
+    var swiperAplikasi = new Swiper(".aplikasi-swiper-container", {
+        effect: 'slide', grabCursor: true, centeredSlides: true, slidesPerView:'auto', loop: true, speed: 1000, spaceBetween: 5,
+        autoplay: { delay: 6000, disableOnInteraction: false },
+        pagination: { el: ".aplikasi-swiper-pagination", clickable: true, },
+        navigation: { nextEl: ".aplikasi-swiper-button-next", prevEl: ".aplikasi-swiper-button-prev" },
+        breakpoints: {
+            640: { slidesPerView: 1.5, spaceBetween: 5, },
+            768: { slidesPerView: 1, spaceBetween: 15,},
+            1024: { slidesPerView: 3, spaceBetween: 5, },
+        }
+    });
 
 </script>
 @endpush

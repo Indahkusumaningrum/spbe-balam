@@ -33,7 +33,7 @@
 
     .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .messages-section { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); overflow: hidden }
-    .messages-table { width: 100%; border-collapse: collapse;}
+    .messages-table { width: 100%; border-collapse: collapse; } /* Ensure width 100% */
     .messages-table th, .messages-table td { padding: 15px 25px; text-align: left; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
     .messages-table th { background: #001e74; font-weight: 600; color: white; font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
     .messages-table thead tr th:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
@@ -43,17 +43,43 @@
     .messages-table tbody tr{ transition: transform 0.2s ease, box-shadow 0.2s ease; }
     .messages-table tbody tr:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
 
-    .messages-table thead tr th:nth-child(1) { width: 10%; }
-    .messages-table thead tr th:nth-child(2) { width: 15%; } 
-    .messages-table thead tr th:nth-child(3) { width: 45%; }
-    .messages-table thead tr th:nth-child(4) { width: 10%; }
-    .messages-table thead tr th:nth-child(5) { width: 10%; } 
-    .messages-table thead tr th:nth-child(6) { width: 10%; } 
+    /* Remove or adjust fixed widths for larger screens to allow columns to expand */
+    /* .messages-table thead tr th:nth-child(1) { width: 10%; } */
+    /* .messages-table thead tr th:nth-child(2) { width: 15%; } */
+    /* .messages-table thead tr th:nth-child(3) { width: 50%; } */
+    /* .messages-table thead tr th:nth-child(4) { width: 10%; } */
+    /* .messages-table thead tr th:nth-child(5) { width: 10%; } */
+    /* .messages-table thead tr th:nth-child(6) { width: 5%; } */
+
+    /* Flexible widths for larger screens using min-width or leaving it to content */
+    .messages-table th:nth-child(1), .messages-table td:nth-child(1) { min-width: 120px; } /* Pengirim */
+    .messages-table th:nth-child(2), .messages-table td:nth-child(2) { min-width: 150px; } /* Email */
+    .messages-table th:nth-child(3), .messages-table td:nth-child(3) { min-width: 300px; } /* Pesan - allow more space */
+    .messages-table th:nth-child(4), .messages-table td:nth-child(4) { min-width: 100px; } /* Status */
+    .messages-table th:nth-child(5), .messages-table td:nth-child(5) { min-width: 150px; } /* Tanggal */
+    .messages-table th:nth-child(6), .messages-table td:nth-child(6) { min-width: 80px; } /* Aksi */
+
 
     .status-badge { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; display: inline-block; }
     .status-unread { background: #fee2e2; color: #991b1b; }
     .status-read { background: #dcfce7; color: #166534; }
-    .message-preview { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #64748b; }
+    /* Modify message-preview for larger screens */
+    .message-preview {
+        max-width: 100%; /* Ensure it takes available space */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Keep ellipsis for long lines */
+        white-space: nowrap; /* Keep it on a single line by default */
+        color: #64748b;
+    }
+    /* For larger screens, remove nowrap and ellipsis for message content to show fully */
+    @media (min-width: 1025px) { /* Adjust breakpoint as needed for "laptop" */
+        .message-preview {
+            white-space: normal; /* Allow text to wrap */
+            text-overflow: unset; /* Remove ellipsis */
+            overflow: visible; /* Show full content */
+        }
+    }
+
     .actions { display: flex; gap: 5px; justify-content: center; align-items: center; flex-wrap: nowrap; }
     .btn-sm { padding: 6px 12px;font-size: 12px;border-radius: 6px; border: none; cursor: pointer; transition: all 0.3s ease;  flex-shrink: 0;}
     .btn-info { background: #3b82f6; color: white; }
@@ -61,61 +87,21 @@
     .btn-danger { background: red; color: white; }
     .btn-danger:hover { background: darkred; }
 
-    /* .pagination { padding: 25px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .pagination a, .pagination span { padding: 6px 10px; border-radius: 6px; text-decoration: none; transition: all 0.3s ease; font-size: 14px; }
-    .pagination a { background: #f1f5f9; color: #64748b; }
-    .pagination a:hover { background: #facc15; color: white; }
-    .pagination .current { background: #001e74; color: white; }
-    .pagination svg { width: 16px !important; height: 16px !important; }
-    .pagination .page-item .page-link { padding: 6px 10px !important; font-size: 14px !important; border-radius: 6px !important; min-width: auto !important; height: auto !important; } */
-
     nav[aria-label="pagination"] svg { width: 14px !important; height: 14px !important; }
     nav[aria-label="pagination"] a, nav[aria-label="pagination"] span { padding: 4px 8px !important; font-size: 13px !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; }
     .empty-state { padding: 60px 20px; text-align: center; color: #64748b; }
     .empty-state i { font-size: 4rem; margin-bottom: 20px; opacity: 0.5; }
     .empty-state h3 { font-size: 1.5rem; margin-bottom: 10px; }
 
-    @media (max-width: 768px) {
-        .dashboard-container { padding: 15px; }
-        .stats-grid { grid-template-columns: 1fr; }
-        .filters-grid { grid-template-columns: 1fr; }
-        .messages-table { font-size: 14px; }
-        .messages-table th, .messages-table td { padding: 10px 15px; }
-        .message-preview { max-width: 200px; }
-    }
-
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
-    .modal.show { display: flex; align-items: center; justify-content: center; opacity: 1; }
-    .modal-content { background: white; max-width: 700px; width: 90%; max-height: 90vh; border-radius: 15px; overflow: hidden; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); transform: scale(0.9); transition: transform 0.3s ease; }
-    .modal.show .modal-content { transform: scale(1); }
-    .modal-header { padding: 25px; background: linear-gradient(135deg, #001e74, #1a3a8a); color: white; display: flex; justify-content: space-between; align-items: center; }
-    .modal-header h3 { font-size: 1.4rem; font-weight: 600; margin: 0; }
-
-    .close-btn { background: none; border: none; color: white; font-size: 28px; cursor: pointer; padding: 5px; border-radius: 50%; transition: background 0.3s ease; }
-    .close-btn:hover { background: rgba(255, 255, 255, 0.1); }
-    .modal-body { padding: 30px; overflow-y: auto; max-height: 70vh; }
-
-    .message-detail { line-height: 1.6; }
-    .detail-header { background: #f8fafc; padding: 25px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #facc15; }
-    .detail-row { display: flex; margin-bottom: 15px; align-items: flex-start; }
-    .detail-label { font-weight: 600; color: #374151; min-width: 100px; margin-right: 15px; }
-    .detail-value { color: #64748b; flex: 1; word-break: break-word; }
-    .message-content { background: white; padding: 25px; border-radius: 12px; border: 2px solid #e2e8f0; margin-top: 20px; }
-    .message-content h4 { color: #001e74; margin-bottom: 15px; font-size: 1.1rem; }
-    .message-text { color: #374151; line-height: 1.7; font-size: 15px; white-space: pre-wrap; word-wrap: break-word; }
-
-    .status-indicator { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; }
-    .status-indicator.unread { background: #fee2e2; color: #991b1b; }
-    .status-indicator.read { background: #dcfce7; color: #166534; }
-    .modal-actions { padding: 20px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 10px; }
-    .btn-mark-read { background: #22c55e; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; }
-    .btn-mark-read:hover { background: #16a34a; transform: translateY(-1px); }
-
     @media (max-width: 1024px) {
         .page-header h1 { font-size: 28px; }
         .page-header p { font-size: 1rem; }
         .filters-grid { grid-template-columns: 1fr; }
         .filter-group button { width: 100%; }
+        /* For screens up to 1024px, ensure table still scrolls if content is too wide */
+        .messages-table {
+            min-width: 800px; /* Adjust this value as needed to fit content */
+        }
     }
 
     @media (max-width: 768px) {
@@ -129,9 +115,9 @@
         .stat-content h3 { font-size: 1.8rem; }
         .stat-content p { font-size: 0.85rem; }
         .filters-section { padding: 20px; }
-        .messages-table { font-size: 14px; min-width: 600px; }
+        .messages-table { font-size: 14px; min-width: 600px; } /* Ensure min-width for small tablets */
         .messages-table th, .messages-table td { padding: 10px 15px; }
-        .message-preview { max-width: 150px; }
+        .message-preview { max-width: 150px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; } /* Reapply truncation for smaller screens */
         .status-badge { font-size: 11px; padding: 5px 10px; }
         .actions .btn-sm { padding: 5px 10px; font-size: 11px; }
         .pagination a, .pagination span { font-size: 13px;}
@@ -144,24 +130,48 @@
         .page-header p { font-size: 0.8rem; }
         .stat-content h3 { font-size: 1.5rem; }
         .stat-icon { width: 50px; height: 50px; font-size: 20px; margin-right: 15px; }
-        .messages-table { font-size: 13px; min-width: 500px; }
+        .messages-table { font-size: 13px; min-width: 500px; } /* Ensure min-width for mobile */
         .messages-table th, .messages-table td { padding: 8px 10px; }
-        .message-preview { max-width: 100px; }
+        .message-preview { max-width: 100px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; } /* Reapply truncation for smallest screens */
         .status-badge { font-size: 10px; padding: 4px 8px; }
         .actions .btn-sm { padding: 4px 8px; font-size: 10px; }
         .pagination { padding: 15px; gap: 5px; }
         .pagination a, .pagination span { padding: 4px 8px; font-size: 12px; }
     }
+
+    /* Modal styles (unchanged, but included for completeness) */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+    .modal.show { display: flex; align-items: center; justify-content: center; opacity: 1; }
+    .modal-content { background: white; max-width: 700px; width: 90%; max-height: 90vh; border-radius: 15px; overflow: hidden; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25); transform: scale(0.9); transition: transform 0.3s ease; }
+    .modal.show .modal-content { transform: scale(1); }
+    .modal-header { padding: 25px; background: linear-gradient(135deg, #001e74, #1a3a8a); color: white; display: flex; justify-content: space-between; align-items: center; }
+    .modal-header h3 { font-size: 1.4rem; font-weight: 600; margin: 0; }
+    .close-btn { background: none; border: none; color: white; font-size: 28px; cursor: pointer; padding: 5px; border-radius: 50%; transition: background 0.3s ease; }
+    .close-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    .modal-body { padding: 30px; overflow-y: auto; max-height: 70vh; }
+    .message-detail { line-height: 1.6; }
+    .detail-header { background: #f8fafc; padding: 25px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #facc15; }
+    .detail-row { display: flex; margin-bottom: 15px; align-items: flex-start; }
+    .detail-label { font-weight: 600; color: #374151; min-width: 100px; margin-right: 15px; }
+    .detail-value { color: #64748b; flex: 1; word-break: break-word; }
+    .message-content { background: white; padding: 25px; border-radius: 12px; border: 2px solid #e2e8f0; margin-top: 20px; }
+    .message-content h4 { color: #001e74; margin-bottom: 15px; font-size: 1.1rem; }
+    .message-text { color: #374151; line-height: 1.7; font-size: 15px; white-space: pre-wrap; word-wrap: break-word; }
+    .status-indicator { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 500; }
+    .status-indicator.unread { background: #fee2e2; color: #991b1b; }
+    .status-indicator.read { background: #dcfce7; color: #166534; }
+    .modal-actions { padding: 20px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 10px; }
+    .btn-mark-read { background: #22c55e; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; }
+    .btn-mark-read:hover { background: #16a34a; transform: translateY(-1px); }
+
 </style>
 
 <div class="dashboard-container">
-    <!-- Page Header -->
     <div class="page-header">
         <h1><i class="fas fa-envelope-open-text"></i> Kelola Pesan Kontak</h1>
         <p>Kelola pesan dari pengunjung website SPBE</p>
     </div>
 
-    <!-- Statistics -->
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-icon total">
@@ -192,7 +202,6 @@
         </div>
     </div>
 
-    <!-- Filters -->
     <div class="filters-section">
         <form method="GET" action="{{ route('admin.contact.index') }}">
             <div class="filters-grid">
@@ -218,19 +227,18 @@
         </form>
     </div>
 
-    <!-- Messages Table -->
     <div class="messages-section">
         {{-- @if(isset($messages) && $messages->count() > 0) --}}
         <div class="table-responsive">
             <table class="messages-table">
                 <thead>
                     <tr>
-                        <th style="width: 10%; ">Pengirim</th>
-                        <th style="width: 10%; ">Email</th>
-                        <th style="width: 53%; ">Pesan</th>
-                        <th style="width: 10%; ">Status</th>
-                        <th style="width: 10%; ">Tanggal</th>
-                        <th style="width: 2%; ">Aksi</th>
+                        <th>Pengirim</th>
+                        <th>Email</th>
+                        <th>Pesan</th>
+                        <th>Status</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -246,7 +254,7 @@
                         </td>
                         <td>
                             <div class="message-preview">
-                                {{ Str::limit($message->message, 50, '...') }}
+                                {{ Str::limit($message->message, 140, '...') }}
                             </div>
                         </td>
                         <td>
@@ -300,7 +308,7 @@
 
     async function markAsRead(id) {
         try {
-            const response = await fetch(/admin/contact/${id}/mark-read, {
+            const response = await fetch(`/admin/contact/${id}/mark-read`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
