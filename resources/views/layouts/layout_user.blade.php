@@ -103,8 +103,8 @@
                 <!-- Kontak -->
                 <div class="col-md-6 footer-column">
                     <h4>Contact</h4>
-                    <p><span class="icon-circle"><i class="fa-solid fa-phone"></i></span> (0721) 252041 </p>
-                    <p><span class="icon-circle"><i class="fa-solid fa-envelope"></i></span> spbe@bandarlampung.go.id</p>
+                    <p><span class="icon-circle"><i class="fa-solid fa-phone"></i></span> (0721) 481301 </p>
+                    <p><span class="icon-circle"><i class="fa-solid fa-envelope"></i></span> diskominfo@bandarlampungkota.go.id</p>
                     <p><span class="icon-circle"><i class="fa-solid fa-location-dot"></i></span> Jalan Dokter Susilo No.2, Sumur Batu, Teluk Betung Utara, Kota Bandar Lampung, Lampung 35212</p>
                 </div>
 

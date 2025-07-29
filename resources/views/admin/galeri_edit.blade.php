@@ -82,6 +82,11 @@
         .btn-kembali:hover {
             background-color: #bbb;
         }
+
+        .required-star {
+            color: red;
+            margin-left: 4px;
+        }
     </style>
 </head>
 <body>
@@ -97,7 +102,7 @@
         @method('PUT')
 
         <div>
-            <label for="title">Judul Foto:</label>
+            <label for="title">Judul Foto:<span class="required-star">*</span></label>
             <input type="text" name="title" id="title" value="{{ $gallery->title }}" required>
         </div>
 

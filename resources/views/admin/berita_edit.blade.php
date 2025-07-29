@@ -51,7 +51,7 @@
     .required-star {
             color: red;
             margin-left: 4px;
-        }
+    }
 </style>
 @endsection
 
