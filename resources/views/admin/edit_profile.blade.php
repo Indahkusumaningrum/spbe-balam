@@ -60,6 +60,11 @@
         .form-buttons { flex-direction: row; justify-content: center;}
         .btn-action { width: auto; flex-grow: 1; max-width: 120px; padding: 10px 15px; font-size: 14px; }
     }
+
+    .required-star {
+            color: red;
+            margin-left: 4px;
+    }
 </style>
 @endsection
 
@@ -104,7 +109,7 @@
         </div>
 
         <div class="form-group">
-            <label for="deskripsi" class="form-label">Deskripsi:</label>
+            <label for="deskripsi" class="form-label">Deskripsi:<span class="required-star">*</span></label>
             <textarea name="deskripsi" id="deskripsi" placeholder="Deskripsi" class="form-control" rows="10" required>{{ old('deskripsi', $profile->deskripsi ?? '') }}</textarea>
             @error('deskripsi')
                 <div class="text-danger">{{ $message }}</div>

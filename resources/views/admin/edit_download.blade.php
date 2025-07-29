@@ -139,6 +139,11 @@
                 color: white;
             }
 
+            .required-star {
+            color: red;
+            margin-left: 4px;
+            }
+
     </style>
 </head>
 @endsection
@@ -154,13 +159,13 @@
             <label class="form-label">Kategori:<span class="required-star">*</span> </label>
             <input type="text" name="category" value= "{{ $download->category }}">
             
-            <label class="form-label">Tahun:</label>
+            <label class="form-label">Tahun:<span class="required-star">*</span></label>
             <input type="number" name="year" id="year" class="form-control" value="{{ old('year', $download->year) }}" required min="1900" max="{{ date('Y') }}">
 
-            <label class="form-label">Judul:</label>
+            <label class="form-label">Judul:<span class="required-star">*</span></label>
             <textarea name="content"> {{ $download->content }}</textarea>
             
-            <label class="form-label">Tentang:</label>
+            <label class="form-label">Tentang:<span class="required-star">*</span></label>
             <input type="text" name="title" value= "{{ $download->title }}">
             
             <label class="form-label">File Sebelumnya:</label>

@@ -98,6 +98,12 @@
       font-size: 14px;
       padding: 0 20px;
     }
+
+    .captcha-container img { /* Style for captcha image */
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+    }
+
     @media (max-width: 768px) {
       .login-container {
         width: 90%;
@@ -176,7 +182,7 @@
 
         <div class="mb-3">
             <label for="captcha">Kode Captcha</label>
-            <div class="d-flex mb-2 align-items-center">
+            <div class="captcha-container">
                 {!! captcha_img('flat') !!}
                 <button type="button" class="btn btn-link ms-2" id="reload" style="color:white; background-color:#faac15;">&#x21bb;</button>
             </div>

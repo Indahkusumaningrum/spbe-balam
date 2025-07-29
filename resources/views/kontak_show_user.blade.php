@@ -473,8 +473,7 @@
                         <h3 class="info-title">Telepon</h3>
                     </div>
                     <div class="info-details">
-                        <a href="tel:0721123456">(0721) 123456</a><br>
-                        <a href="tel:0721252041">(0721) 252041</a>
+                        <a href="tel:0721481301">(0721) 481301</a>
                     </div>
                 </div>
 
@@ -486,8 +485,7 @@
                         <h3 class="info-title">Email</h3>
                     </div>
                     <div class="info-details">
-                        <a href="mailto:spbe@pemkotbandarlampung.go.id">spbe@pemkotbandarlampung.go.id</a><br>
-                        <a href="mailto:spbe@bandarlampung.go.id">spbe@bandarlampung.go.id</a>
+                        <a href="mailto:diskominfo@bandarlampungkota.go.id">diskominfo@bandarlampungkota.go.id</a>
                     </div>
                 </div>
 

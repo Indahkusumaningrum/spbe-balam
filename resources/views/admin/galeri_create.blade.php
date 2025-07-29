@@ -134,6 +134,10 @@
                 background-color: green;
                 color: white;
             }
+            .required-star {
+            color: red;
+            margin-left: 4px;
+            }
 
     </style>
 </head>
@@ -161,12 +165,12 @@
 
 
         <div>
-            <label for="judul">Judul Foto:</label>
+            <label for="judul">Judul Foto:<span class="required-star">*</span></label>
             <input type="text" name="title" id="judul" value="{{ old('title') }}">
         </div>
 
         <div>
-            <label for="gambar">Pilih Gambar:</label>
+            <label for="gambar">Pilih Gambar:<span class="required-star">*</span></label>
             <input type="file" name="image" id="gambar" accept="image/*">
         </div>
 

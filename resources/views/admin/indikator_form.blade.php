@@ -17,7 +17,6 @@
         .btn-secondary { background-color: #e2e8f0; color: #1e293b; border: none; margin-left: 10px; }
         .btn-secondary:hover { background-color: #cbd5e1; }
     </style>
-@endsection
 
 @section('content')
 <div class="form-container">

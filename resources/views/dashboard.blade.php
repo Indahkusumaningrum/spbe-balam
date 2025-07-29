@@ -60,7 +60,7 @@
 
         .card-link { display: block; width: 100%; height: 100%; text-decoration: none; color: inherit; position: relative; overflow: hidden;}
         .spbe-info-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 50px; padding: 40px 20px; background-color: #ffffff; }
-        .info-card { width: 270px; min-width: 250px; max-width: 100%; border: 1.5px solid #facc15; border-radius: 16px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); padding: 24px; text-align: center; transition: transform 0.3s; }
+        .info-card { width: 290px; min-width: 270px; max-width: 100%; border: 1.5px solid #facc15; border-radius: 16px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); padding: 24px; text-align: center; transition: transform 0.3s; }
         .info-card:hover { transform: translateY(-20px); }
         .info-card .info-icon { width: 90px; height: 90px; margin-bottom: 15px; }
         .info-card h3 { font-size: 18px; margin: 0 0 8px; color: #000; }

@@ -51,7 +51,6 @@ Route::delete('/admin/download/{id}', [DownloadController::class, 'destroy'])->n
 Route::get('/download', [UserDownloadController::class, 'index'])->name('download');
 
 // Profile Routes
-Route::get('/admin/profile/create', [ProfileController::class, 'create'])->name('profile.create');
 Route::get('/admin/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
 
 // Berita Routes
